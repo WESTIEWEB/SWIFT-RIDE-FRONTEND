@@ -4,27 +4,54 @@
   background-color: red;
   width: 100%;
   overflow: hidden;
-  height: 100%;
+  height: 92vh;
   display: flex;
 }
 .bg-background {
   display: flex;
   position: relative;
-  height: 100%;
+  height: 95vh;
+}
+h2{
+position: absolute;
+width: 370px;
+height: 144px;
+left: 50px;
+top: 470px;
+text-align: left;
+font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+font-weight:bolder;
+font-size: 35px;
+line-height: 35px;
+
+
 }
 
 .form-style {
+  height: 95vh;
   width: 500px;
   background-color: white;
   position: relative;
   display: flex;
   justify-content: center;
 }
+.form-top{
+  display:flex;
+}
 
+.swift{
+   display: inline;
+   color: red;
+  font-weight: bold;
+  display: flex;
+}
+
+.form-div{
+  margin-top:0%;
+}
 input {
-  padding: 15px;
-  margin-top: 10px;
-  margin-bottom: 20px;
+  padding: 10px;
+  margin-bottom: 10px;
   text-align: left;
   border-radius: 6px;
   border-color: #012a4a;
@@ -36,34 +63,29 @@ input {
   border-radius: 6px;
   display: flex;
   box-sizing: border-box;
-  line-height: 24px;
   font-family: "Inter";
   font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
+  font-weight: 400;
+  font-size: 18px;
 }
 .labels {
-  width: 200px;
+ 
   display: flex;
-  margin-top: 0px;
-  margin-bottom: 5px;
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
   color: black;
-  font-size: 20px;
-  font-weight: 600px;
+  font-size: 15px;
+  font-weight: bold;
 }
 
-.btn-container {
-}
 .btnReg {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   padding: 16px 24px;
-  gap: 16px;
+  gap: 10px;
 
   width: 300px;
   padding: 12px;
@@ -74,9 +96,32 @@ input {
 
 p {
   color: black;
+  
 }
 
 .sign {
   color: red;
   font-weight: bold;
 }
+
+.signup-head{
+width: 246px;
+height: 24px;
+font-family: 'Inter';
+font-style: normal;
+font-weight: 700;
+font-size: 24px;
+line-height: 24px;
+/* identical to box height, or 100% */
+
+
+color: #012A4A;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+}
+
