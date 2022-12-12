@@ -1,13 +1,10 @@
 {
   "name": "swift-rider",
-  "homepage":"https://decadevs.github.io/node-live-project-frontend-sq012-swift-rider",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "predeploy": "yarn run build",
-    "deploy": "gh-pages -d build",
-    "build": "tsc && vite build",
+    "build": "vite build",
     "dev": "vite",
     "preview": "vite preview"
   },
