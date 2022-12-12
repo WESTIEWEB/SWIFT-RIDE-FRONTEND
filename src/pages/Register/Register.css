@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
+.register-container {
+  position: relative;
+  background-color: red;
+  width: 100%;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+}
+.bg-background {
+  display: flex;
+  position: relative;
+  height: 100%;
+}
+
+.form-style {
+  width: 500px;
+  background-color: white;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+input {
+  padding: 15px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  text-align: left;
+  border-radius: 6px;
+  border-color: #012a4a;
+  width: 300px;
+  background-color: white;
+  color: black;
+  opacity: 0.8;
+  border: 1px solid #012a4a;
+  border-radius: 6px;
+  display: flex;
+  box-sizing: border-box;
+  line-height: 24px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+}
+.labels {
+  width: 200px;
+  display: flex;
+  margin-top: 0px;
+  margin-bottom: 5px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  color: black;
+  font-size: 20px;
+  font-weight: 600px;
+}
+
+.btn-container {
+}
+.btnReg {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 24px;
+  gap: 16px;
+
+  width: 300px;
+  padding: 12px;
+
+  background: #e02b45;
+  border-radius: 6px;
+}
+
+p {
+  color: black;
+}
+
+.sign {
+  color: red;
+  font-weight: bold;
+}
