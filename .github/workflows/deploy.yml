@@ -20,7 +20,7 @@ jobs:
           node-version: 16
 
       - name: Install dependencies
-        uses: bahmutov/yarn
+        uses: bahmutov/yarn@v1
 
       - name: Build project
         run: yarn build
