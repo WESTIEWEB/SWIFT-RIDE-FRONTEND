@@ -20,7 +20,7 @@ jobs:
           node-version: 16
 
       - name: Install dependencies
-        uses: node-live-project-frontend-sq012-swift-rider/yarn@v2
+        uses: node-live-project-frontend-sq012-swift-rider/staging/yarn@v2
 
       - name: Build project
         run: yarn build
