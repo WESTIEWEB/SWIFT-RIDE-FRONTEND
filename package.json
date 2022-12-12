@@ -5,10 +5,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "predeploy": "yarn build",
-    "deploy": "gh-pages build",
-    "dev": "vite",
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -d build",
     "build": "tsc && vite build",
+    "dev": "vite",
     "preview": "vite preview"
   },
   "dependencies": {
