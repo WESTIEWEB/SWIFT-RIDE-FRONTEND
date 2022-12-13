@@ -8,7 +8,7 @@ const Register = () => {
 	return (
 		<div className="register-container">
 			<div className="bg-background">
-				<img src={registerBg} alt="Dispatch rider" />
+				<img src={registerBg} alt="Swift rider" />
 				<h2>
 					Delivery service just got easier, elegant & superb with Swift Rider
 				</h2>
