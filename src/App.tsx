@@ -1,16 +1,13 @@
 import React from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import Home from "./pages/Home/Home";
-import "./App.css";
-import Register from "./pages/Register/Register";
+import ProfileSetting from "./pages/ProfileSetting/ProfileSetting";
 
 const App = () => {
 	return (
 		<React.Fragment>
 			<Router>
 				<Routes>
-					<Route path="/" element={<Home />} />
-					<Route path="/signin" element={<Register />} />
+					<Route path="/profile-settings" element={<ProfileSetting />} />
 				</Routes>
 			</Router>
 		</React.Fragment>
