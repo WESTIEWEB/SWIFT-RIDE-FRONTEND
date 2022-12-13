@@ -2,3 +2,4 @@
 *.svg
 build
 vite-env.d
+vite.config.ts
