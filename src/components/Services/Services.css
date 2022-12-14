@@ -43,7 +43,7 @@ flex-direction: column;
 .column{
     display: flex;
     /* flex-wrap: wrap; */
-    align-items: center;
+    /* align-items: center; */
     /* column-gap: 0.5rem; */
     width: 100%;
     margin-bottom: 2rem;
@@ -76,4 +76,4 @@ flex-direction: column;
   justify-content: center;
   width: 70%;
   border: 2px solid black
-}
+} 

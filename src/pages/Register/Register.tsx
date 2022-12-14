@@ -1,15 +1,15 @@
 import React from "react";
 import registerBg from "../../assets/registerBg.svg";
 import "./Register.css";
-
 import Group15 from "../../assets/Group15.svg";
 import { Link } from "react-router-dom";
+
 const Register = () => {
 	return (
 		<div className="register-container">
 			<div className="bg-background">
 				<img src={registerBg} alt="Swift rider" />
-				<h2>
+				<h2 className="delivery">
 					Delivery service just got easier, elegant & superb with Swift Rider
 				</h2>
 			</div>
@@ -53,7 +53,7 @@ const Register = () => {
 						<button className="btnReg">Signup</button>
 					</div>
 					<div>
-						<p>
+						<p className="pTag">
 							Already have an account?{" "}
 							<Link to="/login" className="sign">
 								Sign in

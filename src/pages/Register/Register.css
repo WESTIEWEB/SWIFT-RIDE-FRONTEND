@@ -1,18 +1,24 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
+ @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
 .register-container {
-  position: relative;
-  background-color: red;
-  width: 100%;
-  overflow: hidden;
-  height: 92vh;
+  position:absolute;
+  top:0px;
+  right:0px;
+  bottom:0px;
+  left:0px;
+  /* background-color: red; */
+   width: 100%;
+  height: 100vh;
   display: flex;
-}
-.bg-background {
-  display: flex;
-  position: relative;
-  height: 95vh;
-}
-h2{
+  overflow:hidden;
+} 
+ .bg-background {
+  position: relative; 
+  /* background-image: url(/src/assets/registerBg.svg); */
+  /* height: 50%; */
+   width:55%;
+  filter:brightness(80%);
+} 
+.delivery{
 position: absolute;
 width: 370px;
 height: 144px;
@@ -23,26 +29,26 @@ font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 font-weight:bolder;
 font-size: 35px;
 line-height: 35px;
-
-
-}
-
+display: flex;
+color:white;
+margin-bottom: 20px;
+} 
 .form-style {
-  height: 95vh;
-  width: 500px;
+  height: 100%;
+  width: 45%;
   background-color: white;
   position: relative;
   display: flex;
   justify-content: center;
+  margin-top: 50px;
 }
 .form-top{
   display:flex;
 }
-
 .swift{
    color: red;
   font-weight: bold;
-  display: inline-flex;
+  display: fixed;
  position: relative;
  left:10px;
 font-size:15px;
@@ -50,13 +56,6 @@ font-size:15px;
 .rider-top{
   left: 0px;
 display:flex;
-
-
-}
-
-
-.form-div{
- 
 }
 input {
   padding: 10px;
@@ -68,7 +67,7 @@ input {
   background-color: white;
   color: black;
   opacity: 0.8;
-  border: 1px solid #012a4a;
+  border: 1px solid #012A4A;
   border-radius: 6px;
   display: flex;
   box-sizing: border-box;
@@ -76,18 +75,18 @@ input {
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
+
 }
 .labels {
- 
+ position: relative;
   display: flex;
-  flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
   color: black;
   font-size: 15px;
   font-weight:500;
+  margin-top: 20px;
 }
-
 .btnReg {
   display: flex;
   flex-direction: row;
@@ -95,43 +94,38 @@ input {
   align-items: center;
   padding: 16px 24px;
   gap: 10px;
-
   width: 300px;
   padding: 12px;
-
   background: #e02b45;
   border-radius: 6px;
+  border: 1px solid white;
+  margin-top: 30px;
 }
-
-p {
+.pTag{
   color: black;
-  
 }
-
 .sign {
   color: red;
   font-weight: bold;
 }
-
 .signup-head{
-width: 246px;
+/* width: 246px; */
 height: 15px;
 font-family: 'Inter';
 font-style: normal;
 font-weight: 700;
 font-size: 24px;
 display: flex;
-
+margin-top:50px;
 /* identical to box height, or 100% */
-
-
 color: #012A4A;
-
-
 /* Inside auto layout */
-
 flex: none;
 order: 0;
 flex-grow: 0;
 }
-
+.passIcon{
+  position:absolute;
+  left:110px;
+  top:413px;
+} 

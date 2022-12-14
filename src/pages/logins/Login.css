@@ -3,7 +3,7 @@
    
 } */
 html,
-body, * {
+body {
   margin: 0px;
   height: 100vh;
 }
@@ -164,7 +164,7 @@ form div {
    .login-container {
     flex-direction: row;
   }
-  /**.login-container{
+  *.login-container{
    position: absolute;
    top: 0px;
    right: 0px;
@@ -176,12 +176,12 @@ form div {
    font-family: "Inter", sans-serif;
    background-color: white;
    height: 100%;
-  }*/
+  }
 
-  /*.form-style {
+  .form-style {
     width: 95%;
 
-  }*/
+  }
  
 }
 
