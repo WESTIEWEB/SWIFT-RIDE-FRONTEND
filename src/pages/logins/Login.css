@@ -3,7 +3,7 @@
    
 } */
 html,
-body {
+body, * {
   margin: 0px;
   height: 100vh;
 }
@@ -150,7 +150,16 @@ form div {
   color: white;
 }
 
-@media only screen and (max-width: 768px) {
+@media  screen and (max-width: 768px) {
+
+   .loginimg-container {
+      /* position: relative;
+      height: 100vh;
+      width: 60%;
+      background-color: white; */
+      display: none;
+  }
+
    .login-container {
     flex-direction: row;
   }
