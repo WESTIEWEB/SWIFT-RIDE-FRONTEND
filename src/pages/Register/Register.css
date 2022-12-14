@@ -40,14 +40,23 @@ line-height: 35px;
 }
 
 .swift{
-   display: inline;
    color: red;
   font-weight: bold;
-  display: flex;
+  display: inline-flex;
+ position: relative;
+ left:10px;
+font-size:15px;
+}
+.rider-top{
+  left: 0px;
+display:flex;
+
+
 }
 
+
 .form-div{
-  margin-top:0%;
+ 
 }
 input {
   padding: 10px;
@@ -76,7 +85,7 @@ input {
   justify-content: space-between;
   color: black;
   font-size: 15px;
-  font-weight: bold;
+  font-weight:500;
 }
 
 .btnReg {
@@ -106,12 +115,13 @@ p {
 
 .signup-head{
 width: 246px;
-height: 24px;
+height: 15px;
 font-family: 'Inter';
 font-style: normal;
 font-weight: 700;
 font-size: 24px;
-line-height: 24px;
+display: flex;
+
 /* identical to box height, or 100% */
 
 

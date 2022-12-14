@@ -1,23 +1,22 @@
 import React from "react";
 import registerBg from "../../assets/registerBg.svg";
 import "./Register.css";
-import nameIcon from "../../assets/nameIcon.svg";
 
 import Group15 from "../../assets/Group15.svg";
+import { Link } from "react-router-dom";
 const Register = () => {
 	return (
 		<div className="register-container">
 			<div className="bg-background">
-				<img src={registerBg} alt="Dispatch rider" />
+				<img src={registerBg} alt="Swift rider" />
 				<h2>
 					Delivery service just got easier, elegant & superb with Swift Rider
 				</h2>
 			</div>
 
 			<div className="form-style">
-				<div className="form-top"></div>
 				<div className="form-div">
-					<div>
+					<div className="rider-top">
 						<img src={Group15} alt="rider" />
 						<p className="swift">
 							Swift <br /> Rider
@@ -27,27 +26,27 @@ const Register = () => {
 					<h3 className="signup-head">Sign Up as a Customer</h3>
 					<div>
 						<label className="labels">Name</label>
-						<input type="name" placeholder="Name" />
+						<input type="name" placeholder="Enter your name" />
 					</div>
 
 					<div>
 						<label className="labels">Phone Number</label>
-						<input type="phone" placeholder="Phone Number" />
+						<input type="phone" placeholder="Enter your phone number" />
 					</div>
 
 					<div>
 						<label className="labels">Email</label>
-						<input type="email" placeholder="Email" />
+						<input type="email" placeholder="Enter your email" />
 					</div>
 
 					<div>
 						<label className="labels">Password</label>
-						<input type="password" placeholder="user password" />
+						<input type="password" placeholder="Enter your password" />
 					</div>
 
 					<div>
 						<label className="labels">Confirm password</label>
-						<input type="password" placeholder="Confirm password" />
+						<input type="password" placeholder="Enter your password" />
 					</div>
 
 					<div className="btn-container">
@@ -55,7 +54,10 @@ const Register = () => {
 					</div>
 					<div>
 						<p>
-							Already have an account? <span className="sign">Sign in</span>
+							Already have an account?{" "}
+							<Link to="/login" className="sign">
+								Sign in
+							</Link>
 						</p>
 					</div>
 				</div>
