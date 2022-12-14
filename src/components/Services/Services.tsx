@@ -6,6 +6,8 @@ import headset from "../../assets/headset.svg";
 import world from "../../assets/world.svg";
 import order from "../../assets/order.svg";
 import quality_riders from "../../assets/quality_riders.svg";
+import ellipse from "../../assets/ellipse.svg";
+import stars from "../../assets/stars.svg";
 
 const Services = () => {
 	return (
@@ -91,6 +93,107 @@ const Services = () => {
 						sed enim integer at aliquet a. Semper vel id lectus quis vitae,
 						velit est. Orci mi sed dui viverra.
 					</p>
+				</div>
+			</div>
+			<div className="clients">
+				<div className="clientText">
+					<h1>What Our Clients Say About Us</h1>
+				</div>
+				<div className="grid">
+					<div className="column1">
+						<div className="clientCard">
+							<div className="imageCircle">
+								<img src={ellipse} alt="ellipse" />
+							</div>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Id est
+								leo a eget risus nunc. Arcu amet nibh arcu risus vulputate.
+								Amet, ac nec, nunc viverra massa blandit nec enim volutpat.
+								Cursus pretium velit eget justo, turpis.
+							</p>
+							<div className="textStars">
+								<p className="cardTitle">Jenifer Harrison</p>
+								<img src={stars} alt="stars" />
+							</div>
+						</div>
+						<div className="clientCard">
+							<div className="imageCircle">
+								<img src={ellipse} alt="ellipse" />
+							</div>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Id est
+								leo a eget risus nunc. Arcu amet nibh arcu risus vulputate.
+								Amet, ac nec, nunc viverra massa blandit nec enim volutpat.
+								Cursus pretium velit eget justo, turpis.
+							</p>
+							<div className="textStars">
+								<p className="cardTitle">Jenifer Harrison</p>
+								<img src={stars} alt="stars" />
+							</div>
+						</div>
+						<div className="clientCard">
+							<div className="imageCircle">
+								<img src={ellipse} alt="ellipse" />
+							</div>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Id est
+								leo a eget risus nunc. Arcu amet nibh arcu risus vulputate.
+								Amet, ac nec, nunc viverra massa blandit nec enim volutpat.
+								Cursus pretium velit eget justo, turpis.
+							</p>
+							<div className="textStars">
+								<p className="cardTitle">Jenifer Harrison</p>
+								<img src={stars} alt="stars" />
+							</div>
+						</div>
+					</div>
+					<div className="column1">
+						<div className="clientCard">
+							<div className="imageCircle">
+								<img src={ellipse} alt="ellipse" />
+							</div>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Id est
+								leo a eget risus nunc. Arcu amet nibh arcu risus vulputate.
+								Amet, ac nec, nunc viverra massa blandit nec enim volutpat.
+								Cursus pretium velit eget justo, turpis.
+							</p>
+							<div className="textStars">
+								<p className="cardTitle">Jenifer Harrison</p>
+								<img src={stars} alt="stars" />
+							</div>
+						</div>
+						<div className="clientCard">
+							<div className="imageCircle">
+								<img src={ellipse} alt="ellipse" />
+							</div>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Id est
+								leo a eget risus nunc. Arcu amet nibh arcu risus vulputate.
+								Amet, ac nec, nunc viverra massa blandit nec enim volutpat.
+								Cursus pretium velit eget justo, turpis.
+							</p>
+							<div className="textStars">
+								<p className="cardTitle">Jenifer Harrison</p>
+								<img src={stars} alt="stars" />
+							</div>
+						</div>
+						<div className="clientCard">
+							<div className="imageCircle">
+								<img src={ellipse} alt="ellipse" />
+							</div>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Id est
+								leo a eget risus nunc. Arcu amet nibh arcu risus vulputate.
+								Amet, ac nec, nunc viverra massa blandit nec enim volutpat.
+								Cursus pretium velit eget justo, turpis.
+							</p>
+							<div className="textStars">
+								<p className="cardTitle">Jenifer Harrison</p>
+								<img src={stars} alt="stars" />
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

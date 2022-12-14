@@ -37,11 +37,22 @@ p{
 .grid{
 display: flex;
 flex-direction: column;
+margin-bottom: 5rem;
+gap: 3rem;
 }
 
 .column{
     display: flex;
     align-items: center;
+    width: 100%;
+    max-width: 80%;
+    margin: 0 auto;
+    text-align: center;
+}
+.column1{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
     width: 100%;
     max-width: 80%;
     margin: 0 auto;
@@ -86,4 +97,35 @@ flex-direction: column;
     flex-direction: column;
      width: 40%;
     /* margin: 0 auto; */
+}
+
+.clientCard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+    height: 400px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+    border:   1px solid #D9D9D9;
+}
+
+.imageCircle{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+
+}
+
+.clientText{
+margin: 5rem 3rem;
+}
+
+.textStars{
+    display: flex;
+    flex-direction: row;
+    align-items: space-between;
+    gap: 1rem;
 }
