@@ -124,6 +124,7 @@ form div {
 }
 #darken {
   filter: brightness(50%);
+  
 }
 
 .login-btn {
