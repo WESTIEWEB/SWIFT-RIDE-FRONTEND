@@ -4,6 +4,9 @@ import Home from "./pages/Home/Home";
 import "./App.css";
 import Register from "./pages/Register/Register";
 
+
+// setup  for fontend
+
 const App = () => {
 	return (
 		<React.Fragment>
