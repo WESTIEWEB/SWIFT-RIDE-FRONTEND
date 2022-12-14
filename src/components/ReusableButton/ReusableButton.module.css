@@ -1,0 +1,17 @@
+button {
+
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 8px;
+gap: 180px;
+
+width: 343px;
+height: 48px;
+font-weight: 600;
+
+background-color: #E02B45;
+border: 1px solid #C6C6C6;
+}
+
