@@ -1,19 +1,28 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
+
 .register-container {
-  position: relative;
+
+  position:absolute;
+  top:0px;
+  right:0px;
+  bottom:0px;
+  left:0px;
   background-color: red;
   width: 100%;
-  overflow: hidden;
-  height: 92vh;
+  
+  height: 100vh;
   display: flex;
 }
 .bg-background {
-  display: flex;
   position: relative;
-  height: 95vh;
+  background-image: url(/src/assets/registerBg.svg);
+  height: 100%;
+  width:55%;
+  filter:brightness(80%);
+  
 }
 h2{
-position: absolute;
+position: relative;
 width: 370px;
 height: 144px;
 left: 50px;
@@ -23,13 +32,13 @@ font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 font-weight:bolder;
 font-size: 35px;
 line-height: 35px;
-
+display: flex;
 
 }
 
 .form-style {
-  height: 95vh;
-  width: 500px;
+  height: 100vh;
+  width: 45%;
   background-color: white;
   position: relative;
   display: flex;
@@ -42,7 +51,7 @@ line-height: 35px;
 .swift{
    color: red;
   font-weight: bold;
-  display: inline-flex;
+  display: fixed;
  position: relative;
  left:10px;
 font-size:15px;
@@ -54,10 +63,6 @@ display:flex;
 
 }
 
-
-.form-div{
- 
-}
 input {
   padding: 10px;
   margin-bottom: 10px;
@@ -78,9 +83,9 @@ input {
   font-size: 18px;
 }
 .labels {
- 
+ position: relative;
   display: flex;
-  flex-direction: column;
+ 
   align-items: flex-start;
   justify-content: space-between;
   color: black;
@@ -133,5 +138,11 @@ color: #012A4A;
 flex: none;
 order: 0;
 flex-grow: 0;
+}
+
+.passIcon{
+  position:absolute;
+  left:110px;
+  top:413px;
 }
 

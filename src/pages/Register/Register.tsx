@@ -1,6 +1,7 @@
 import React from "react";
-import registerBg from "../../assets/registerBg.svg";
+
 import "./Register.css";
+import passwordIcon from "../../assets/Vectorpassword icon.svg";
 
 import Group15 from "../../assets/Group15.svg";
 import { Link } from "react-router-dom";
@@ -8,7 +9,6 @@ const Register = () => {
 	return (
 		<div className="register-container">
 			<div className="bg-background">
-				<img src={registerBg} alt="Swift rider" />
 				<h2>
 					Delivery service just got easier, elegant & superb with Swift Rider
 				</h2>
@@ -26,22 +26,23 @@ const Register = () => {
 					<h3 className="signup-head">Sign Up as a Customer</h3>
 					<div>
 						<label className="labels">Name</label>
-						<input type="name" placeholder="Enter your name" />
+						<input type="name" placeholder="     Enter your name" />
 					</div>
 
 					<div>
 						<label className="labels">Phone Number</label>
-						<input type="phone" placeholder="Enter your phone number" />
+						<input type="phone" placeholder="     Enter your phone number" />
 					</div>
 
 					<div>
 						<label className="labels">Email</label>
-						<input type="email" placeholder="Enter your email" />
+						<input type="email" placeholder="     Enter your email" />
 					</div>
 
 					<div>
 						<label className="labels">Password</label>
-						<input type="password" placeholder="Enter your password" />
+						<img src={passwordIcon} className="passIcon" alt="Swift rider" />
+						<input type="password" placeholder="     Enter your password" />
 					</div>
 
 					<div>
