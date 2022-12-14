@@ -1,4 +1,5 @@
-:root {
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap'); 
+/* :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 24px;
@@ -13,7 +14,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
-}
+} */
 
 a {
   font-weight: 500;
@@ -26,29 +27,38 @@ a:hover {
 
 body {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  background-color: #E5E5E5;
+  /* place-items: center; */
+  overflow-x: hidden;
+  /* min-width: 320px;
+  min-height: 100vh; */
 }
 
-h1 {
+/* h1 {
   font-size: 3.2em;
   line-height: 1.1;
-}
+} */
 
-button {
-  border-radius: 8px;
+/* button {
+  border-radius: 3px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left:180px;
+  padding-right: 180px;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #E02B45 ;
   cursor: pointer;
+  text-align: center;
   transition: border-color 0.25s;
-}
-button:hover {
+} */
+/* button:hover {
   border-color: #646cff;
 }
 button:focus,
@@ -68,3 +78,4 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+ */
