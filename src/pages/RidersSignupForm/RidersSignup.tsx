@@ -69,10 +69,14 @@ const RidersSignup = () => {
 							<i className="fa fa-city icon"></i>
 							<label htmlFor="city">City</label>
 							<select name="city" id="city" value="Select">
-								<option placeholder="Select">Select</option>
-								<option value="saab">Saab</option>
-								<option value="mercedes">Mercedes</option>
-								<option value="audi">Audi</option>
+								{/* <div className="opt"> */}
+									<option value="" >Select your option</option>
+									<option value="saab">Saab</option>
+									<option value="mercedes">Mercedes</option>
+									<option value="audi">Audi</option>
+								{/* </div> */}
+
+
 							</select>
 						</div>
 
@@ -138,7 +142,7 @@ const RidersSignup = () => {
 
 						<p>
 							Already have an account?
-							<a href="#">
+							<a href="http://localhost:4000/">
 								<span className="signin">Sign In</span>
 							</a>
 						</p>
