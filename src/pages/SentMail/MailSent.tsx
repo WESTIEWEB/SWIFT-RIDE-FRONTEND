@@ -1,19 +1,26 @@
-import ReusableButton from "../../components/ReusableButton/ReusableButton";
+import React from 'react';
+
 import "./MailSent.css"
-import React from 'react'
+
 import Email from '../../assets/Email.svg'
 
 const MailSent = () => {
   return (
-    <div className="h">
+    <div className="sentMail-Container">
     <div className="Cover">
         <div className="image"><img src={Email} alt=""></img></div>
         <div className="text">
             <h3>Check your mail</h3>
             <p>We have sent a password 
                 recover <br/> instruction to your account.</p>
+            <h6>
+            Don’t receive the email? Click to Resend link
+            </h6>
         </div>
-        <ReusableButton text="Open email app"></ReusableButton>
+        <div>
+        <button className="sentBtn">Back to Login</button>
+        </div>
+        {/* <ReusableButton text="Open email app"></ReusableButton> */}
     </div>
     </div>
   )
