@@ -1,59 +1,120 @@
-import React from "react";
+import React, { useState } from "react";
 import registerBg from "../../assets/registerBg.svg";
-import "./Register.css";
 import Group15 from "../../assets/Group15.svg";
 import { Link } from "react-router-dom";
+import modern from "./Register.module.css";
+// import { apiPost } from "../../utils/api/axios";
+import axios from "axios";
+import { toast } from "react-toastify";
+const baseUrl = "http://localhost:4000";
 
 const Register = () => {
+	const [formData, setFormData] = useState({});
+
+	const handleChange = (e: any) => {
+		const { name, value } = e.target;
+		setFormData({ ...formData, [name]: value });
+	};
+
+	const handleSubmit = async (e: any) => {
+		e.preventDefault();
+		try {
+			await axios
+				.post(`${baseUrl}/users/signup`, formData)
+				.then((res) => {
+					const signature = res.data.signature;
+
+					localStorage.setItem("signature", signature);
+					toast.success(res.data.message);
+					setTimeout(() => {
+						window.location.href = "/login";
+					}, 2000);
+				})
+				.catch((err) => {
+					console.log(err);
+					toast.error(err.response.data.Error);
+				});
+		} catch (error) {
+			console.log(error);
+		}
+	};
 	return (
-		<div className="register-container">
-			<div className="bg-background">
+		<div className={modern.register_container}>
+			<div className={modern.bg_background}>
 				<img src={registerBg} alt="Swift rider" />
-				<h2 className="delivery">
+				<h2 className={modern.delivery}>
 					Delivery service just got easier, elegant & superb with Swift Rider
 				</h2>
 			</div>
 
-			<div className="form-style">
-				<div className="form-div">
-					<div className="rider-top">
+			<div className={modern.form_style}>
+				<div className={modern.form_div}>
+					<div className={modern.rider_top}>
 						<img src={Group15} alt="rider" />
-						<p className="swift">
+						<p className={modern.swift}>
 							Swift <br /> Rider
 						</p>
 					</div>
 
-					<h3 className="signup-head">Sign Up as a Customer</h3>
+					<h3 className={modern.signup_head}>Pickup Register</h3>
 					<div>
-						<label className="labels">Name</label>
-						<input type="name" placeholder="Enter your name" />
+						<label className={modern.labels}>Name</label>
+						<input
+							type="name"
+							name="name"
+							placeholder="Enter your name"
+							onChange={handleChange}
+						/>
 					</div>
 
 					<div>
-						<label className="labels">Phone Number</label>
-						<input type="phone" placeholder="Enter your phone number" />
+						<label className={modern.labels}>Phone Number</label>
+						<input
+							type="phone"
+							placeholder="Enter your phone number"
+							name="phone"
+							onChange={handleChange}
+						/>
 					</div>
 
 					<div>
-						<label className="labels">Email</label>
-						<input type="email" placeholder="Enter your email" />
+						<label className={modern.labels}>Email</label>
+						<input
+							type="email"
+							placeholder="Enter your email"
+							name="email"
+							onChange={handleChange}
+						/>
 					</div>
 
 					<div>
-						<label className="labels">Password</label>
-						<input type="password" placeholder="Enter your password" />
+						<label className={modern.labels}>Password</label>
+						<input
+							type="password"
+							placeholder="Enter your password"
+							name="password"
+							onChange={handleChange}
+						/>
 					</div>
 
 					<div>
-						<label className="labels">Confirm password</label>
-						<input type="password" placeholder="Enter your password" />
+						<label className={modern.labels}>Confirm password</label>
+						<input
+							type="password"
+							placeholder="Enter your password"
+							onChange={handleChange}
+							name="confirmpassword"
+						/>
 					</div>
 
-					<div className="btn-container">
-						<button className="btnReg">Signup</button>
+					<div className={modern.btn_container}>
+						{/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
+						<button className={modern.btn_Reg} onClick={handleSubmit}>
+							Signup
+						</button>
 					</div>
 					<div>
-						<p className="pTag">
+						<p className={modern.pTag}>
 							Already have an account?{" "}
 							<Link to="/login" className="sign">
 								Sign in

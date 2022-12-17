@@ -1,0 +1,115 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
+import style from "./ProfileSetting.module.css";
+import { FaPencilAlt } from "react-icons/fa";
+import { useState } from "react";
+import axios from "axios";
+import NavbarProfile from "../../components/Navbar/NavbarProfile";
+import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
+
+const baseUrl = "http://localhost:4000";
+
+function ProfileSetting() {
+	const [formData, setFormData] = useState({});
+
+	const handleChange = (e: any) => {
+		console.log("changing data");
+		const { name, value } = e.target;
+		setFormData({ ...formData, [name]: value });
+	};
+	const handleSubmit = async (e: any) => {
+		e.preventDefault();
+		try {
+			const id = localStorage.getItem("signature");
+			console.log(id);
+			// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+			await axios
+				.patch(`${baseUrl}/users/updateUserProfile/${id}`, formData, {
+					headers: {
+						Authorization: `Bearer ${id}`,
+					},
+				})
+				.then((res) => {
+					toast.success(res.data.message);
+					setTimeout(() => {
+						window.location.href = "/";
+					}, 2000);
+				})
+				.catch((err) => {
+					console.log(err);
+					toast.error(err.response.data.Error);
+				});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+	return (
+		<div>
+			<NavbarProfile />
+			<section className={style.sectionContainer}>
+				<div className={style.view}>
+					<h1 className={style.viewer}>Profile Settings</h1>
+				</div>
+				<section className={style.section2}>
+					<div className={style.form}>
+						{/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
+						<form className={style.formField} onSubmit={handleSubmit}>
+							<h5 className={style.title2}>BASIC INFORMATION</h5>
+							<p className={style.text}>
+								Only you can view and edit your information
+							</p>
+							<label>Name</label>
+							<div className={style.input}>
+								<input
+									type="text"
+									placeholder="matthew"
+									name="name"
+									onChange={handleChange}
+								/>
+								<div className={style.icon1}>
+									<FaPencilAlt />
+								</div>
+							</div>
+							<label>Phone Number</label>
+							<div className={style.input}>
+								<input
+									type="text"
+									placeholder="phone"
+									name="phone"
+									onChange={handleChange}
+								/>
+								<div className={style.icon1}>
+									<FaPencilAlt />
+								</div>
+							</div>
+							<label>Email</label>
+							<div className={style.input}>
+								<input
+									type="text"
+									placeholder="email"
+									name="email"
+									onChange={handleChange}
+								/>
+								<div className={style.icon1}>
+									<FaPencilAlt />
+								</div>
+							</div>
+							<div className={style.btn_contain}>
+								{/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
+								<button className={style.btn_container} type="submit">
+									Submit
+								</button>
+							</div>
+							{/* <input
+								type="submit"
+								placeholder="Save"
+								className={style.Submit}
+							/> */}
+						</form>
+					</div>
+				</section>
+			</section>
+		</div>
+	);
+}
+export default ProfileSetting;

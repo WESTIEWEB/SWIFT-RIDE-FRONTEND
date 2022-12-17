@@ -11,7 +11,7 @@ body{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
 }
 
 .ImageContainer {
@@ -58,7 +58,7 @@ body{
   color: white;
   text-align: center;
   font-size: 1.5rem;
-  margin-top: 9rem;
+  margin-top: 4.5rem;
 }
 
 .buttondiv {

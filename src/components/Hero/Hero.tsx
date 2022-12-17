@@ -1,5 +1,6 @@
 import "./Hero.css";
 import hero from "../../assets/hero.svg";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
 	return (
@@ -13,8 +14,12 @@ const Hero = () => {
 						</h1>
 						<p className="hero_p">Send. Track. Receive.</p>
 						<div className="buttondiv">
-							<button className="button1">Register as a Customer</button>
-							<button className="button2">Register as a Rider</button>
+							<Link to="/signin" className="button1">
+								Pickup Register
+							</Link>
+							<Link to="/riders-signup" className="button2">
+								Register as a Rider
+							</Link>
 						</div>
 					</div>
 
