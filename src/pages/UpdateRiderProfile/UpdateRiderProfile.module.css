@@ -1,0 +1,88 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans KR', sans-serif;
+    /* overflow-y: auto; */
+}
+
+/* section */
+.section{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 60px;
+
+}
+.section2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  
+    align-items: center;
+    border: 1px solid #BDBDBD;
+    padding: 2rem
+}
+.onlyYou{
+    color: #BDBDBD
+}
+.basicInfo{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    color: #21334F;
+    margin-bottom: 0;
+    
+}
+.profileSet{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 39px;
+    color: #03435F
+}
+.formfield{
+    display: flex;
+    flex-direction: column;
+}
+input{
+    width:500px;
+    height:48px;
+    background: rgba(0, 0, 0, 0.03);
+    border: none;
+    margin: 10px 0
+
+}
+input::placeholder{
+    padding: 20px;
+    color: #21334F;
+    font-family: Inter;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16.94px
+}
+.input{
+    position: relative
+}
+.icon1{
+    position: absolute;
+    top: 23px;
+    left: 450px;
+}
+
+.Submit{
+    background: red;
+    color: white;
+    font-family: Mulish;
+    line-height: 20.08px;
+    font-weight: 600;
+    margin-top: 30px;
+}
+.firstMe{
+    color: #21334F;
+    margin-top: 20px;
+    
+}
