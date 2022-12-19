@@ -1,0 +1,70 @@
+import axios from "axios";
+
+export default axios.create({
+	baseURL: "http://localhost:4000/api",
+	headers: {
+		"Content-type": "application/json",
+	},
+});
+const baseURL = "http://localhost:4000/api";
+
+export const apiGet = async (path: string) => {
+	return await axios.get(`${baseURL}${path}`);
+};
+
+export const apiPost = async (path: string, data: any) => {
+	const signature = localStorage.getItem("signature");
+	if (signature === null) {
+		return;
+	}
+
+	const config = {
+		headers: {
+			Authorization: `Bearer ${signature}`,
+		},
+	};
+
+	return await axios.post(`${baseURL}${path}`, data, config);
+};
+
+export const apiPut = async (path: string, data: any) => {
+	const signature = localStorage.getItem("signature");
+	if (signature === null) {
+		return;
+	}
+	const config = {
+		headers: {
+			Authorization: `Bearer ${signature}`,
+		},
+	};
+
+	return await axios.put(`${baseURL}${path}`, data, config);
+};
+
+export const apiPatch = async (path: string, data: any) => {
+	const signature = localStorage.getItem("signature");
+	if (signature === null) {
+		return;
+	}
+	const config = {
+		headers: {
+			Authorization: `Bearer ${signature}`,
+		},
+	};
+
+	return await axios.patch(`${baseURL}${path}`, data, config);
+};
+
+export const apiDelete = async (path: string) => {
+	const signature = localStorage.getItem("signature");
+	if (signature === null) {
+		return;
+	}
+	const config = {
+		headers: {
+			Authorization: `Bearer ${signature}`,
+		},
+	};
+
+	return await axios.delete(`${baseURL}${path}`, config);
+};

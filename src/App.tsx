@@ -5,21 +5,51 @@ import "./App.css";
 import Login from "./pages/logins/Login";
 // import "./App.css";
 import Register from "./pages/Register/Register";
+import RidersSignup from "./pages/RidersSignupForm /RidersSignup";
+// import ForgotPasswordd from "./pages/ForgotPasswordd/ForgotPasswordd";
+import MailSent from "./pages/SentMail/MailSent";
+import ResetPasswordd from "./pages/ResetPasswordd/ResetPasswordd";
+import ProfileSetting from "./pages/ProfileSetting/ProfileSetting";
+// import AdminDashboard from "./pages/AdminDashboard/AdminDashboard";
+// import VendorDashboard from "./pages/VendorDashboard/VendorDashboard";
+import { ToastContainer } from "react-toastify";
+import ForgetPasswordCard from "./components/fPassCard/fPassCard";
+import RidersDashboard from "./pages/RidersDashboard/RidersDashboard";
+import UserDashboard from "./pages/userDashboard/userDashboard";
+import UpdateRiderProfile from "./pages/UpdateRiderProfile/UpdateRiderProfile";
+// import { ProtectAdminRoute, ProtectRiderRoute } from "./context/ProtectRoute";
 
 // setup  for fontend
 
 const App = () => {
-  return (
-    <React.Fragment>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signin" element={<Register />} />
-        </Routes>
-      </Router>
-    </React.Fragment>
-  );
+	return (
+		<React.Fragment>
+			<ToastContainer />
+			<Router>
+				<Routes>
+					<Route path="/" element={<Home />} />
+					<Route path="/login" element={<Login />} />
+					<Route path="/signin" element={<Register />} />
+					<Route path="/riders-signup" element={<RidersSignup />} />
+					<Route path="/sentmail" element={<MailSent />} />
+					<Route path="/forgotpasswordd" element={<ForgetPasswordCard />} />
+
+					<Route
+						path="/users/resetpasswordd/:token"
+						element={<ResetPasswordd />}
+					/>
+					<Route path="/profilesetting" element={<ProfileSetting />} />
+					<Route path="/users/dashboard" element={<UserDashboard />} />
+					<Route path="/riders/dashboard" element={<RidersDashboard />} />
+					<Route path="/riders/all-biddings" element={<RidersDashboard />} />
+					<Route
+						path="/riders/updateRiderProfile"
+						element={<UpdateRiderProfile />}
+					/>
+				</Routes>
+			</Router>
+		</React.Fragment>
+	);
 };
 
 export default App;
