@@ -17,6 +17,10 @@ import ForgetPasswordCard from "./components/fPassCard/fPassCard";
 import RidersDashboard from "./pages/RidersDashboard/RidersDashboard";
 import UserDashboard from "./pages/userDashboard/userDashboard";
 import UpdateRiderProfile from "./pages/UpdateRiderProfile/UpdateRiderProfile";
+
+import RequestRider from "./pages/UserRequestRider/RequestRider";
+import Modal from "./pages/UserRequestRider/Modal";
+import BidingOrder from "./pages/RiderBidingOrder/RiderBidingOrder";
 // import { ProtectAdminRoute, ProtectRiderRoute } from "./context/ProtectRoute";
 
 // setup  for fontend
@@ -46,6 +50,10 @@ const App = () => {
 						path="/riders/updateRiderProfile"
 						element={<UpdateRiderProfile />}
 					/>
+					<Route path="/request-rider" element={<RequestRider />} />
+					<Route path="/request-rider-success" element={<Modal />} />
+					<Route path="/riderbidingorder" element={<BidingOrder />} />
+
 				</Routes>
 			</Router>
 		</React.Fragment>
