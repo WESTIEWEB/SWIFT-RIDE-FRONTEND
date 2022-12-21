@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
-// import React from "react";
-// import Card from "../../components/Card/Card";
 import { Link } from "react-router-dom";
 import loginbg from "../../assets/loginbg.svg";
 // import circlelogo from "../../assets/circlelogo.svg";
