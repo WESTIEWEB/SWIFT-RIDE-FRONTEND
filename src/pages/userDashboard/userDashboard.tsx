@@ -1,5 +1,5 @@
 import NavbarProfile from "../../components/Navbar/NavbarProfile";
-import { useEffect, useState } from "react";
+import React from "react";
 import styleD from "./userDashboard.module.css";
 import orders from "../../assets/Users_dashboard/orders.svg";
 import msg1 from "../../assets/Users_dashboard/msg1.svg";
@@ -9,29 +9,65 @@ import addresscontact from "../../assets/Users_dashboard/addresscontact.svg";
 import emailcontact from "../../assets/Users_dashboard/emailcontact.svg";
 import phonecontact from "../../assets/Users_dashboard/phonecontact.svg";
 import { Link } from "react-router-dom";
-import axios from "../../utils/api/axios";
+import { apiGet } from "../../utils/api/axios";
 
 const UserDashboard = () => {
-	const [data, setData] = useState("");
-	useEffect(() => {
-		async function fetchData() {
-			const signature = localStorage.getItem("signature");
-			if (signature === null) return;
-			const config = {
+	const [biddings, setBiddings] = React.useState([]);
+	const [completedOrders, setCompletedOrders] = React.useState(null);
+
+	// eslint-disable-next-line @typescript-eslint/naming-convention
+	const access_token = localStorage.getItem("signature");
+	console.log(access_token);
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	const getBiddings = async () => {
+		// e.preventDefault();
+		try {
+			const response = await apiGet("users/get-all-orders", {
 				headers: {
-					Authorization: `Bearer ${signature}`,
+					// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+					Authorization: `Bearer ${access_token}`,
 				},
-			};
-			await axios
-				.get(
-					"http://localhost:4000/users/user-dashdoard-completed-orders",
-					config
-				)
-				.then((res) => {
-					setData(String(res.data.totalOrders));
-				});
+			});
+			console.log("myData: ", response?.data);
+			setBiddings(response?.data?.orders?.rows);
+		} catch (err) {
+			console.error("get_all_order", err);
 		}
-		fetchData().catch(console.error);
+	};
+
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	const getCompletedOrders = async () => {
+		// e.preventDefault();
+		try {
+			const res = await apiGet("users/get-completed-orders", {
+				headers: {
+					// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+					Authorization: `Bearer ${access_token}`,
+				},
+			});
+			setCompletedOrders(res?.data?.count);
+		} catch (error) {
+			console.error("get_completed_order", error);
+		}
+	};
+	console.log("bidding: ", biddings);
+
+	const handleScroll = (event: React.UIEvent<HTMLDivElement>) => {
+		const container = event.currentTarget;
+		if (
+			container.scrollHeight - container.scrollTop ===
+			container.clientHeight
+		) {
+			// eslint-disable-next-line @typescript-eslint/no-floating-promises
+			getBiddings();
+		}
+	};
+
+	React.useEffect(() => {
+		// eslint-disable-next-line @typescript-eslint/no-floating-promises
+		getBiddings();
+		// eslint-disable-next-line @typescript-eslint/no-floating-promises
+		getCompletedOrders();
 	}, []);
 	return (
 		<>
@@ -45,14 +81,14 @@ const UserDashboard = () => {
 				<div className={styleD.orders_container}>
 					<div className={styleD.top_orders}>
 						<span id={styleD.orders}>Total Orders</span>
-						<Link to="#">
-							<button id={styleD.request}>Make a Request</button>
+						<Link to="#" style={{ textDecoration: "none", marginTop: 20 }}>
+							<span id={styleD.request}>Make a Request</span>
 						</Link>
 					</div>
 					<hr />
 					<div className={styleD.bottom_orders}>
 						<span>
-							<strong id={styleD.order_number}>{data}</strong>
+							<strong id={styleD.order_number}>{completedOrders}</strong>
 							<br />
 							<br />
 							<strong id={styleD.orders_completed}>Orders Completed</strong>
@@ -83,43 +119,34 @@ const UserDashboard = () => {
 				<div className={styleD.myorders_container}>
 					<div className={styleD.order_details}>
 						<span id={styleD.orderzz}>My Orders</span>
-						<span className={styleD.seeAll}>See all</span>
+						<Link to="#" style={{ textDecoration: "none" }}>
+							<span className={styleD.seeAll}>See all</span>
+						</Link>
 					</div>
 					<hr />
-					<div className={styleD.order_stats}>
-						<span className={styleD.date}>Today, 4:15AM</span>
-						<span className={styleD.status}>pending</span>
+					<section style={{ overflow: "scroll" }} onScroll={handleScroll}>
 						<br />
-						<br />
-						<strong className={styleD.space}>
-							<span className={styleD.orderNo}>Order No - 1836897632</span>
-							<span className={styleD.amount}>N2,200.00</span>
-						</strong>
-					</div>
-					<div className={styleD.order_stats}>
-						<span className={styleD.date}>Today, 4:15AM</span>
-						<span className={styleD.status}>pending</span>
-						<br />
-						<br />
-						<span className={styleD.orderNo}>Order No - 1836897632</span>
-						<span className={styleD.amount}>N2,200.00</span>
-					</div>
-					<div className={styleD.order_stats}>
-						<span className={styleD.date}>Today, 4:15AM</span>
-						<span className={styleD.status}>pending</span>
-						<br />
-						<br />
-						<span className={styleD.orderNo}>Order No - 1836897632</span>
-						<span className={styleD.amount}>N2,200.00</span>
-					</div>
-					<div className={styleD.order_stats}>
-						<span className={styleD.date}>Today, 4:15AM</span>
-						<span className={styleD.status}>pending</span>
-						<br />
-						<br />
-						<span className={styleD.orderNo}>Order No - 1836897632</span>
-						<span className={styleD.amount}>N2,200.00</span>
-					</div>
+						{biddings?.length > 0 ? (
+							biddings.map((bidding: any) => (
+								<div className={styleD.order_stats} key={bidding.id}>
+									<span className={styleD.date}>{bidding.createdAt}</span>
+									<span className={styleD.status}>{bidding.status}</span>
+									<br />
+									<br />
+									<strong className={styleD.space}>
+										<span className={styleD.orderNo}>
+											Order No - {bidding.orderNumber}
+										</span>
+										<span className={styleD.amount}>
+											N{bidding.offerAmount}
+										</span>
+									</strong>
+								</div>
+							))
+						) : (
+							<p>No data available</p>
+						)}
+					</section>
 				</div>
 				<div className={styleD.contacts_container}>
 					<div className={styleD.contact}>

@@ -82,11 +82,18 @@ const Navbar = () => {
 				<Right>
 					<div className="config" style={{ display: "flex" }}>
 						<img src={bell} alt="notification" />
-						<img src={avatar} alt="avatar" style={{ marginLeft: 20 }} />
-						<p className="userName" style={{ marginLeft: 10, marginTop: 5 }}>
-							Matthew
-						</p>
 					</div>
+					<Link to="/profilesetting" style={{ textDecoration: "none" }}>
+						<div
+							className="config"
+							style={{ display: "flex", flexDirection: "row" }}
+						>
+							<img src={avatar} alt="avatar" style={{ marginLeft: 20 }} />
+							<p className="userName" style={{ marginLeft: 10, marginTop: 5 }}>
+								Matthew
+							</p>
+						</div>
+					</Link>
 				</Right>
 			</Wrapper>
 		</Container>
