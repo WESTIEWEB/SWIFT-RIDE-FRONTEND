@@ -1,9 +1,6 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
-// import React from "react";
-// import Card from "../../components/Card/Card";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import loginbg from "../../assets/loginbg.svg";
-// import circlelogo from "../../assets/circlelogo.svg";
 import logodesign from "../../assets/logodesign.svg";
 import styled from "./Login.module.css";
 import { useState } from "react";
@@ -14,6 +11,7 @@ const baseUrl = "http://localhost:4000";
 
 const Login = () => {
 	const [formData, setFormData] = useState({});
+	const navigate = useNavigate();
 
 	const handleChange = (e: any) => {
 		console.log("changing data");
@@ -29,12 +27,23 @@ const Login = () => {
 				.post(`${baseUrl}/users/login`, formData)
 				.then((res) => {
 					const signature = res.data.signature;
+					const role = res.data.role;
+					const userNmae = res.data.name;
 
 					if (signature !== null) {
 						localStorage.setItem("signature", signature);
+						localStorage.setItem("role", role);
+						localStorage.setItem("userName", userNmae);
 						toast.success(res.data.message);
 						setTimeout(() => {
-							window.location.href = "/profilesetting";
+							if (res.data.role === "rider") {
+								navigate("/riders-dashboard");
+								// } else if (res.data.role === "admin") {
+								// 	navigate("/admin-dashboard");
+							} else if (res.data.role === "user") {
+								navigate("/user-dashboard");
+							}
+							// navigate("/user-dashboard");
 						}, 2000);
 					}
 				})
@@ -64,57 +73,65 @@ const Login = () => {
 				<form className={styled.login_form} onSubmit={handleSubmit}>
 					<div className={styled.parent}>
 						<img className={styled.parentImg} src={logodesign} height="50px" />
-						<h4>
-							Swift <br />
-							Rider
-						</h4>
-					</div>
-
-					<h3 className={styled.login_label}>Login</h3>
-					<div>
-						<label id="emailId">Email</label>
-						<input
-							className={styled.input_style}
-							type="email"
-							name="email"
-							id="email"
-							onChange={handleChange}
-							placeholder=" ✉️  Enter your email"
-						/>
-					</div>
-
-					<div>
-						<label id="passwordId">Password</label>
-						<input
-							className={styled.input_style}
-							type="password"
-							name="password"
-							onChange={handleChange}
-							id="password"
-							placeholder="🔒    Enter your password"
-						/>
-					</div>
-
-					<div>
-						<Link to="/forgotpasswordd" className={styled.fpassword}>
-							Forgot password?
+						<Link to="/" style={{ textDecoration: "none" }}>
+							<h4>
+								Swift <br />
+								Rider
+							</h4>
 						</Link>
 					</div>
+					<div className={styled.login_form_data}>
+						<div>
+							<h3 className={styled.login_label}>Login</h3>
+						</div>
+						<div className={styled.input_content}>
+							<label className={styled.login_user_label} id="emailId">
+								Email
+							</label>
+							<input
+								className={styled.input_style}
+								type="email"
+								name="email"
+								id="email"
+								onChange={handleChange}
+								placeholder=" ✉️  Enter your email"
+							/>
+						</div>
 
-					<div className={styled.btn_container}>
-						{/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
-						<button className={styled.btnReg} type="submit">
-							login
-						</button>
+						<div className={styled.input_content}>
+							<label className={styled.login_user_label} id="passwordId">
+								Password
+							</label>
+							<input
+								className={styled.input_style}
+								type="password"
+								name="password"
+								onChange={handleChange}
+								id="password"
+								placeholder="🔒    Enter your password"
+							/>
+						</div>
 					</div>
-					<div>
-						<p id="signup">
-							Don't have an account?
-							<Link to="/signin" className="create-style">
-								{" "}
-								Create account{" "}
-							</Link>
-						</p>
+					<div className={styled.loginData_btn}>
+						<div className={styled.login_fpassword}>
+							<Link to="/forgotpasswordd">Forgot password?</Link>
+						</div>
+
+						<div className={styled.btn_container}>
+							{/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
+							<button className={styled.btnReg} type="submit">
+								login
+							</button>
+						</div>
+						<div>
+							<p id="signup">
+								Don't have an account?
+								<Link to="/signin" className="create-style">
+									{" "}
+									Create account{" "}
+								</Link>
+							</p>
+						</div>
 					</div>
 				</form>
 			</div>

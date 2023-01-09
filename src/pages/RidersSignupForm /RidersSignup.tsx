@@ -1,32 +1,57 @@
 import { useState } from "react";
-// eslint-disable-next-line import/no-duplicates
 import styled from "./RidersSignupForm.module.css";
-// eslint-disable-next-line import/no-duplicates
-import "./RidersSignupForm.module.css";
 import RiderImage from "../../assets/Riders_signup_assets/rider_image.svg";
 import BikeLogo from "../../assets/Riders_signup_assets/bike_icon.svg";
-// import { useAuth } from "../../context/authContext";
-// import Card from "../../components/Card/Card";
-// import { apiPost } from "../../utils/api/axios";
-// import { toast } from "react-toastify";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Link } from "react-router-dom";
 
 const baseUrl = "http://localhost:4000";
 
 const RidersSignup = () => {
-	const [formData, setFormData] = useState({});
+	const [dataValues, setDataValues] = useState<Record<string, any>>({});
 
 	const handleChange = (e: any) => {
 		const { name, value } = e.target;
-		setFormData({ ...formData, [name]: value });
+		setDataValues({ ...dataValues, [name]: value });
 	};
+
+	const handleImageChange = (e: any) => {
+		const { name } = e.target;
+		const file = e.target.files[0];
+		if (file.size > 1000000) {
+			toast.error("file is too large");
+			return;
+		}
+		// eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+		if (!file.type.includes("image")) {
+			toast.error("File must be an image");
+		}
+		setDataValues({ ...dataValues, [name]: file });
+	};
+	console.log("data", dataValues);
 	const handleSubmit = async (e: any) => {
 		e.preventDefault();
+		// console.log("this is formDatat", formData);
+		const formData = new FormData();
+		formData.append("email", dataValues.email);
+		formData.append("name", dataValues.name);
+		formData.append("phone", dataValues.phone);
+		formData.append("city", dataValues.city);
+		formData.append("password", dataValues.password);
+		formData.append("confirmPassword", dataValues.confirmPassword);
+		formData.append("image", dataValues.documents);
+		formData.append("image", dataValues.passport);
+		formData.append("image", dataValues.validID);
 		try {
+			const config = {
+				headers: {
+					"Content-Type": "multipart/form-data",
+				},
+			};
 			await axios
-				.post(`${baseUrl}/riders/riders-signup`, formData)
+				.post(`${baseUrl}/riders/riders-signup`, formData, config)
 				.then((res) => {
 					const signature = res.data.signature;
 					localStorage.setItem("signature", signature);
@@ -44,7 +69,7 @@ const RidersSignup = () => {
 		}
 	};
 	return (
-		<div className={styled.container}>
+		<div className={styled.Rider_Signup_container}>
 			<div className={styled.image_container}>
 				<img src={RiderImage} alt="placeholder_image_riders_signup_form" />
 				<p className={styled.cp}>
@@ -54,23 +79,27 @@ const RidersSignup = () => {
 			<div className={styled.signup_form_field_container}>
 				<div className={styled.form_bx}>
 					{/* ---------- LOGO ---------- */}
-					<div className={styled.logo}>
-						<div className={styled.logo_image}>
-							<span>
-								<img
-									src={BikeLogo}
-									alt="placeholder_image_riders_signup_form"
-								/>
-							</span>
+					<Link to="/" style={{ textDecoration: "none" }}>
+						<div className={styled.RiderSignUpLogo}>
+							<div className={styled.logo_image}>
+								<span>
+									<img
+										src={BikeLogo}
+										alt="placeholder_image_riders_signup_form"
+									/>
+								</span>
+							</div>
+							<div className={styled.desc}>Swift Riders</div>
 						</div>
-						<div className={styled.desc}>Swift Riders</div>
-					</div>
+					</Link>
 					<h3 className={styled.sub_title}>Sign Up as a Rider</h3>
 					{/* -------------- FORM -------------- */}
-					<form>
+					<form className={styled.rider_SignUp_form}>
 						<div className={styled.form_elem}>
 							<i className="fa fa-user icon"></i>
-							<label htmlFor="name">Name</label>
+							<label htmlFor="name" className={styled.rider_signup_label}>
+								Name
+							</label>
 							<input
 								type="text"
 								name="name"
@@ -80,7 +109,9 @@ const RidersSignup = () => {
 						</div>
 						<div className={styled.form_elem}>
 							<i className="fa fa-phone icon"></i>
-							<label htmlFor="phone">Phone Number</label>
+							<label htmlFor="phone" className={styled.rider_signup_label}>
+								Phone Number
+							</label>
 							<input
 								type="phone"
 								name="phone"
@@ -90,7 +121,9 @@ const RidersSignup = () => {
 						</div>
 						<div className={styled.form_elem}>
 							<i className="fa fa-envelope icon"></i>
-							<label htmlFor="email">Email</label>
+							<label className={styled.rider_signup_label} htmlFor="email">
+								Email
+							</label>
 							<input
 								type="email"
 								name="email"
@@ -100,7 +133,9 @@ const RidersSignup = () => {
 						</div>
 						<div className={styled.form_elem}>
 							<i className="fa fa-city icon"></i>
-							<label htmlFor="city">City</label>
+							<label className={styled.rider_signup_label} htmlFor="city">
+								City
+							</label>
 							<input
 								type="text"
 								id="city"
@@ -111,37 +146,45 @@ const RidersSignup = () => {
 						</div>
 						<div className={styled.form_elem}>
 							<i className="fa fa-cloud-upload icon"></i>
-							<label htmlFor="documents">Bike documents</label>
+							<label className={styled.rider_signup_label} htmlFor="documents">
+								Bike documents
+							</label>
 							<input
 								type="file"
 								name="documents"
 								placeholder="Upload"
-								onChange={handleChange}
+								onChange={handleImageChange}
 							/>
 						</div>
 						<div className={styled.form_elem}>
 							<i className="fa fa-cloud-upload icon"></i>
-							<label htmlFor="validID">Valid ID Card</label>
+							<label className={styled.rider_signup_label} htmlFor="validID">
+								Valid ID Card
+							</label>
 							<input
 								type="file"
 								name="validID"
 								placeholder="Upload"
-								onChange={handleChange}
+								onChange={handleImageChange}
 							/>
 						</div>
 						<div className={styled.form_elem}>
 							<i className="fa fa-cloud-upload icon"></i>
-							<label htmlFor="passport">Passport Photo</label>
+							<label className={styled.rider_signup_label} htmlFor="passport">
+								Passport Photo
+							</label>
 							<input
 								type="file"
 								name="passport"
 								placeholder="Upload"
-								onChange={handleChange}
+								onChange={handleImageChange}
 							/>
 						</div>
 						<div className={styled.form_elem}>
 							<i className="fa fa-lock icon"></i>
-							<label htmlFor="Password">Password</label>
+							<label className={styled.rider_signup_label} htmlFor="Password">
+								Password
+							</label>
 							<input
 								type="password"
 								name="password"
@@ -151,7 +194,12 @@ const RidersSignup = () => {
 						</div>
 						<div className={styled.form_elem}>
 							<i className="fa fa-lock icon"></i>
-							<label htmlFor="confirmPassword">Confirm Password</label>
+							<label
+								className={styled.rider_signup_label}
+								htmlFor="confirmPassword"
+							>
+								Confirm Password
+							</label>
 							<input
 								type="password"
 								name="confirmPassword"
@@ -176,12 +224,14 @@ const RidersSignup = () => {
 								onClick={handleSubmit}
 							/>
 						</div> */}
-						<p>
+						<p className={styled.signin}>
 							Already have an account?
-							<a href="#">
-								<span className="signin" style={{ textAlign: "center" }}>
-									Sign In
-								</span>
+							<a>
+								<Link to="/login" style={{ textDecoration: "none" }}>
+									<span className="signin" style={{ textAlign: "center" }}>
+										Sign In
+									</span>
+								</Link>
 							</a>
 						</p>
 					</form>

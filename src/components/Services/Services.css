@@ -16,7 +16,7 @@
     margin: 0 auto;
 }
 
-h1{
+h1.services_h1{
     font-size: 2.5rem;
     font-weight: 700;
     color: #e02b45;
@@ -24,7 +24,7 @@ h1{
     margin-bottom: 2rem;
 }
 
-p{
+p.services_p{
     font-size: 1.125rem;
     font-weight: 400;
     color: #21334F;
