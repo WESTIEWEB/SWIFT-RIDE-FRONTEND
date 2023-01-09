@@ -72,7 +72,7 @@ const Navbar = () => (
 				<MenuItem>Contact Us</MenuItem>
 			</Center>
 			<Right>
-				<Link to="/login">
+				<Link to="/login" style={{ textDecoration: "none" }}>
 					<MenuItem>Login</MenuItem>
 				</Link>
 			</Right>

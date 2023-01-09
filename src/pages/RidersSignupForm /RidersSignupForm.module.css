@@ -6,7 +6,7 @@
     padding: 0px;
     outline: none;
     }
-.container{
+.Rider_Signup_container{
     position: relative;
     width: 100%;
     display: flex; 
@@ -16,7 +16,7 @@
     width: 50%;
     height: 100%;
 }
-.logo{
+.RiderSignUpLogo{
     margin: 20px;
     width: 40%;
     display: flex;
@@ -102,7 +102,7 @@
     padding-right: 10px;
     position: relative;
 }
-form{
+.rider_SignUp_form{
     /* border: 1px solid blue;  */
     padding:none;
 }
@@ -117,7 +117,7 @@ i{
     top: 55%;
     left: 2.5%;
 }
-label{
+.rider_signup_label{
     margin: 10px 5px;
 }
 
@@ -149,19 +149,24 @@ label{
     color: #fff;
     cursor: pointer;
 } */
-.signin, p a{
+.signin{
+    color: #E02B45;
+    text-decoration: none;
+}
+
+p.signin a{
     color: #E02B45;
     text-decoration: none;
 }
 @media (max-width: 768px){
-    .container .image_container {
+    .Rider_Signup_container .image_container {
             position: absolute;
             width: 100%;
             height: 100%;
             top: 0;
             left: 0;
     }
-    .container .signup_form_field_container {
+    .Rider_Signup_container .signup_form_field_container {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -183,7 +188,7 @@ label{
         padding: 10px;
         margin: 40px 0px;
     }
-    .logo {
+    .RiderSignUpLogo {
         margin: 20px auto;
         width: 80%;
         display: flex;

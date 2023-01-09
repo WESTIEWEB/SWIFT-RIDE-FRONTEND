@@ -59,7 +59,7 @@ const ForgotPasswordd = () => {
 								type="password"
 								name="password"
 								onChange={handleChange}
-								className={rest.input}
+								className={rest.resetPassword_input}
 								placeholder="Enter your password"
 							></input>
 						</div>
@@ -69,7 +69,7 @@ const ForgotPasswordd = () => {
 								type=""
 								name="confirmPassword"
 								onChange={handleChange}
-								className={rest.input}
+								className={rest.resetPassword_input}
 								placeholder="confirm your password"
 							></input>
 						</div>

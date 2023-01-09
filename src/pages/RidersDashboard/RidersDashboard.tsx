@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import NavbarProfile from "../../components/Navbar/NavbarProfile";
+import NavbarProfile from "../../components/Navbar/NavbarBiddingOrder";
 import rDashboard from "./RidersDashboard.module.css";
 import overviewRider from "../../assets/overviewRider.svg";
 import shoppingBag from "../../assets/shoppingBag.svg";
@@ -9,9 +9,24 @@ import { BsTelephone } from "react-icons/bs";
 import { MdOutlineEmail } from "react-icons/md";
 import { Link } from "react-router-dom";
 import axios from "../../utils/api/axios";
-
+function removeTimeAndFormatDate(datetimeString: string): string {
+	// Parse the input string using the Date object
+	const date = new Date(datetimeString);
+	// Use the Intl.DateTimeFormat object to format the date
+	const options: any = {
+		weekday: "short",
+		month: "short",
+		year: "numeric",
+		hour: "2-digit",
+		minute: "2-digit",
+		hour12: true,
+	};
+	const formattedDate = new Intl.DateTimeFormat("en-US", options).format(date);
+	return formattedDate;
+}
 const RidersDashboard = () => {
-	const [data, setData] = useState("");
+	const [ridersBill, setRidersBill] = useState([]);
+	const [completedRides, setCompletedRides] = useState("");
 	useEffect(() => {
 		async function fetchData() {
 			const signature = localStorage.getItem("signature");
@@ -27,10 +42,30 @@ const RidersDashboard = () => {
 					config
 				)
 				.then((res) => {
-					setData(String(res.data.totalOrders));
+					setCompletedRides(String(res.data.totalOrders));
 				});
 		}
+		async function getRidersBill() {
+			// e.preventDefault();
+			const signature = localStorage.getItem("signature");
+			if (signature === null) return;
+			const config = {
+				headers: {
+					Authorization: `Bearer ${signature}`,
+				},
+			};
+			await axios
+				.get(
+					"http://localhost:4000/riders/rider-dashboard-pending-orders",
+					config
+				)
+				.then((res) => {
+					setRidersBill(res.data?.orders?.rows);
+				});
+			// console.log("myData: ", response?.data);
+		}
 		fetchData().catch(console.error);
+		getRidersBill().catch(console.error);
 	}, []);
 	return (
 		<div className={rDashboard.container}>
@@ -51,7 +86,7 @@ const RidersDashboard = () => {
 							</Link>
 						</div>
 						<div className={rDashboard.ordersCompleted}>
-							<h1 className={rDashboard.orders1}>{data}</h1>
+							<h1 className={rDashboard.orders1}>{completedRides}</h1>
 							<h2 className={rDashboard.ordersH2}>Rides completed</h2>
 							<img
 								className={rDashboard.shoppingBag}
@@ -67,51 +102,25 @@ const RidersDashboard = () => {
 								See all
 							</a>
 						</div>
-						<div className={rDashboard.pendingTime}>
-							<p className={rDashboard.todayBread}>Today, 4:15PM</p>
-							<span className={rDashboard.pendingRides}>
-								Order No - 1836897632
-							</span>
-
-							<p className={rDashboard.orderNos}>Pending</p>
-							<span className={rDashboard.orderCash}>#2,200.00</span>
-						</div>
-						<div className={rDashboard.pendingTime}>
-							<p className={rDashboard.todayBread}>Today, 10:15AM</p>
-							<span className={rDashboard.pendingRides}>
-								Order No - 1836897632
-							</span>
-
-							<p className={rDashboard.orderNos1}>Pending</p>
-							<span className={rDashboard.orderCash}>#5,000.00</span>
-						</div>
-						<div className={rDashboard.pendingTime}>
-							<p className={rDashboard.todayBread}>Yesterday, 10:15AM</p>
-							<span className={rDashboard.pendingRides}>
-								Order No - 1836897632
-							</span>
-
-							<p className={rDashboard.orderNos1}>Pending</p>
-							<span className={rDashboard.orderCash}>#5,000.00</span>
-						</div>
-						<div className={rDashboard.pendingTime}>
-							<p className={rDashboard.todayBread}>Yesterday, 10:15AM</p>
-							<span className={rDashboard.pendingRides}>
-								Order No - 1836897632
-							</span>
-
-							<p className={rDashboard.orderNos}>Pending</p>
-							<span className={rDashboard.orderCash}>#2,200.00</span>
-						</div>
-						<div className={rDashboard.pendingTime}>
-							<p className={rDashboard.todayBread}>Yesterday, 10:15AM</p>
-							<span className={rDashboard.pendingRides}>
-								Order No - 1836897632
-							</span>
-
-							<p className={rDashboard.orderNos1}>Pending</p>
-							<span className={rDashboard.orderCash}>#5,000.00</span>
-						</div>
+						{ridersBill?.length > 0 ? (
+							ridersBill.map((ridersBill: any) => (
+								<div className={rDashboard.pendingTime} key={ridersBill.id}>
+									<p className={rDashboard.todayBread}>
+										{" "}
+										{removeTimeAndFormatDate(ridersBill.createdAt)}
+									</p>
+									<span className={rDashboard.pendingRides}>
+										{ridersBill.orderNumber}
+									</span>
+									<p className={rDashboard.orderNos}>{ridersBill.status}</p>
+									<span className={rDashboard.orderCash}>
+										N{ridersBill.offerAmount}
+									</span>
+								</div>
+							))
+						) : (
+							<p>No data available</p>
+						)}
 					</div>
 					<div className={rDashboard.messages}>
 						<div className={rDashboard.messagesTopic1}>
@@ -137,16 +146,22 @@ const RidersDashboard = () => {
 								Any question or remarks? Send us a message.
 							</p>
 						</div>
-						<div className={rDashboard.contactDetails}>
+						<div
+							className={rDashboard.contactDetails}
+							onClick={(e) => {
+								window.location.href = "mailto:hello@swiftrider.com";
+							}}
+						>
 							<p className={rDashboard.emailAddress}>
 								{" "}
-								<MdOutlineEmail /> hello@swiftridder.com
+								<MdOutlineEmail />
+								<a href="#">hello@swiftrider.com</a>
 							</p>
-
 							<p className={rDashboard.phoneNum}>
-								<BsTelephone /> 08099776655
+								<BsTelephone />
+								<a href="tel:+2348062898015">08062898015,</a>{" "}
+								<a href="tel:+2347015950245">07015950245</a>
 							</p>
-
 							<p className={rDashboard.homeAddress}>
 								<VscLocation />
 								25, Uhkorunmi street, Ohuhen, Edo
@@ -158,5 +173,4 @@ const RidersDashboard = () => {
 		</div>
 	);
 };
-
 export default RidersDashboard;
