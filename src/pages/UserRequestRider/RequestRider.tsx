@@ -81,7 +81,6 @@ function RequestRider() {
 								placeholder="Enter drop off location"
 								name="dropOffLocation"
 							/>
-
 							<label className={requestRider.requestLabel}>
 								Drop off Phone Number
 							</label>
