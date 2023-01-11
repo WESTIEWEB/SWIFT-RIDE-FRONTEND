@@ -48,7 +48,7 @@ body{
     display: flex;
     flex-direction: column;
 }
-input{
+input.userProfile{
     width:500px;
     height:48px;
     background: rgba(0, 0, 0, 0.03);
@@ -63,7 +63,7 @@ input::placeholder{
     font-size: 14px;
     line-height: 16.94px
 }
-.input{
+.userProfile_input{
      position: relative
 }
 .icon1{

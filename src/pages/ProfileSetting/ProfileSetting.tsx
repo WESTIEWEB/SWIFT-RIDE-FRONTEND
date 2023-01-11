@@ -3,7 +3,7 @@ import style from "./ProfileSetting.module.css";
 import { FaPencilAlt } from "react-icons/fa";
 import { useState } from "react";
 import axios from "axios";
-import NavbarProfile from "../../components/Navbar/NavbarProfile";
+import NavbarUserProfile from "../../components/Navbar/NavbarUserProfile";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
 
@@ -32,7 +32,7 @@ function ProfileSetting() {
 				.then((res) => {
 					toast.success(res.data.message);
 					setTimeout(() => {
-						window.location.href = "/";
+						window.location.href = "/user-dashboard";
 					}, 2000);
 				})
 				.catch((err) => {
@@ -45,7 +45,7 @@ function ProfileSetting() {
 	};
 	return (
 		<div>
-			<NavbarProfile />
+			<NavbarUserProfile />
 			<section className={style.sectionContainer}>
 				<div className={style.view}>
 					<h1 className={style.viewer}>Profile Settings</h1>
@@ -59,8 +59,10 @@ function ProfileSetting() {
 								Only you can view and edit your information
 							</p>
 							<label>Name</label>
-							<div className={style.input}>
+							<div className={style.userProfile_input}>
 								<input
+									required
+									className={style.userProfile}
 									type="text"
 									placeholder="matthew"
 									name="name"
@@ -71,8 +73,10 @@ function ProfileSetting() {
 								</div>
 							</div>
 							<label>Phone Number</label>
-							<div className={style.input}>
+							<div className={style.userProfile_input}>
 								<input
+									required
+									className={style.userProfile}
 									type="text"
 									placeholder="phone"
 									name="phone"
@@ -83,8 +87,10 @@ function ProfileSetting() {
 								</div>
 							</div>
 							<label>Email</label>
-							<div className={style.input}>
+							<div className={style.userProfile_input}>
 								<input
+									required
+									className={style.userProfile}
 									type="text"
 									placeholder="email"
 									name="email"

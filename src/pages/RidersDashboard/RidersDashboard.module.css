@@ -10,27 +10,23 @@
     align-items: center;
     margin-bottom: 20px;
     margin-left: 10rem;
+    padding-top: 10px;
 }
-
 .overviewh1{
     font-size: 1.3rem;
     font-weight: 600;
-    margin-top: 30px;
     color: #21334F;
     margin-left: 10px;
 }
-
 .container{
     height: 100vh;
     overflow-y:hidden;
 }
-
 .subcontainer{
   background-color: #E5E5E5;
   width: 100%;
     height: 100%;
 }
-
 .gridArea{
     display: grid;
     grid-template-areas: 
@@ -39,9 +35,7 @@
     " myOrders Contact ";
     gap: 5% 3%;
     padding: 0% 10%;
-    
 }
-
 .totalOrders{
     grid-area: totalOrders;
     background-color: #fff;
@@ -49,23 +43,19 @@
     /* width: 60vh; */
     border-radius: 10px;
 }
-
 .myOrders{
     grid-area: myOrders;
     background-color: #fff;
     height: 50vh;
     /* width: 60vh; */
     border-radius: 10px;
-    
 }
-
 .messages{
     grid-area: messages;
     background-color: #fff;
     height: 34vh;
     border-radius: 10px;
 }
-
 .Contact{
     grid-area: Contact;
     background-color: #fff;
@@ -103,7 +93,6 @@
     border: none;
     border-radius: 5px;
 }
-
 .ordersCompleted{
     display: flex;
     justify-content: space-between;
@@ -115,7 +104,7 @@
 }
 .ordersH2{
     position: absolute;
-    top: 320px;
+    top: 250px;
     left: 180px;
     font-size: 15px;
     font-family: Inter;
@@ -128,14 +117,12 @@
     margin-top: 20px;
     margin-left: 20px;
 }
-
 .shoppingBag{
     background-color: rgba(0, 0, 0, 0.04);
     width: 60px;
     border-radius: 100%;
     padding: 12px;
     margin-right: 20px;
-    
 }
 .myOrdersee{
     display: flex;
@@ -151,7 +138,6 @@
     color: #21334F;
     margin-top: 29px;
     margin-left: 5px;
-
 }
 .seeAllOrders{
     color: #E02B45;
@@ -168,12 +154,9 @@
     height: 65px;
 }
 .todayBread{
-    
     font-family: Inter;
     font-size: 13px;
     color: #21334F;
-    
-   
 }
 .pendingRides{
     position: absolute;
@@ -182,7 +165,6 @@
     margin-top: 55px;
     color: #21334F;
 }
-
 .orderNos{
     margin-top: 4px;
     font-family: Inter;
@@ -200,7 +182,6 @@
     font-size: 13px;
     margin-top: 55px;
     color: #21334F;
-
 }
 .orderNos1{
     position: absolute;
@@ -236,7 +217,6 @@
     height: 8vh;
    margin-left: 210px;
    margin-top: 10px;
-       
 }
 .iconMessage{
    flex-direction: column;
@@ -248,18 +228,23 @@
     margin-top: 10px;
     font-family: Inter;
     font-size: 18px;
+    text-align: center;
+    margin-bottom: 20px;
 }
 .noMessageP{
-    color: #21334F;
     font-family: Inter;
     font-size: 18px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+
+    color: #C4C4C4;
 }
 .usContact{
     display: flex;
     padding: 0 20px;
     border-bottom: 1px solid #E5E5E5;
     height: 65px;
-    
 }
 .usContact1{
     color: #21334F;
@@ -289,7 +274,6 @@
     font-size: 14px;
     color: #c4c4c4;
 }
-
 .contactDetails{
     margin-top: 5px;
     margin-right: 90px;
@@ -299,7 +283,6 @@
     font-size: 14px;
     line-height: 29px;
 }
-
 .emailAddress{
     margin-top: 5px;
     margin-left:100px; 
@@ -319,7 +302,6 @@
     line-height: 29px;
 }
 .homeAddress{
-    
     margin-top: 5px;
     margin-right: 10px;
     font-family: Inter;
@@ -327,4 +309,5 @@
     font-weight: 400;
     line-height: 29px;
     font-size: 14px;
+    margin-bottom: 10px;
 }

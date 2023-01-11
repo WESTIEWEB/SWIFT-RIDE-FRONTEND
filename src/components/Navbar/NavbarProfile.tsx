@@ -1,8 +1,10 @@
+import { useState } from "react";
 import logo from "../../assets/Logo.svg";
 import bell from "../../assets/bell.svg";
 import avatar from "../../assets/avatar.svg";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import ReactSwitch from "react-switch";
 
 const Container = styled.div`
 	height: 96px;
@@ -13,6 +15,10 @@ const Wrapper = styled.div`
 	justify-content: space-between;
 	align-items: center;
 	background-color: white;
+	position: fixed;
+	z-index: 2;
+	background-color: #fff;
+	width: 1440px;
 `;
 
 const Left = styled.div`
@@ -23,6 +29,9 @@ const Left = styled.div`
 `;
 
 const Center = styled.div`
+	span {
+		margin-left: 25px;
+	}
 	flex: 1;
 	display: flex;
 	align-items: center;
@@ -37,10 +46,14 @@ const Right = styled.div`
 `;
 
 const MenuItem = styled.div`
-	font-size: 16px;
 	cursor: pointer;
-	margin-left: 25px;
+	margin-left: 20px;
 	color: #012a4a;
+	font-style: normal;
+	font-weight: 700;
+	font-size: 14px;
+	line-height: 17px;
+	text-decoration: none;
 	&:hover {
 		color: #e02b45;
 	}
@@ -59,37 +72,137 @@ const Logotext = styled.div`
 	font-size: 20px;
 `;
 
+const StyledLink = styled(Link)`
+	color: #f00;
+	text-decoration: none;
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 900;
+	font-size: 14px;
+	line-height: 17px;
+	/* identical to box height */
+
+	text-align: center;
+
+	color: #012a4a;
+	&:link {
+		color: #ff0000;
+	}
+	&:visited {
+		color: #012a4a;
+	}
+	&:hover {
+		color: FF00FF;
+	}
+	&:active {
+		color: #0000ff;
+	}
+`;
+
 const Navbar = () => {
+	const [checked, setChecked] = useState(true);
+	// const Auth = localStorage.getItem("signature");
+	const Role = localStorage.getItem("role");
+
 	const Logout = () => {
 		localStorage.clear();
 		window.location.href = "/login";
 	};
+
+	const handleChange = (val: boolean) => {
+		setChecked(val);
+	};
+
 	return (
 		<Container>
-			<Wrapper>
-				<Left>
-					<Logo>
-						<img src={logo} alt="swiftrider_logo" />
-					</Logo>
-					<Logotext>Swift Rider</Logotext>
-				</Left>
-				<Center>
-					<MenuItem>My Orders</MenuItem>
-					<MenuItem>Payment</MenuItem>
-					<Link onClick={Logout} to="/login">
-						<MenuItem>Logout</MenuItem>
-					</Link>
-				</Center>
-				<Right>
-					<div className="config" style={{ display: "flex" }}>
-						<img src={bell} alt="notification" />
-						<img src={avatar} alt="avatar" style={{ marginLeft: 20 }} />
-						<p className="userName" style={{ marginLeft: 10, marginTop: 5 }}>
-							Matthew
-						</p>
-					</div>
-				</Right>
-			</Wrapper>
+			{Role === "user" ? (
+				<>
+					<Wrapper>
+						<Left>
+							<Link to="/user-dashboard" style={{ textDecoration: "none" }}>
+								<Logo>
+									<img src={logo} alt="swiftrider_logo" />
+								</Logo>
+							</Link>
+							<Logotext>Swift Rider</Logotext>
+						</Left>
+						<Center>
+							<MenuItem>
+								<Link to="" style={{ textDecoration: "none" }}>
+									My Orders
+								</Link>
+							</MenuItem>
+							<Link to="/payment" style={{ textDecoration: "none" }}>
+								<MenuItem>Payment</MenuItem>
+							</Link>
+							<Link
+								onClick={Logout}
+								to="/login"
+								style={{ textDecoration: "none" }}
+							>
+								<MenuItem>Logout</MenuItem>
+							</Link>
+						</Center>
+						<Right>
+							<div className="config" style={{ display: "flex" }}>
+								<img src={bell} alt="notification" />
+								<img src={avatar} alt="avatar" style={{ marginLeft: 20 }} />
+								<p
+									className="userName"
+									style={{ marginLeft: 10, marginTop: 5 }}
+								>
+									{localStorage.getItem("userName")}
+								</p>
+							</div>
+						</Right>
+					</Wrapper>
+				</>
+			) : (
+				<>
+					<Wrapper>
+						<Left>
+							<Logo>
+								<Link to="/riders-dashboard">
+									<img src={logo} alt="swiftrider_logo" />
+								</Link>
+							</Logo>
+							<Logotext>Swift Rider</Logotext>
+						</Left>
+						<Center>
+							<MenuItem>
+								<StyledLink to="/rider-biddings" className="biddingOrder_link">
+									Bidding
+								</StyledLink>
+							</MenuItem>
+							<MenuItem style={{ width: "80px" }}>Ride history</MenuItem>
+							<MenuItem>Earnings</MenuItem>
+							<MenuItem>Availability</MenuItem>
+							<span>
+								<ReactSwitch checked={checked} onChange={handleChange} />
+							</span>
+							<Link
+								onClick={Logout}
+								to="/login"
+								style={{ textDecoration: "none" }}
+							>
+								<MenuItem>Logout</MenuItem>
+							</Link>
+						</Center>
+						<Right>
+							<div className="config" style={{ display: "flex" }}>
+								<img src={bell} alt="notification" />
+								<img src={avatar} alt="avatar" style={{ marginLeft: 20 }} />
+								<p
+									className="userName"
+									style={{ marginLeft: 10, marginTop: 5 }}
+								>
+									{localStorage.getItem("userName")}
+								</p>
+							</div>
+						</Right>
+					</Wrapper>
+				</>
+			)}
 		</Container>
 	);
 };

@@ -1,5 +1,6 @@
 import axios from "axios";
 
+const baseURI = "http://localhost:4000";
 export default axios.create({
 	baseURL: "http://localhost:4000/api",
 	headers: {
@@ -9,7 +10,11 @@ export default axios.create({
 const baseURL = "http://localhost:4000/api";
 
 export const apiGet = async (path: string) => {
-	return await axios.get(`${baseURL}${path}`);
+	return await axios.get(`${baseURI}${path}`);
+};
+
+export const apiGetAndAuth = async (path: string, config: any) => {
+	return await axios.get(`${baseURI}${path}`, config);
 };
 
 export const apiPost = async (path: string, data: any) => {

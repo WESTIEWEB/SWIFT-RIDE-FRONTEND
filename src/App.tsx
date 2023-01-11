@@ -14,11 +14,22 @@ import ProfileSetting from "./pages/ProfileSetting/ProfileSetting";
 // import VendorDashboard from "./pages/VendorDashboard/VendorDashboard";
 import { ToastContainer } from "react-toastify";
 import ForgetPasswordCard from "./components/fPassCard/fPassCard";
+import RequestRider from "./pages/UserRequestRider/RequestRider";
+import Modal from "./pages/UserRequestRider/Modal";
+import BidingOrder from "./pages/RiderBiddingOrder/RiderBiddingOrder";
+import UserDashboard from "./pages/UserDashboard/userDashboard";
 import RidersDashboard from "./pages/RidersDashboard/RidersDashboard";
 import UserDashboard from "./pages/userDashboard/userDashboard";
 import UpdateRiderProfile from "./pages/UpdateRiderProfile/UpdateRiderProfile";
 import RiderHistory from "./pages/RiderHistory/RiderHistory";
 // import { ProtectAdminRoute, ProtectRiderRoute } from "./context/ProtectRoute";
+import { ProtectUserRoute, ProtectRiderRoute } from "./context/ProtectRoute";
+import NavigationBar from "./components/Navbar/NavigationBar";
+import RiderProfileSetting from "./pages/RiderProfileSettingPage/RiderProfile";
+import PickUpUserHistory from "./pages/UserHistory/PickUpUserHistory";
+import Ridermap from "./pages/Ridermaps/Ridermap";
+import Riderrequestaccepted from "./pages/Ridermaps/Riderrequestaccepted";
+
 
 // setup  for fontend
 
@@ -36,6 +47,45 @@ const App = () => {
 					<Route path="/forgotpasswordd" element={<ForgetPasswordCard />} />
 
 					<Route
+						path="/request-rider"
+						element={
+							<ProtectUserRoute>
+								<RequestRider />
+							</ProtectUserRoute>
+						}
+					/>
+					<Route path="/request-rider-success" element={<Modal />} />
+					<Route
+						path="/user-dashboard"
+						element={
+							<ProtectUserRoute>
+								<UserDashboard />
+							</ProtectUserRoute>
+						}
+					/>
+					<Route
+						path="/riders-accept-order-view/:requestId"
+						element={<Ridermap />}
+					/>
+					<Route path="/accept-request" element={<Riderrequestaccepted />} />
+
+					<Route
+						path="/rider-biddings"
+						element={
+							<ProtectRiderRoute>
+								<BidingOrder />
+							</ProtectRiderRoute>
+						}
+					/>
+					<Route
+						path="/riders-dashboard"
+						element={
+							<ProtectRiderRoute>
+								<RidersDashboard />
+							</ProtectRiderRoute>
+						}
+					/>
+					<Route
 						path="/users/resetpasswordd/:token"
 						element={<ResetPasswordd />}
 					/>
@@ -43,12 +93,37 @@ const App = () => {
 					<Route path="/users/dashboard" element={<UserDashboard />} />
 					<Route path="/riders/dashboard" element={<RidersDashboard />} />
 					<Route path="/riderhistory" element={<RiderHistory />} />
-					<Route path="/riders/all-biddings" element={<RidersDashboard />} />
+					<Route path="/riders/all-biddings" element={<RidersDashboard />} 
 					<Route
-						path="/riders/updateRiderProfile"
-						element={<UpdateRiderProfile />}
+						path="/user-profilesetting"
+						element={
+							<ProtectUserRoute>
+								<ProfileSetting />
+							</ProtectUserRoute>
+						}
 					/>
+					<Route
+						path="/rider-profilesetting"
+						element={
+							<ProtectRiderRoute>
+								<RiderProfileSetting />
+							</ProtectRiderRoute>
+						}
+					/>
+					<Route
+						path="/riders/rider-dashboard-pending-orders"
+						element={<h1>404 Not Found</h1>}
+					/>
+					<Route
+						path="/riders/rider-dashboard-completed-orders"
+						element={<h1>404 Not Found</h1>}
+					/>
+					<Route path="/all-biddings" element={<h1>404 Not Found</h1>} />
+					<Route path="/nav-menu" element={<NavigationBar />} />
+					<Route path="*" element={<h1>404 Not Found</h1>} />
+					<Route path="/my-orders" element={<PickUpUserHistory />} />
 				</Routes>
+				
 			</Router>
 		</React.Fragment>
 	);

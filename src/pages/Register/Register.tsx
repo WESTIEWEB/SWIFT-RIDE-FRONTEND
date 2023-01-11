@@ -16,6 +16,7 @@ const Register = () => {
 		setFormData({ ...formData, [name]: value });
 	};
 
+	console.log(formData);
 	const handleSubmit = async (e: any) => {
 		e.preventDefault();
 		try {
@@ -50,9 +51,17 @@ const Register = () => {
 			<div className={modern.form_style}>
 				<div className={modern.form_div}>
 					<div className={modern.rider_top}>
-						<img src={Group15} alt="rider" />
+						<Link to="/">
+							<img src={Group15} alt="rider" />
+						</Link>
 						<p className={modern.swift}>
-							Swift <br /> Rider
+							<Link
+								to="/"
+								style={{ textDecoration: "none" }}
+								className={modern.swiftLink}
+							>
+								Swift <br /> Rider
+							</Link>
 						</p>
 					</div>
 
@@ -60,6 +69,7 @@ const Register = () => {
 					<div>
 						<label className={modern.labels}>Name</label>
 						<input
+							className={modern.userReg_input}
 							type="name"
 							name="name"
 							placeholder="Enter your name"
@@ -70,6 +80,7 @@ const Register = () => {
 					<div>
 						<label className={modern.labels}>Phone Number</label>
 						<input
+							className={modern.userReg_input}
 							type="phone"
 							placeholder="Enter your phone number"
 							name="phone"
@@ -80,6 +91,7 @@ const Register = () => {
 					<div>
 						<label className={modern.labels}>Email</label>
 						<input
+							className={modern.userReg_input}
 							type="email"
 							placeholder="Enter your email"
 							name="email"
@@ -90,6 +102,7 @@ const Register = () => {
 					<div>
 						<label className={modern.labels}>Password</label>
 						<input
+							className={modern.userReg_input}
 							type="password"
 							placeholder="Enter your password"
 							name="password"
@@ -100,10 +113,11 @@ const Register = () => {
 					<div>
 						<label className={modern.labels}>Confirm password</label>
 						<input
+							className={modern.userReg_input}
 							type="password"
 							placeholder="Enter your password"
 							onChange={handleChange}
-							name="confirmpassword"
+							name="confirm_password"
 						/>
 					</div>
 
@@ -116,7 +130,11 @@ const Register = () => {
 					<div>
 						<p className={modern.pTag}>
 							Already have an account?{" "}
-							<Link to="/login" className="sign">
+							<Link
+								to="/login"
+								className="sign"
+								style={{ textDecoration: "none", color: "#f00" }}
+							>
 								Sign in
 							</Link>
 						</p>
