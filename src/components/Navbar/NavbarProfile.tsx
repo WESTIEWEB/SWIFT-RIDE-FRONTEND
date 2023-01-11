@@ -14,6 +14,7 @@ const Wrapper = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	background-color: white;
 	position: fixed;
 	z-index: 2;
 	background-color: #fff;
