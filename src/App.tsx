@@ -22,6 +22,8 @@ import RidersDashboard from "./pages/RidersDashboard/RidersDashboard";
 import { ProtectUserRoute, ProtectRiderRoute } from "./context/ProtectRoute";
 import NavigationBar from "./components/Navbar/NavigationBar";
 import RiderProfileSetting from "./pages/RiderProfileSettingPage/RiderProfile";
+import Ridermap from "./pages/Ridermaps/Ridermap";
+import Riderrequestaccepted from "./pages/Ridermaps/Riderrequestaccepted";
 
 // setup  for fontend
 
@@ -37,6 +39,7 @@ const App = () => {
 					<Route path="/riders-signup" element={<RidersSignup />} />
 					<Route path="/sentmail" element={<MailSent />} />
 					<Route path="/forgotpasswordd" element={<ForgetPasswordCard />} />
+
 					<Route
 						path="/request-rider"
 						element={
@@ -54,6 +57,11 @@ const App = () => {
 							</ProtectUserRoute>
 						}
 					/>
+					<Route
+						path="/riders-accept-order-view/:requestId"
+						element={<Ridermap />}
+					/>
+					<Route path="/accept-request" element={<Riderrequestaccepted />} />
 
 					<Route
 						path="/rider-biddings"
