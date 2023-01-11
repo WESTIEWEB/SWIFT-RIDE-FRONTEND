@@ -22,6 +22,7 @@ import RidersDashboard from "./pages/RidersDashboard/RidersDashboard";
 import { ProtectUserRoute, ProtectRiderRoute } from "./context/ProtectRoute";
 import NavigationBar from "./components/Navbar/NavigationBar";
 import RiderProfileSetting from "./pages/RiderProfileSettingPage/RiderProfile";
+import PickUpUserHistory from "./pages/UserHistory/PickUpUserHistory";
 import Ridermap from "./pages/Ridermaps/Ridermap";
 import Riderrequestaccepted from "./pages/Ridermaps/Riderrequestaccepted";
 
@@ -110,7 +111,9 @@ const App = () => {
 					<Route path="/all-biddings" element={<h1>404 Not Found</h1>} />
 					<Route path="/nav-menu" element={<NavigationBar />} />
 					<Route path="*" element={<h1>404 Not Found</h1>} />
+					<Route path="/my-orders" element={<PickUpUserHistory />} />
 				</Routes>
+				
 			</Router>
 		</React.Fragment>
 	);
