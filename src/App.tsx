@@ -17,6 +17,7 @@ import ForgetPasswordCard from "./components/fPassCard/fPassCard";
 import RidersDashboard from "./pages/RidersDashboard/RidersDashboard";
 import UserDashboard from "./pages/userDashboard/userDashboard";
 import UpdateRiderProfile from "./pages/UpdateRiderProfile/UpdateRiderProfile";
+import RiderHistory from "./pages/RiderHistory/RiderHistory";
 // import { ProtectAdminRoute, ProtectRiderRoute } from "./context/ProtectRoute";
 
 // setup  for fontend
@@ -41,6 +42,7 @@ const App = () => {
 					<Route path="/profilesetting" element={<ProfileSetting />} />
 					<Route path="/users/dashboard" element={<UserDashboard />} />
 					<Route path="/riders/dashboard" element={<RidersDashboard />} />
+					<Route path="/riderhistory" element={<RiderHistory />} />
 					<Route path="/riders/all-biddings" element={<RidersDashboard />} />
 					<Route
 						path="/riders/updateRiderProfile"

@@ -12,6 +12,7 @@ const Wrapper = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	background-color: white;
 `;
 
 const Left = styled.div`
