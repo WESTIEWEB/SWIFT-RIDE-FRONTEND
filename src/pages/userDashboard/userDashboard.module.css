@@ -1,9 +1,13 @@
 .middle_container {
     background-color: #e5e5e5;
     width: 100%;
-    height: 800px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     position: absolute;
-    margin-top: 5px;
+    /* margin-top: 5px; */
+    margin: 20px auto 20px auto;
     padding-bottom: 50px;
     /* display: flex; */
   }
