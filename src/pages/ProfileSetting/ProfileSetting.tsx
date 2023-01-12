@@ -3,9 +3,9 @@ import style from "./ProfileSetting.module.css";
 import { FaPencilAlt } from "react-icons/fa";
 import { useState } from "react";
 import axios from "axios";
-import NavbarUserProfile from "../../components/Navbar/NavbarUserProfile";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
+import DemoNav from "../../components/Navbar/DemoNavbar";
 
 const baseUrl = "http://localhost:4000";
 
@@ -45,75 +45,77 @@ function ProfileSetting() {
 	};
 	return (
 		<div>
-			<NavbarUserProfile />
+			<DemoNav />
 			<section className={style.sectionContainer}>
-				<div className={style.view}>
-					<h1 className={style.viewer}>Profile Settings</h1>
-				</div>
-				<section className={style.section2}>
-					<div className={style.form}>
-						{/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
-						<form className={style.formField} onSubmit={handleSubmit}>
-							<h5 className={style.title2}>BASIC INFORMATION</h5>
-							<p className={style.text}>
-								Only you can view and edit your information
-							</p>
-							<label>Name</label>
-							<div className={style.userProfile_input}>
-								<input
-									required
-									className={style.userProfile}
-									type="text"
-									placeholder="matthew"
-									name="name"
-									onChange={handleChange}
-								/>
-								<div className={style.icon1}>
-									<FaPencilAlt />
+				<div className={style.user_profileContainer_datas}>
+					<div className={style.view}>
+						<h1 className={style.viewer}>Profile Settings</h1>
+					</div>
+					<section className={style.user_profile_section2}>
+						<div className={style.form}>
+							{/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
+							<form className={style.formField} onSubmit={handleSubmit}>
+								<h5 className={style.title2}>BASIC INFORMATION</h5>
+								<p className={style.text}>
+									Only you can view and edit your information
+								</p>
+								<label className={style.user_profile_label}>Name</label>
+								<div className={style.userProfile_input}>
+									<input
+										required
+										className={style.userProfile}
+										type="text"
+										placeholder="matthew"
+										name="name"
+										onChange={handleChange}
+									/>
+									<div className={style.icon1}>
+										<FaPencilAlt />
+									</div>
 								</div>
-							</div>
-							<label>Phone Number</label>
-							<div className={style.userProfile_input}>
-								<input
-									required
-									className={style.userProfile}
-									type="text"
-									placeholder="phone"
-									name="phone"
-									onChange={handleChange}
-								/>
-								<div className={style.icon1}>
-									<FaPencilAlt />
+								<label className={style.user_profile_label}>Phone Number</label>
+								<div className={style.userProfile_input}>
+									<input
+										required
+										className={style.userProfile}
+										type="text"
+										placeholder="phone"
+										name="phone"
+										onChange={handleChange}
+									/>
+									<div className={style.icon1}>
+										<FaPencilAlt />
+									</div>
 								</div>
-							</div>
-							<label>Email</label>
-							<div className={style.userProfile_input}>
-								<input
-									required
-									className={style.userProfile}
-									type="text"
-									placeholder="email"
-									name="email"
-									onChange={handleChange}
-								/>
-								<div className={style.icon1}>
-									<FaPencilAlt />
+								<label className={style.user_profile_label}>Email</label>
+								<div className={style.userProfile_input}>
+									<input
+										required
+										className={style.userProfile}
+										type="text"
+										placeholder="email"
+										name="email"
+										onChange={handleChange}
+									/>
+									<div className={style.icon1}>
+										<FaPencilAlt />
+									</div>
 								</div>
-							</div>
-							<div className={style.btn_contain}>
-								{/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
-								<button className={style.btn_container} type="submit">
-									Submit
-								</button>
-							</div>
-							{/* <input
+								<div className={style.btn_contain}>
+									{/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
+									<button className={style.btn_container} type="submit">
+										Submit
+									</button>
+								</div>
+								{/* <input
 								type="submit"
 								placeholder="Save"
 								className={style.Submit}
 							/> */}
-						</form>
-					</div>
-				</section>
+							</form>
+						</div>
+					</section>
+				</div>
 			</section>
 		</div>
 	);

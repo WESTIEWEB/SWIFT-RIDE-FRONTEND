@@ -1,9 +1,9 @@
 import React from "react";
-import Navbar from "../../components/Navbar/NavbarProfile";
 import riderOrderStyle from "./RiderBiddingOrder.module.css";
 import { apiGet } from "../../utils/api/axios";
 import { Link } from "react-router-dom";
 import { AiOutlineInfoCircle } from "react-icons/ai";
+import DemoNav from "../../components/Navbar/DemoNavbar";
 
 const BidingOrder = () => {
 	const [orders, setOrders] = React.useState([]);
@@ -36,7 +36,7 @@ const BidingOrder = () => {
 
 	return (
 		<div>
-			<Navbar />
+			<DemoNav />
 			<div className={riderOrderStyle.rider_biding_div}>
 				<div className={riderOrderStyle.rider_biding_section}>
 					<div className={riderOrderStyle.rider_biding_section_title_head}>

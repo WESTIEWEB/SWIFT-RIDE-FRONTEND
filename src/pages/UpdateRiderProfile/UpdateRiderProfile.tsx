@@ -1,13 +1,13 @@
 // eslint-disable-next-line no-unused-vars
 import rUpdateProfile from "./UpdateRiderProfile.module.css";
 import { FaPencilAlt } from "react-icons/fa";
-import NavbarProfile from "../../components/Navbar/NavbarProfile";
+import DemoNav from "../../components/Navbar/DemoNavbar";
 
 function updateRiderProfile() {
 	return (
 		<div>
-			<NavbarProfile />
-			<section className={rUpdateProfile.section}>
+			<DemoNav />
+			<section className={rUpdateProfile.riderSettingsection}>
 				<div>
 					<h2 className={rUpdateProfile.profileSet}>Profile Settings</h2>
 				</div>

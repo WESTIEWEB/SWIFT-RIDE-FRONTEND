@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 import React, { useState } from "react";
-import NavbarProfile from "../../components/Navbar/NavbarProfile";
 import requestRider from "../UserRequestRider/RequestRider.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 
 import back from "../../assets/back.png";
+import DemoNav from "../../components/Navbar/DemoNavbar";
 
 const baseUrl = "http://localhost:4000";
 
@@ -46,7 +46,7 @@ function RequestRider() {
 
 	return (
 		<div className={requestRider.requestOverAll}>
-			<NavbarProfile />
+			<DemoNav />
 			<div className={requestRider.requestContainer}>
 				<div className={requestRider.requestFirst}>
 					<button className={requestRider.requestBtn}>

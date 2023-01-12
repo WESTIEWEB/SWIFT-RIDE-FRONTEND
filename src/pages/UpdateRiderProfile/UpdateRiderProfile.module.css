@@ -7,7 +7,7 @@ body{
 }
 
 /* section */
-.section{
+.riderSetting_section{
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -21,7 +21,9 @@ body{
     justify-content: center;  
     align-items: center;
     border: 1px solid #BDBDBD;
-    padding: 2rem
+    padding: 2rem;
+    margin-top: 80px;
+    background-color: #FFF;
 }
 .onlyYou{
     color: #BDBDBD
@@ -47,6 +49,7 @@ body{
 .formfield{
     display: flex;
     flex-direction: column;
+    margin-top: 80px;
 }
 input{
     width:500px;

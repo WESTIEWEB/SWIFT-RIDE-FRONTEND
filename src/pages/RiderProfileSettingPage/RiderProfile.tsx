@@ -1,10 +1,10 @@
-import NavbarProfile from "../../components/Navbar/NavbarProfile";
 import UpdateRiderProfile from "../../components/RiderProfileSettings/updateRider";
+import DemoNav from "../../components/Navbar/DemoNavbar";
 
 const RiderProfileSetting = () => {
 	return (
 		<>
-			<NavbarProfile />
+			<DemoNav />
 			<UpdateRiderProfile />
 		</>
 	);

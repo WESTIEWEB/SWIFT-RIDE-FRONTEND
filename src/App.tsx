@@ -17,10 +17,9 @@ import ForgetPasswordCard from "./components/fPassCard/fPassCard";
 import RequestRider from "./pages/UserRequestRider/RequestRider";
 import Modal from "./pages/UserRequestRider/Modal";
 import BidingOrder from "./pages/RiderBiddingOrder/RiderBiddingOrder";
-import UserDashboard from "./pages/UserDashboard/userDashboard";
+import UserDashboard from "./pages/userDashboard/userDashboard";
 import RidersDashboard from "./pages/RidersDashboard/RidersDashboard";
 import { ProtectUserRoute, ProtectRiderRoute } from "./context/ProtectRoute";
-import NavigationBar from "./components/Navbar/NavigationBar";
 import RiderProfileSetting from "./pages/RiderProfileSettingPage/RiderProfile";
 
 // setup  for fontend
@@ -33,7 +32,7 @@ const App = () => {
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="/login" element={<Login />} />
-					<Route path="/signin" element={<Register />} />
+					<Route path="/user-signup" element={<Register />} />
 					<Route path="/riders-signup" element={<RidersSignup />} />
 					<Route path="/sentmail" element={<MailSent />} />
 					<Route path="/forgotpasswordd" element={<ForgetPasswordCard />} />
@@ -100,8 +99,7 @@ const App = () => {
 						element={<h1>404 Not Found</h1>}
 					/>
 					<Route path="/all-biddings" element={<h1>404 Not Found</h1>} />
-					<Route path="/nav-menu" element={<NavigationBar />} />
-					<Route path="*" element={<h1>404 Not Found</h1>} />
+					{/* <Route path="*" element={<h1>404 Not Found</h1>} /> */}
 				</Routes>
 			</Router>
 		</React.Fragment>
