@@ -17,9 +17,9 @@ import ForgetPasswordCard from "./components/fPassCard/fPassCard";
 import RequestRider from "./pages/UserRequestRider/RequestRider";
 import Modal from "./pages/UserRequestRider/Modal";
 import BidingOrder from "./pages/RiderBiddingOrder/RiderBiddingOrder";
-import UserDashboard from "./pages/UserDashboard/userDashboard";
+import UserDashboard from "./pages/UserDashboard/userDashboard1";
 import RidersDashboard from "./pages/RidersDashboard/RidersDashboard";
-import UserDashboard from "./pages/userDashboard/userDashboard";
+
 import UpdateRiderProfile from "./pages/UpdateRiderProfile/UpdateRiderProfile";
 import RiderHistory from "./pages/RiderHistory/RiderHistory";
 // import { ProtectAdminRoute, ProtectRiderRoute } from "./context/ProtectRoute";
@@ -35,98 +35,97 @@ import Riderrequestaccepted from "./pages/Ridermaps/Riderrequestaccepted";
 
 const App = () => {
 	return (
-		<React.Fragment>
-			<ToastContainer />
-			<Router>
-				<Routes>
-					<Route path="/" element={<Home />} />
-					<Route path="/login" element={<Login />} />
-					<Route path="/signin" element={<Register />} />
-					<Route path="/riders-signup" element={<RidersSignup />} />
-					<Route path="/sentmail" element={<MailSent />} />
-					<Route path="/forgotpasswordd" element={<ForgetPasswordCard />} />
+    <React.Fragment>
+      <ToastContainer />
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signin" element={<Register />} />
+          <Route path="/riders-signup" element={<RidersSignup />} />
+          <Route path="/sentmail" element={<MailSent />} />
+          <Route path="/forgotpasswordd" element={<ForgetPasswordCard />} />
 
-					<Route
-						path="/request-rider"
-						element={
-							<ProtectUserRoute>
-								<RequestRider />
-							</ProtectUserRoute>
-						}
-					/>
-					<Route path="/request-rider-success" element={<Modal />} />
-					<Route
-						path="/user-dashboard"
-						element={
-							<ProtectUserRoute>
-								<UserDashboard />
-							</ProtectUserRoute>
-						}
-					/>
-					<Route
-						path="/riders-accept-order-view/:requestId"
-						element={<Ridermap />}
-					/>
-					<Route path="/accept-request" element={<Riderrequestaccepted />} />
+          <Route
+            path="/request-rider"
+            element={
+              <ProtectUserRoute>
+                <RequestRider />
+              </ProtectUserRoute>
+            }
+          />
+          <Route path="/request-rider-success" element={<Modal />} />
+          <Route
+            path="/user-dashboard"
+            element={
+              <ProtectUserRoute>
+                <UserDashboard />
+              </ProtectUserRoute>
+            }
+          />
+          <Route
+            path="/riders-accept-order-view/:requestId"
+            element={<Ridermap />}
+          />
+          <Route path="/accept-request" element={<Riderrequestaccepted />} />
 
-					<Route
-						path="/rider-biddings"
-						element={
-							<ProtectRiderRoute>
-								<BidingOrder />
-							</ProtectRiderRoute>
-						}
-					/>
-					<Route
-						path="/riders-dashboard"
-						element={
-							<ProtectRiderRoute>
-								<RidersDashboard />
-							</ProtectRiderRoute>
-						}
-					/>
-					<Route
-						path="/users/resetpasswordd/:token"
-						element={<ResetPasswordd />}
-					/>
-					<Route path="/profilesetting" element={<ProfileSetting />} />
-					<Route path="/users/dashboard" element={<UserDashboard />} />
-					<Route path="/riders/dashboard" element={<RidersDashboard />} />
-					<Route path="/riderhistory" element={<RiderHistory />} />
-					<Route path="/riders/all-biddings" element={<RidersDashboard />} 
-					<Route
-						path="/user-profilesetting"
-						element={
-							<ProtectUserRoute>
-								<ProfileSetting />
-							</ProtectUserRoute>
-						}
-					/>
-					<Route
-						path="/rider-profilesetting"
-						element={
-							<ProtectRiderRoute>
-								<RiderProfileSetting />
-							</ProtectRiderRoute>
-						}
-					/>
-					<Route
-						path="/riders/rider-dashboard-pending-orders"
-						element={<h1>404 Not Found</h1>}
-					/>
-					<Route
-						path="/riders/rider-dashboard-completed-orders"
-						element={<h1>404 Not Found</h1>}
-					/>
-					<Route path="/all-biddings" element={<h1>404 Not Found</h1>} />
-					<Route path="/nav-menu" element={<NavigationBar />} />
-					<Route path="*" element={<h1>404 Not Found</h1>} />
-					<Route path="/my-orders" element={<PickUpUserHistory />} />
-				</Routes>
-				
-			</Router>
-		</React.Fragment>
-	);
+          <Route
+            path="/rider-biddings"
+            element={
+              <ProtectRiderRoute>
+                <BidingOrder />
+              </ProtectRiderRoute>
+            }
+          />
+          <Route
+            path="/riders-dashboard"
+            element={
+              <ProtectRiderRoute>
+                <RidersDashboard />
+              </ProtectRiderRoute>
+            }
+          />
+          <Route
+            path="/users/resetpasswordd/:token"
+            element={<ResetPasswordd />}
+          />
+          <Route path="/profilesetting" element={<ProfileSetting />} />
+          <Route path="/users/dashboard" element={<UserDashboard />} />
+          <Route path="/riders/dashboard" element={<RidersDashboard />} />
+          <Route path="/riderhistory" element={<RiderHistory />} />
+          <Route path="/riders/all-biddings" element={<RidersDashboard />} />
+          <Route
+            path="/user-profilesetting"
+            element={
+              <ProtectUserRoute>
+                <ProfileSetting />
+              </ProtectUserRoute>
+            }
+          />
+          <Route
+            path="/rider-profilesetting"
+            element={
+              <ProtectRiderRoute>
+                <RiderProfileSetting />
+              </ProtectRiderRoute>
+            }
+          />
+          <Route
+            path="/riders/rider-dashboard-pending-orders"
+            element={<h1>404 Not Found</h1>}
+          />
+          <Route
+            path="/riders/rider-dashboard-completed-orders"
+            element={<h1>404 Not Found</h1>}
+          />
+          <Route path="/all-biddings" element={<h1>404 Not Found</h1>} />
+          <Route path="/nav-menu" element={<NavigationBar />} />
+          <Route path="*" element={<h1>404 Not Found</h1>} />
+          <Route path="/my-orders" element={<PickUpUserHistory />} />
+        </Routes>
+      </Router>
+    </React.Fragment>
+  );
 };
 
 export default App;
