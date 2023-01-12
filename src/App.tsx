@@ -19,8 +19,13 @@ import Modal from "./pages/UserRequestRider/Modal";
 import BidingOrder from "./pages/RiderBiddingOrder/RiderBiddingOrder";
 import UserDashboard from "./pages/userDashboard/userDashboard";
 import RidersDashboard from "./pages/RidersDashboard/RidersDashboard";
+import RiderHistory from "./pages/RiderHistory/RiderHistory";
+// import { ProtectAdminRoute, ProtectRiderRoute } from "./context/ProtectRoute";
 import { ProtectUserRoute, ProtectRiderRoute } from "./context/ProtectRoute";
 import RiderProfileSetting from "./pages/RiderProfileSettingPage/RiderProfile";
+import PickUpUserHistory from "./pages/UserHistory/PickUpUserHistory";
+import Ridermap from "./pages/Ridermaps/Ridermap";
+import Riderrequestaccepted from "./pages/Ridermaps/Riderrequestaccepted";
 
 // setup  for fontend
 
@@ -36,6 +41,7 @@ const App = () => {
 					<Route path="/riders-signup" element={<RidersSignup />} />
 					<Route path="/sentmail" element={<MailSent />} />
 					<Route path="/forgotpasswordd" element={<ForgetPasswordCard />} />
+
 					<Route
 						path="/request-rider"
 						element={
@@ -53,6 +59,11 @@ const App = () => {
 							</ProtectUserRoute>
 						}
 					/>
+					<Route
+						path="/riders-accept-order-view/:requestId"
+						element={<Ridermap />}
+					/>
+					<Route path="/accept-request" element={<Riderrequestaccepted />} />
 
 					<Route
 						path="/rider-biddings"
@@ -74,6 +85,11 @@ const App = () => {
 						path="/users/resetpasswordd/:token"
 						element={<ResetPasswordd />}
 					/>
+					<Route path="/profilesetting" element={<ProfileSetting />} />
+					<Route path="/users/dashboard" element={<UserDashboard />} />
+					<Route path="/riders/dashboard" element={<RidersDashboard />} />
+					<Route path="/riderhistory" element={<RiderHistory />} />
+					<Route path="/riders/all-biddings" element={<RidersDashboard />} />
 					<Route
 						path="/user-profilesetting"
 						element={
@@ -99,7 +115,8 @@ const App = () => {
 						element={<h1>404 Not Found</h1>}
 					/>
 					<Route path="/all-biddings" element={<h1>404 Not Found</h1>} />
-					{/* <Route path="*" element={<h1>404 Not Found</h1>} /> */}
+					<Route path="*" element={<h1>404 Not Found</h1>} />
+					<Route path="/my-orders" element={<PickUpUserHistory />} />
 				</Routes>
 			</Router>
 		</React.Fragment>

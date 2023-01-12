@@ -41,7 +41,7 @@ const BidingOrder = () => {
 				<div className={riderOrderStyle.rider_biding_section}>
 					<div className={riderOrderStyle.rider_biding_section_title_head}>
 						<h1 className={riderOrderStyle.biding_order_title1}>
-							Biding Orders
+							Bidding Orders
 						</h1>
 						<div className={riderOrderStyle.biding_order_title}>
 							<div className={riderOrderStyle.biding_span}>
@@ -96,7 +96,7 @@ const BidingOrder = () => {
 										{order.offerAmount}
 									</p>
 									<p className={riderOrderStyle.biding_order_content_faint_p}>
-										Payment medthod{" "}
+										Payment method{" "}
 									</p>
 									<p className={riderOrderStyle.biding_order_content_ps}>
 										{order.paymentMethod}
@@ -104,7 +104,8 @@ const BidingOrder = () => {
 									<div className={riderOrderStyle.biding_order_button_div}>
 										<Link
 											className={riderOrderStyle.bidding_order_link}
-											to="/riders-dashboard"
+											// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+											to={`/riders-accept-order-view/${order.id}`}
 										>
 											<button className={riderOrderStyle.biding_order_button}>
 												Accept request
