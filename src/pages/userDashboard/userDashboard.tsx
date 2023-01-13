@@ -58,7 +58,7 @@ const UserDashboard = () => {
 				},
 			});
 			// console.log("myData: ", response?.data);
-			setBiddings(response?.data?.Orders?.rows);
+			setBiddings(response?.data?.rows);
 			console.log("myData: ", response?.data);
 		} catch (err) {
 			console.error("get_all_order", err);

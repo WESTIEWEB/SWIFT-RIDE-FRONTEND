@@ -2,12 +2,12 @@
 import Hero from "../../components/Hero/Hero";
 import Services from "../../components/Services/Services";
 import Footer from "../../components/Footer/Footer";
-import DemoNav from "../../components/Navbar/DemoNavbar";
+import NavBarHome from "../../components/Navbar/NavBarHome";
 
 const Home = () => {
 	return (
 		<div>
-			<DemoNav />
+			<NavBarHome />
 			<div>
 				<Hero />
 				<Services />

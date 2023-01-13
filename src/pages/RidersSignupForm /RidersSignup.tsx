@@ -145,6 +145,22 @@ const RidersSignup = () => {
 							/>
 						</div>
 						<div className={styled.form_elem}>
+							<i className="fa fa-city icon"></i>
+							<label
+								className={styled.rider_signup_label}
+								htmlFor="plate number"
+							>
+								Plate Number
+							</label>
+							<input
+								type="text"
+								id="plateNumber"
+								name="plateNumber"
+								placeholder="Plate Number"
+								onChange={handleChange}
+							/>
+						</div>
+						<div className={styled.form_elem}>
 							<i className="fa fa-cloud-upload icon"></i>
 							<label className={styled.rider_signup_label} htmlFor="documents">
 								Bike documents

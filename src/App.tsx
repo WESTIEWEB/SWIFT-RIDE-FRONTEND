@@ -99,6 +99,22 @@ const App = () => {
 						}
 					/>
 					<Route
+						path="/riders-accept-order-view/:requestId"
+						element={
+							<ProtectRiderRoute>
+								<Ridermap />
+							</ProtectRiderRoute>
+						}
+					/>
+					<Route
+						path="/accept-request"
+						element={
+							<ProtectRiderRoute>
+								<Riderrequestaccepted />
+							</ProtectRiderRoute>
+						}
+					/>
+					<Route
 						path="/rider-profilesetting"
 						element={
 							<ProtectRiderRoute>
@@ -106,17 +122,7 @@ const App = () => {
 							</ProtectRiderRoute>
 						}
 					/>
-					<Route
-						path="/riders/rider-dashboard-pending-orders"
-						element={<h1>404 Not Found</h1>}
-					/>
-					<Route
-						path="/riders/rider-dashboard-completed-orders"
-						element={<h1>404 Not Found</h1>}
-					/>
-					<Route path="/all-biddings" element={<h1>404 Not Found</h1>} />
-					<Route path="*" element={<h1>404 Not Found</h1>} />
-					<Route path="/my-orders" element={<PickUpUserHistory />} />
+					<Route path="/order-history" element={<PickUpUserHistory />} />
 				</Routes>
 			</Router>
 		</React.Fragment>

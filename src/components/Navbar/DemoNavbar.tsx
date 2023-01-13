@@ -18,7 +18,6 @@ const DemoNav = () => {
 	};
 	const Role = localStorage.getItem("role");
 	const userName = localStorage.getItem("userName") as unknown as string;
-	const accessToken = localStorage.getItem("signature");
 
 	const Logout = () => {
 		localStorage.clear();
@@ -35,13 +34,13 @@ const DemoNav = () => {
 				<div className="demo_container">
 					<div className="demo_logo">
 						{/* <Brand /> */}
-						<NavLink style={{ textDecoration: "none" }} to="/riders-dashboard">
+						<NavLink style={{ textDecoration: "none" }} to="/users/dashboard">
 							<img src={logo} />
 						</NavLink>
 						<span>
 							<NavLink
 								style={{ textDecoration: "none", color: "#e02b45" }}
-								to="/riders-dashboard"
+								to="/users/dashboard"
 							>
 								Swift <br /> Rider
 							</NavLink>
@@ -53,7 +52,7 @@ const DemoNav = () => {
 					<div className={`nav-elements  ${showNavbar && "active"}`}>
 						<ul>
 							<li>
-								<NavLink to="/user-order-history">My Orders</NavLink>
+								<NavLink to="/order-history">My Orders</NavLink>
 							</li>
 							<li>
 								<NavLink to="/payment">Payment</NavLink>
@@ -79,7 +78,7 @@ const DemoNav = () => {
 						</ul>
 					</div>
 				</div>
-			) : Role === "rider" ? (
+			) : (
 				<div className="demo_container">
 					<div className="demo_logo">
 						{/* <Brand /> */}
@@ -104,7 +103,7 @@ const DemoNav = () => {
 								<NavLink to="/rider-biddings">Bidding</NavLink>
 							</li>
 							<li className="link_to_ride_history">
-								<NavLink to="/rider-history">Ride History</NavLink>
+								<NavLink to="/riderhistory">Ride History</NavLink>
 							</li>
 							<li>
 								<NavLink to="/rider-earnings">Earnings</NavLink>
@@ -137,52 +136,7 @@ const DemoNav = () => {
 						</ul>
 					</div>
 				</div>
-			) : accessToken === null ? (
-				<div className="demo_container">
-					<div className="demo_logo">
-						{/* <Brand /> */}
-						<NavLink style={{ textDecoration: "none" }} to="/riders-dashboard">
-							<img src={logo} />
-						</NavLink>
-						<span>
-							<NavLink
-								style={{ textDecoration: "none", color: "#e02b45" }}
-								to="/riders-dashboard"
-							>
-								Swift <br /> Rider
-							</NavLink>
-						</span>
-					</div>
-					<div className="demo_menu-icon" onClick={handleShowNavbar}>
-						<Hamburger style={{ fontSize: "40px" }} />
-					</div>
-					<div className={`nav-elements  ${showNavbar && "active"}`}>
-						<ul>
-							<li>
-								<NavLink style={{ textDecoration: "none" }} to="/">
-									Home
-								</NavLink>
-							</li>
-							<li>
-								<NavLink to="/about">About us</NavLink>
-							</li>
-							<li>
-								<NavLink to="/services">Services</NavLink>
-							</li>
-							<li style={{ width: "100px" }}>
-								<NavLink to="/contac-us">Contact Us</NavLink>
-							</li>
-							<li>
-								{/* <ReactSwitch checked={checked} onChange={handleChange} /> */}
-							</li>
-
-							<li className="li_moblile_s li_mobile_home">
-								<NavLink to="/login">Login</NavLink>
-							</li>
-						</ul>
-					</div>
-				</div>
-			) : null}
+			)}
 		</nav>
 	);
 };

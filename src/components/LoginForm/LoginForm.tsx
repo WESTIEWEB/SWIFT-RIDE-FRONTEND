@@ -102,7 +102,7 @@ const LoginForm = () => {
 						<br />
 						<p className={loginFormStyle.login_form_a}>
 							<Link
-								to="forgotpassword.html"
+								to="/forgotpasswordd"
 								className={loginFormStyle.login_form_a}
 							>
 								Forgot Password?

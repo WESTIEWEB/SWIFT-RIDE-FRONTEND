@@ -9,7 +9,6 @@ const baseUrl = "http://localhost:4000";
 const RHistoryTable = () => {
 	const [rows, setRows] = React.useState<GridRowsProp>([]);
 	const [columns, setColumns] = React.useState<GridColDef[]>([]);
-
 	const fetchData = async () => {
 		try {
 			const signature = localStorage.getItem("signature");
@@ -45,7 +44,16 @@ const RHistoryTable = () => {
 	return (
 		<div className="datatable">
 			<div className="datatableTitle">Rider History</div>
-			<DataGrid rows={rows} columns={columns} />
+			<DataGrid
+				style={{
+					height: "70vh",
+					background: "#FFF",
+					width: "100%",
+					border: "none",
+				}}
+				rows={rows}
+				columns={columns}
+			/>
 		</div>
 	);
 };
