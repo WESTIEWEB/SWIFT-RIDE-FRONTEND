@@ -17,7 +17,7 @@ export const apiGetAndAuth = async (path: string, config: any) => {
 	return await axios.get(`${baseURI}${path}`, config);
 };
 
-export const apiPost = async (path: string, data: any) => {
+export const apiPostAndAuth = async (path: string, data: any) => {
 	const signature = localStorage.getItem("signature");
 	if (signature === null) {
 		return;
@@ -30,6 +30,10 @@ export const apiPost = async (path: string, data: any) => {
 	};
 
 	return await axios.post(`${baseURL}${path}`, data, config);
+};
+
+export const apiPost = async (path: string, data: any) => {
+	return await axios.post(`${baseURI}${path}`, data);
 };
 
 export const apiPut = async (path: string, data: any) => {

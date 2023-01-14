@@ -39,6 +39,7 @@ const RidersSignup = () => {
 		formData.append("name", dataValues.name);
 		formData.append("phone", dataValues.phone);
 		formData.append("city", dataValues.city);
+		formData.append("plateNumber", dataValues.plateNumber);
 		formData.append("password", dataValues.password);
 		formData.append("confirmPassword", dataValues.confirmPassword);
 		formData.append("image", dataValues.documents);
@@ -141,6 +142,22 @@ const RidersSignup = () => {
 								id="city"
 								name="city"
 								placeholder="City"
+								onChange={handleChange}
+							/>
+						</div>
+						<div className={styled.form_elem}>
+							<i className="fa fa-city icon"></i>
+							<label
+								className={styled.rider_signup_label}
+								htmlFor="plate number"
+							>
+								Plate Number
+							</label>
+							<input
+								type="text"
+								id="plateNumber"
+								name="plateNumber"
+								placeholder="Plate Number"
 								onChange={handleChange}
 							/>
 						</div>

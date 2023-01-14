@@ -17,8 +17,9 @@ import {
 	DirectionsRenderer,
 } from "@react-google-maps/api";
 import Loading from "./Loading";
-import { useParams } from "react-router-dom";
-import NavbarProfile from "../../components/Navbar/NavbarProfile";
+import { Link, useParams, useNavigate } from "react-router-dom";
+// import NavbarProfile from "../../components/Navbar/NavbarProfile";
+import DemoNav from "../../components/Navbar/DemoNavbar"
 import { apiGetAndAuth } from "../../utils/api/axios";
 const containerStyle = {
 	width: "100%",
@@ -31,23 +32,29 @@ const center = {
 
 const Ridermap = () => {
 	const { requestId } = useParams();
-	const [order, setOrder] = useState([]);
+	const [order, setOrder] = useState<any | null>({});
+	const [orderOwner, setOrderOwner] = useState<any | null>({});
+	const navigate = useNavigate();
 	const [map, setMap] = useState<any | null>(/** @type google.maps.Map */ null);
 	const [directionResponse, setDirectionResponse] = useState<any | null>(null);
 	const [distance, setDistance] = useState<any | null>("");
 	const [duration, setDuration] = useState<any | null>("");
-	const [pickupLocationText, setPickupLocationText] = useState<any | null>("");
+	const [displayCard, setDisplayCard] = useState<any | null>(false);
 
 	const pickupLocationRef = useRef<any | null>();
 	const deliveryLocationRef = useRef<any | null>();
+	const buttonRef = useRef<any | null>(null);
+
+	//	split the requestId from the url
+	const splitRequestId: string[] = requestId?.split("~");
+	const requestId2 = splitRequestId[0];
+	const ownerId = splitRequestId[1];
 
 	const { isLoaded } = useJsApiLoader({
 		id: "google-map-script",
-		googleMapsApiKey: "AIzaSyAzDxDYPtdQU8c2ScdLwvefTalEXCHaKZs" as string, // remember to remove your api key
+		googleMapsApiKey: import.meta.env.VITE_APP_GOOGLE_MAP_API_KEY as string, // remember to remove your api key
 		libraries: ["places"],
 	});
-
-
 
 	async function calculatorRoute(event: any) {
 		event.preventDefault();
@@ -68,47 +75,71 @@ const Ridermap = () => {
 		setDirectionResponse(result);
 		setDistance(result.routes[0].legs[0].distance?.text);
 		setDuration(result.routes[0].legs[0].duration?.text);
+
+		
+		
+		
+		setTimeout(()=>{
+			setDisplayCard(!false);	
+		// 	navigate("/accept-request")
+		}, 3000)
 	}
 
-	const getOrder = async (id: string | undefined) => {
-		try {
-
-			return await apiGetAndAuth(`/riders/get-order-byId/${id}`, {
-				headers: {
-					Authorization: `Bearer ${localStorage.getItem("signature")}`,
-				},
-			}).then((result) => {
-				return result;
-			});
-
-		} catch (error) {
-			return error
-		}
-
-	};
-
-
 	useEffect(() => {
+		
+		const getOrder = async () => {
+			try {	
+				 const { data } = await apiGetAndAuth(`/riders/get-order-byId/${requestId2}`, {
+					headers: {
+						Authorization: `Bearer ${localStorage.getItem("signature")}`,
+					},
+				})
 
-		if (requestId) {
-			getOrder(requestId)
+				setOrder(data.myOrder)
+			} catch (error) {
+				 console.log(error)
+			}
+		}
+		getOrder();
+		const getOrderOwnerName = async () => {
+			try {	
+				const { data } = await apiGetAndAuth(`/riders/get-order-owner-name-byId/${ownerId}`, {
+					headers: {
+						Authorization: `Bearer ${localStorage.getItem("signature")}`,
+					},
+				})
+
+				setOrderOwner(data)
+			} catch (error) {
+				 console.log(error)
+			}
+		}
+		getOrderOwnerName();
+
+		const autoClick = async() =>{
+			 setTimeout(() =>{
+					buttonRef.current.click();
+					console.log("I was clicked!")
+				},3000);
 		}
 
-	}, [requestId])
+		autoClick()
 
+	}, [requestId2, ownerId])
 
+// console.log(typeof order.pickupLocation)
 	// eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
 	if (!isLoaded) {
 		return <Loading />;
 	}
 
-	const orderProperties = getOrder(requestId);
-
-	console.log(orderProperties)
+	console.log(order)
 
 	return (
 		<>
-			<NavbarProfile />
+		<div>
+			<DemoNav/>
+			<div className={mapview.MPCTN}>
 			<div className={mapview.mapContainer}>
 				<div className={mapview.details}>
 					<h3>Request details</h3>
@@ -119,10 +150,11 @@ const Ridermap = () => {
 							{/* <Autocomplete> */}
 							<input
 								type="text"
-								value={pickupLocationText}
+								value={order.pickupLocation}
 								placeholder="pickup location"
 								ref={pickupLocationRef}
-								onChange={(e) => setPickupLocationText(e.target.value)}
+								// onChange={(e) => setPickupLocationText(e.target.value)}
+								disabled
 							/>
 							{/* </Autocomplete> */}
 							{/* <input type="text" value={distance} /> */}
@@ -134,28 +166,30 @@ const Ridermap = () => {
 							{/* <Autocomplete> */}
 							<input
 								type="text"
+								value={order.dropOffLocation}
 								placeholder="pickup location"
 								ref={deliveryLocationRef}
+								disabled
 							/>
 							{/* <input type="text" value={duration} /> */}
 							{/* </Autocomplete> */}
 						</div>
 						<div className={mapview.divInputCtn}>
 							<label className={mapview.divInputCtnLbl}>Package details</label>
-							<p>Package details</p>
+							<p>{order.packageDescription}</p>
 						</div>
 						<div className={mapview.divInputCtn}>
 							<label className={mapview.divInputCtnLbl}>Drop off contact</label>
-							<p>Drop off Drop off </p>
+							<p>{order.dropOffPhoneNumber}</p>
 						</div>
 						<div className={mapview.divInputCtn}>
 							<label className={mapview.divInputCtnLbl}>Payment method</label>
-							<p>Payment method</p>
+							<p>&#8358;{`${order.offerAmount}`}</p>
 						</div>
 
 						<div className={mapview.PymtCard}>
 							<div>
-								<input type="radio" />
+								<input checked type="radio" />
 								<label htmlFor=""> Card payment</label>
 							</div>
 
@@ -165,8 +199,8 @@ const Ridermap = () => {
 						</div>
 
 						<div className={mapview.btnGroup}>
-							<button onClick={calculatorRoute}>Accept Request</button>
-							<button>Decline Request</button>
+						<button onClick={calculatorRoute} ref={buttonRef} className={mapview.aceptReq}>Accept Request</button>
+							<Link to={"/rider-biddings"}><button className={mapview.declineReq}>Decline Request</button></Link>
 						</div>
 					</form>
 					{/* ))} */}
@@ -190,7 +224,7 @@ const Ridermap = () => {
 							<DirectionsRenderer directions={directionResponse} />
 						)}
 					</GoogleMap>
-					<div className={mapview.incomingRequest}>
+					{displayCard && <div className={mapview.incomingRequest}>
 						<p>Incoming Request</p>
 						<p className={mapview.incomingRequestInnerP}>
 							{duration} . {distance}
@@ -198,14 +232,15 @@ const Ridermap = () => {
 						<p
 							className={`${mapview.incomingRequestInnerP} ${mapview.innerPMedium}`}
 						>
-							Collins Nwachukwu
+							{/* Collins Nwachukwu */}
+							{orderOwner.owner}
 						</p>
 						<p
 							className={`${mapview.incomingRequestInnerP} ${mapview.innerPSmall}`}
 						>
-							{pickupLocationText}
+							{order.pickupLocation}
 						</p>
-					</div>
+					</div>}
 					{/* <div className={mapview.endtrip}>
       <p className={mapview.endtriporder}>Order completed</p>
         <img src={Done} alt="" />
@@ -216,7 +251,9 @@ const Ridermap = () => {
       </div> */}
 				</div>
 			</div>
-		</>
+			</div>
+		</div>
+	</>
 	);
 };
 export default Ridermap;

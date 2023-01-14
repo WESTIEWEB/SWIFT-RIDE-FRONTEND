@@ -5,6 +5,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: absolute;
+    width:100%;
     /* flex: 1 1; */
    
 }
@@ -15,6 +17,7 @@
     padding-bottom: 20px;
 }
 .rider_biding_section {
+    margin-top: 10%;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -26,10 +29,8 @@
     /* margin: 150px; */
     /* top:150px; */
     /* position: absolute; */
-    width: 100%;
-    margin: 50px 100px 50px 100px;
-    /* height: 1061px; */
-    /* flex: 1; */
+    width: 90%;
+    margin: 150px 100px 50px 100px;
     height: auto;
     
     background: #FFFFFF;
@@ -292,15 +293,18 @@
 @media only screen and (max-width:768px) {
     .biding_order_content_data{
         width: 80%;
-        margin: 10px;
-        margin-top: 10px;
-        height: 350px;
+        height: 400px;
+        padding: 20px;
+        margin: 10px auto 10px auto;
     }
     .biding_order_content_ps .biding_order_content_faint_p{
         width: 100%;
+        margin: 10px;
     }
     .rider_biding_section{
         margin: 20px;
+        width: 100%;
+        margin-top: 20%;
     }
     .biding_order_title1 .biding_order_title{
         width: 70%;
@@ -318,13 +322,16 @@
     }
 }
 
-@media only screen and (max-width:1024px) and (min-width:768px) {
+@media only screen and (max-width:1240px) and (min-width:768px) {
     .order_content_container{
-        margin: 20px;
         width: 100%;
         flex-direction: row;
     }
     .biding_order_content_data{
         width: 45%;
+        height: 400px;
+        padding: 20px;
+        margin: 10px auto 10px auto;
     }
+    
 }

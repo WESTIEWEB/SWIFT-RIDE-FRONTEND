@@ -17,19 +17,15 @@ import ForgetPasswordCard from "./components/fPassCard/fPassCard";
 import RequestRider from "./pages/UserRequestRider/RequestRider";
 import Modal from "./pages/UserRequestRider/Modal";
 import BidingOrder from "./pages/RiderBiddingOrder/RiderBiddingOrder";
-import UserDashboard from "./pages/UserDashboard/userDashboard";
-import RidersDashboard from "./pages/RidersDashboard/RidersDashboard";
 import UserDashboard from "./pages/userDashboard/userDashboard";
-import UpdateRiderProfile from "./pages/UpdateRiderProfile/UpdateRiderProfile";
+import RidersDashboard from "./pages/RidersDashboard/RidersDashboard";
 import RiderHistory from "./pages/RiderHistory/RiderHistory";
 // import { ProtectAdminRoute, ProtectRiderRoute } from "./context/ProtectRoute";
 import { ProtectUserRoute, ProtectRiderRoute } from "./context/ProtectRoute";
-import NavigationBar from "./components/Navbar/NavigationBar";
 import RiderProfileSetting from "./pages/RiderProfileSettingPage/RiderProfile";
 import PickUpUserHistory from "./pages/UserHistory/PickUpUserHistory";
 import Ridermap from "./pages/Ridermaps/Ridermap";
 import Riderrequestaccepted from "./pages/Ridermaps/Riderrequestaccepted";
-
 
 // setup  for fontend
 
@@ -41,7 +37,7 @@ const App = () => {
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="/login" element={<Login />} />
-					<Route path="/signin" element={<Register />} />
+					<Route path="/user-signup" element={<Register />} />
 					<Route path="/riders-signup" element={<RidersSignup />} />
 					<Route path="/sentmail" element={<MailSent />} />
 					<Route path="/forgotpasswordd" element={<ForgetPasswordCard />} />
@@ -93,13 +89,29 @@ const App = () => {
 					<Route path="/users/dashboard" element={<UserDashboard />} />
 					<Route path="/riders/dashboard" element={<RidersDashboard />} />
 					<Route path="/riderhistory" element={<RiderHistory />} />
-					<Route path="/riders/all-biddings" element={<RidersDashboard />} 
+					<Route path="/riders/all-biddings" element={<RidersDashboard />} />
 					<Route
 						path="/user-profilesetting"
 						element={
 							<ProtectUserRoute>
 								<ProfileSetting />
 							</ProtectUserRoute>
+						}
+					/>
+					<Route
+						path="/riders-accept-order-view/:requestId"
+						element={
+							<ProtectRiderRoute>
+								<Ridermap />
+							</ProtectRiderRoute>
+						}
+					/>
+					<Route
+						path="/accept-request"
+						element={
+							<ProtectRiderRoute>
+								<Riderrequestaccepted />
+							</ProtectRiderRoute>
 						}
 					/>
 					<Route
@@ -110,20 +122,8 @@ const App = () => {
 							</ProtectRiderRoute>
 						}
 					/>
-					<Route
-						path="/riders/rider-dashboard-pending-orders"
-						element={<h1>404 Not Found</h1>}
-					/>
-					<Route
-						path="/riders/rider-dashboard-completed-orders"
-						element={<h1>404 Not Found</h1>}
-					/>
-					<Route path="/all-biddings" element={<h1>404 Not Found</h1>} />
-					<Route path="/nav-menu" element={<NavigationBar />} />
-					<Route path="*" element={<h1>404 Not Found</h1>} />
-					<Route path="/my-orders" element={<PickUpUserHistory />} />
+					<Route path="/order-history" element={<PickUpUserHistory />} />
 				</Routes>
-				
 			</Router>
 		</React.Fragment>
 	);

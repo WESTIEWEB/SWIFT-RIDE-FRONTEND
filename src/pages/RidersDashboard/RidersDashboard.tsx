@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import NavbarProfile from "../../components/Navbar/NavbarBiddingOrder";
+// import NavbarProfile from "../../components/Navbar/NavbarBiddingOrder";
 import rDashboard from "./RidersDashboard.module.css";
 import overviewRider from "../../assets/overviewRider.svg";
 import shoppingBag from "../../assets/shoppingBag.svg";
@@ -9,6 +9,8 @@ import { BsTelephone } from "react-icons/bs";
 import { MdOutlineEmail } from "react-icons/md";
 import { Link } from "react-router-dom";
 import axios from "../../utils/api/axios";
+import DemoNav from "../../components/Navbar/DemoNavbar";
+
 function removeTimeAndFormatDate(datetimeString: string): string {
 	// Parse the input string using the Date object
 	const date = new Date(datetimeString);
@@ -69,7 +71,8 @@ const RidersDashboard = () => {
 	}, []);
 	return (
 		<div className={rDashboard.container}>
-			<NavbarProfile />
+			{/* <NavbarProfile /> */}
+			<DemoNav />
 			<div className={rDashboard.subcontainer}>
 				<div className={rDashboard.overviewHeader}>
 					<img src={overviewRider} alt="overview" />
