@@ -119,7 +119,7 @@ transition: 0.3s ease-in-out;
 
 .declineReq, .aceptReq{
     width: 100%;
-    heigth: 100%;
+    height: 100%;
         }
 
 .btnGroup button:hover{
