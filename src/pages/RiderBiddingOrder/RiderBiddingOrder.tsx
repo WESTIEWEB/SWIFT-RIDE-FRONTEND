@@ -105,7 +105,7 @@ const BidingOrder = () => {
 										<Link
 											className={riderOrderStyle.bidding_order_link}
 											// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-											to={`/riders-accept-order-view/${order.id}`}
+											to={`/riders-accept-order-view/${order.id}~${order.userId}`}
 										>
 											<button className={riderOrderStyle.biding_order_button}>
 												Accept request
