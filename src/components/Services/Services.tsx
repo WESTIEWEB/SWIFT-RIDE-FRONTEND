@@ -6,7 +6,7 @@ import headset from "../../assets/headset.svg";
 import world from "../../assets/world.svg";
 import order from "../../assets/order.svg";
 import quality_riders from "../../assets/quality_riders.svg";
-import ellipse from "../../assets/ellipse.svg";
+import ellipse from "../../assets/Ellipse.svg";
 import stars from "../../assets/stars.svg";
 
 const Services = () => {
