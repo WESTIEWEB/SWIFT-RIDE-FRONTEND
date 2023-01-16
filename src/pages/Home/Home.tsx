@@ -8,7 +8,7 @@ const Home = () => {
 	return (
 		<div>
 			<NavBarHome />
-			<div>
+			<div className="HomeCpntCtner">
 				<Hero />
 				<Services />
 				<Footer />

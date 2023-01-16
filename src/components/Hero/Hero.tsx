@@ -14,7 +14,7 @@ const Hero = () => {
 						</h1>
 						<p className="hero_p">Send. Track. Receive.</p>
 						<div className="buttondiv">
-							<Link to="/signin" className="button1">
+							<Link to="/user-signup" className="button1">
 								Pickup Register
 							</Link>
 							<Link to="/riders-signup" className="button2">

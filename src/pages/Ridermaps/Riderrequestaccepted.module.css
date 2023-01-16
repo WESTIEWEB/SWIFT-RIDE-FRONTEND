@@ -7,10 +7,6 @@
     height: 100vh;
 }
 
-.doneRQ *{
-    /* border: 1px solid blue; */
-}
-
 .Done{
     display: flex;
     flex-direction: column;
