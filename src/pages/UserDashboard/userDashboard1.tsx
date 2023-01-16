@@ -50,13 +50,20 @@ const [order, setOrder]: any = React.useState([]);
           setLoading(true);
           const responses = await apiGet(`/users/my-order/${orderId}`);
           // console.log(responses);
-          setOrder(responses.data.Order);
-          setLoading(false);
+          if (responses){
+            setLoading(false);
+            await setOrder(responses.data.Order);
+          //  setTimeout (() => {
+            const ride = order.riderId;
+             getRiderProfile(ride);
+          //  }, 1000 )
+           
+          }
         } catch (error) {
           console.log(error);
         }
 
-        getRiderProfile(order.riderId);
+        
       };
       void go(orderId);
     }
@@ -67,13 +74,20 @@ const [order, setOrder]: any = React.useState([]);
   const getRiderProfile = (ride: number) => {
     const go1 = async (ride: number) => {
       try {
+        setLoading(true);
         const rider = await apiGet(`/riders/rider-order-profile/${ride}`);
         console.log("This is rider", rider);
-        setRider(rider.data.order.rider);
+        
+        if (rider){
+          setLoading(false);
+          setRider(rider.data.order.rider);
+           toggleModal2();
+        }
+        
       } catch (error) {
         console.log(error);
       }
-      toggleModal2();
+     
     };
     void go1(ride);
   };
@@ -334,8 +348,10 @@ const call = (phone: string) => {
               <button
                 className={modalStyle.close_modal}
                 onClick={() => {
-                  setModal(false);
-                  setModal2(false);
+               setOrder([])
+               setRider([])
+              toggleModal2();
+                  // setModal2(false);
                 }}
               >
                 <AiOutlineClose size={20} />
@@ -377,11 +393,14 @@ const call = (phone: string) => {
               <button
                 className={modalStyle.close_modal}
                 onClick={() => {
-                  setModal(false);
-                  setModal2(false);
+                   setOrder([]);
+                   setRider([]);
+                  toggleModal();
+                  toggleModal2();
+                  // setModal2(false);
                 }}
               >
-                <AiOutlineClose size={20} />
+                <AiOutlineClose size={30}  style={{ color:"red"}}/>
               </button>
             </div>
           </div>
