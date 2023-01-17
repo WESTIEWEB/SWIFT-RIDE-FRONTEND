@@ -107,7 +107,7 @@ const App = () => {
 						}
 					/>
 					<Route
-						path="/accept-request"
+						path="/accept-request/:ID"
 						element={
 							<ProtectRiderRoute>
 								<Riderrequestaccepted />

@@ -61,7 +61,7 @@ export const apiPatch = async (path: string, data: any) => {
 		},
 	};
 
-	return await axios.patch(`${baseURL}${path}`, data, config);
+	return await axios.patch(`${baseURI}${path}`, data, config);
 };
 
 export const apiDelete = async (path: string) => {

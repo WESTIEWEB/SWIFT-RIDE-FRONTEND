@@ -17,7 +17,8 @@ import Loading from "./Loading";
 import mapview from "./Ridermap.module.css";
 // import NavbarProfile from "../../components/Navbar/NavbarProfile";
 import DemoNav from "../../components/Navbar/DemoNavbar";
-import { apiGetAndAuth } from "../../utils/api/axios";
+import { apiGetAndAuth, apiPatch } from "../../utils/api/axios";
+import { toast } from "react-toastify";
 const containerStyle = {
 	width: "100%",
 	height: "85vh",
@@ -53,8 +54,25 @@ const Ridermap = () => {
 		libraries: ["places"],
 	});
 
-	async function calculatorRoute(event: any) {
-		event.preventDefault();
+	const handleClick = (e:any) => {
+		e.preventDefault();
+		const go = async () => {
+			try {
+				await apiPatch(`/riders/accept-bid/${requestId2}`, "")
+					.then((res: any) => toast.success(res.data.message))
+					.then(() => setTimeout(() => {
+						navigate(`/accept-request/${splitRequestId.join("~")}`)
+						}, 3000))
+					
+			} catch (err: any) {
+				console.log(err);
+				toast.error(err.response.data.Error);
+			}
+		}
+		void go();
+	}
+	async function calculatorRoute() {
+		// event.preventDefault();
 		if (
 			pickupLocationRef.current.value === "" ||
 			deliveryLocationRef.current.value === ""
@@ -73,17 +91,20 @@ const Ridermap = () => {
 		setDistance(result.routes[0].legs[0].distance?.text);
 		setDuration(result.routes[0].legs[0].duration?.text);
 
-
-
-
-		setTimeout(() => {
+		console.log("page loaded!!!")
 			setDisplayCard(!false);
-			// 	navigate("/accept-request")
-		}, 3000)
+
+
+		// setTimeout(() => {
+		// 	navigate("/accept-request")
+		// }, 10000)
 	}
 
 	useEffect(() => {
+		calculatorRoute();
+	}, [order])
 
+	useEffect(() => {
 		const getOrder = async () => {
 			try {
 				const { data } = await apiGetAndAuth(`/riders/get-order-byId/${requestId2}`, {
@@ -113,14 +134,7 @@ const Ridermap = () => {
 		}
 		getOrderOwnerName();
 
-		const autoClick = async () => {
-			setTimeout(() => {
-				buttonRef.current.click();
-				console.log("I was clicked!")
-			}, 3000);
-		}
-
-		autoClick()
+		calculatorRoute()
 
 	}, [requestId2, ownerId])
 
@@ -130,37 +144,34 @@ const Ridermap = () => {
 		return <Loading />;
 	}
 
-	console.log(order)
-
+	// console.log(order)
+// const myStyle = {
+// 		display: order===null ? "none" : "block",
+// }
 	return (
 		<>
 			<div>
 				<DemoNav />
 				<div className={mapview.MPCTN}>
 					<div className={mapview.mapContainer}>
-						<div className={mapview.details}>
+						<div className={mapview.details} /*style={myStyle}*/>
 							<h3>Request details</h3>
-							{/* {order.map((elem: any) => ( */}
 							<form key="" action="" className={mapview.formCtn}>
 								<div className={mapview.divInputCtn}>
 									<label className={mapview.divInputCtnLbl}>Pickup Location</label>
-									{/* <Autocomplete> */}
 									<input
 										type="text"
 										value={order.pickupLocation}
 										placeholder="pickup location"
 										ref={pickupLocationRef}
-										// onChange={(e) => setPickupLocationText(e.target.value)}
 										disabled
 									/>
-									{/* </Autocomplete> */}
-									{/* <input type="text" value={distance} /> */}
+									
 								</div>
 								<div className={mapview.divInputCtn}>
 									<label className={mapview.divInputCtnLbl}>
 										Delivery Location
 									</label>
-									{/* <Autocomplete> */}
 									<input
 										type="text"
 										value={order.dropOffLocation}
@@ -168,8 +179,6 @@ const Ridermap = () => {
 										ref={deliveryLocationRef}
 										disabled
 									/>
-									{/* <input type="text" value={duration} /> */}
-									{/* </Autocomplete> */}
 								</div>
 								<div className={mapview.divInputCtn}>
 									<label className={mapview.divInputCtnLbl}>Package details</label>
@@ -196,11 +205,10 @@ const Ridermap = () => {
 								</div>
 
 								<div className={mapview.btnGroup}>
-									<button onClick={calculatorRoute} ref={buttonRef} className={mapview.aceptReq}>Accept Request</button>
+									<button onClick={handleClick} ref={buttonRef} className={mapview.aceptReq}>Accept Request</button>
 									<Link to={"/rider-biddings"}><button className={mapview.declineReq}>Decline Request</button></Link>
 								</div>
 							</form>
-							{/* ))} */}
 						</div>
 
 						<div className={mapview.mapV}>
@@ -229,7 +237,6 @@ const Ridermap = () => {
 								<p
 									className={`${mapview.incomingRequestInnerP} ${mapview.innerPMedium}`}
 								>
-									{/* Collins Nwachukwu */}
 									{orderOwner.owner}
 								</p>
 								<p

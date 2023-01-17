@@ -9,7 +9,7 @@ import overview from "../../assets/Users_dashboard/overview.svg";
 import addresscontact from "../../assets/Users_dashboard/addresscontact.svg";
 import emailcontact from "../../assets/Users_dashboard/emailcontact.svg";
 import phonecontact from "../../assets/Users_dashboard/phonecontact.svg";
-import { apiGetAndAuth } from "../../utils/api/axios";
+import { apiGet, apiGetAndAuth } from "../../utils/api/axios";
 import { Link } from "react-router-dom";
 import profilePic from "../../assets/profilepic.png";
 import { AiFillStar, AiOutlineClose } from "react-icons/ai";
@@ -37,6 +37,54 @@ const UserDashboard = () => {
 	const [modal2, setModal2] = useState(false);
 	const [orders, setBiddings] = React.useState([]);
 	const [completedOrders, setCompletedOrders] = React.useState(null);
+	const [order, setOrder]: any = React.useState([]);
+	const [loading, setLoading] = React.useState(false);
+	const [rider, setRider]: any = React.useState([]);
+
+	const handleClick = (orderId: number, status: string) => {
+		console.log(status);
+		if (status !== "pending") {
+			const go = async (orderId: number) => {
+				try {
+					setLoading(true);
+					const responses = await apiGet(`/users/my-order/${orderId}`);
+					// console.log(responses);
+					if (responses) {
+						setLoading(false);
+						await setOrder(responses.data.Order);
+						//  setTimeout (() => {
+						const ride = order.riderId;
+						getRiderProfile(ride);
+						//  }, 1000 )
+					}
+				} catch (error) {
+					console.log(error);
+				}
+			};
+			void go(orderId);
+		}
+	};
+	// console.log("The orders are ", order.riderId);
+	// const rideId: number = order.Order.riderId;
+
+	const getRiderProfile = (ride: number) => {
+		const go1 = async (ride: number) => {
+			try {
+				setLoading(true);
+				const rider = await apiGet(`/riders/rider-order-profile/${ride}`);
+				console.log("This is rider", rider);
+
+				if (rider) {
+					setLoading(false);
+					setRider(rider.data.order.rider);
+					toggleModal2();
+				}
+			} catch (error) {
+				console.log(error);
+			}
+		};
+		void go1(ride);
+	};
 
 	const toggleModal = () => {
 		setModal(!modal);
@@ -89,6 +137,9 @@ const UserDashboard = () => {
 			// eslint-disable-next-line @typescript-eslint/no-floating-promises
 			getBiddings();
 		}
+	};
+	const call = (phone: string) => {
+		window.location.href = `tel:${phone}`;
 	};
 
 	React.useEffect(() => {
@@ -178,29 +229,40 @@ const UserDashboard = () => {
 						{/* <hr /> */}
 						{/* biddings.length > 0 ? <Your code> : <>No data Available<></> */}
 						{orders?.length > 0 ? (
-							orders.map((bidding: any) => (
-								<div className={dashboard_style.order_stats} key={bidding.id}>
-									<span className={dashboard_style.date}>
-										{removeTimeAndFormatDate(bidding.createdAt)}
-									</span>
-									<span
-										className={dashboard_style.status}
-										onClick={toggleModal2}
-									>
-										{bidding.status}
-									</span>
-									<br />
-									<br />
-									<strong className={dashboard_style.space}>
-										<span className={dashboard_style.orderNo}>
-											Order No - {bidding.orderNumber}
+							orders.map((bidding: any) => {
+								const myStyle = {
+									backgroundColor:
+										bidding.status === "pending"
+											? "rgba(252, 193, 52, 0.1)"
+											: " rgba(52, 168, 83, 0.1)",
+									color: bidding.status === "pending" ? "#F8B02B" : "#34A853",
+									cursor: "pointer",
+								};
+								return (
+									<div className={dashboard_style.order_stats} key={bidding.id}>
+										<span className={dashboard_style.date}>
+											{removeTimeAndFormatDate(bidding.createdAt)}
 										</span>
-										<span className={dashboard_style.amount}>
-											N{bidding.offerAmount}
+										<span
+											className={dashboard_style.status}
+											onClick={() => handleClick(bidding.id, bidding.status)}
+											style={myStyle}
+										>
+											{bidding.status}
 										</span>
-									</strong>
-								</div>
-							))
+										<br />
+										<br />
+										<strong className={dashboard_style.space}>
+											<span className={dashboard_style.orderNo}>
+												Order No - {bidding.orderNumber}
+											</span>
+											<span className={dashboard_style.amount}>
+												N{bidding.offerAmount}
+											</span>
+										</strong>
+									</div>
+								);
+							})
 						) : (
 							<p className={dashboard_style.para}>No data available</p>
 						)}
@@ -227,7 +289,7 @@ const UserDashboard = () => {
 									window.location.href = "mailto:hello@swiftrider.com";
 								}}
 							>
-								<p id={dashboard_style.contact_details1}>
+								<p id={dashboard_style.contact_details1} className={dashboard_style.contact_details_link} >
 									<a href="#">hello@swiftrider.com</a>
 								</p>
 							</div>
@@ -238,7 +300,7 @@ const UserDashboard = () => {
 								/>
 							</div>
 							<div>
-								<p id={dashboard_style.contact_details2}>
+								<p id={dashboard_style.contact_details2} className={dashboard_style.contact_details_link} >
 									<a href="tel:+2348062898015">08062898015,</a>{" "}
 									<a href="tel:+2347015950245">07015950245</a>
 								</p>
@@ -257,7 +319,6 @@ const UserDashboard = () => {
 						</div>
 					</div>
 				</div>
-
 				<div>
 					{modal2 && (
 						<div className={modalStyle.modal}>
@@ -273,8 +334,7 @@ const UserDashboard = () => {
 									{" "}
 									Your order has been accepted by{" "}
 								</p>
-								<h5 className={modalStyle.modalTitle}>Babatunde Akin</h5>
-
+								<h5 className={modalStyle.modalTitle}>{rider.name}</h5>
 								<div className={modalStyle.modalArrange}>
 									<button
 										className={modalStyle.modalBtn1}
@@ -283,43 +343,60 @@ const UserDashboard = () => {
 										View Rider
 									</button>
 								</div>
+								<button
+									className={modalStyle.close_modal}
+									onClick={() => {
+										setOrder([]);
+										setRider([]);
+										toggleModal2();
+										// setModal2(false);
+									}}
+								>
+									<AiOutlineClose size={20} />
+								</button>
 							</div>
 						</div>
 					)}
-
 					{modal && (
 						<div className={modalStyle.modal}>
 							<div className={modalStyle.overlay}> </div>
 							<div className={modalStyle.modal_content2}>
 								<h5 className={modalStyle.modalName}>
-									Rider arriving in 8mins{" "}
+									Rider arriving in about 1:00:00{" "}
 								</h5>
 								<img
 									className={modalStyle.requestProfilePic}
-									src={profilePic}
+									src={rider.passport}
 									alt="profilePic"
 								/>
-								<h5 className={modalStyle.modalTitle}>Babatunde Akin</h5>
-								<p className={modalStyle.modalText}> 08031234567</p>
+								<h5 className={modalStyle.modalTitle}>{rider.name}</h5>
+								<p className={modalStyle.modalText}>{rider.phone}</p>
 								<p className={modalStyle.modalNumber}> Lincense plate number</p>
-								<p className={modalStyle.modalPlate}> RYC40CE</p>
+								<p className={modalStyle.modalPlate}> {rider.plateNumber}</p>
 								<p className={modalStyle.modalNo}>
 									{" "}
-									4.82 <AiFillStar />
+									4.90 <AiFillStar />
 								</p>
-
 								<div className={modalStyle.modalArrange}>
-									<button className={modalStyle.modalBtn3}>Call</button>
+									<button
+										className={modalStyle.modalBtn3}
+										onClick={() => call(rider.phone)}
+									>
+										Call
+									</button>
 									<button className={modalStyle.modalBtn2}>Send Message</button>
 								</div>
 								<button
 									className={modalStyle.close_modal}
 									onClick={() => {
-										setModal(false);
-										setModal2(false);
+										setOrder([]);
+										setRider([]);
+										toggleModal();
+										toggleModal2();
+										// setModal2(false);
 									}}
 								>
-									<AiOutlineClose size={20} />
+									<AiOutlineClose size={30} style={{ color: "red" }} />
 								</button>
 							</div>
 						</div>

@@ -283,7 +283,7 @@
     height: 28px;
     background: rgba(252, 193, 52, 0.1);
     border-radius: 100px;
-    margin-left: 250px;
+    margin-left: 215px;
     /* font-size: 54px; */
     /* height: 17px; */
     font-family: "Inter";
@@ -315,11 +315,17 @@
     line-height: 17px;
     /* identical to box height */
     color: #21334f;
-    margin-left: 318px;
+    margin-left: 280px;
   }
   .space {
     margin-top: 300px;
   }
+
+  .contact_details_link > a{
+    text-decoration:    none;
+    color:   rgb(35, 35, 101);
+}
+
   .contacts_container {
     margin-top: 400px;
     margin-left: 800px;

@@ -158,16 +158,16 @@ const RidersDashboard = () => {
 							<p className={rDashboard.emailAddress}>
 								{" "}
 								<MdOutlineEmail />
-								<a href="#">hello@swiftrider.com</a>
+								<a className={rDashboard.contact_details_link} href="#">hello@swiftrider.com</a>
 							</p>
 							<p className={rDashboard.phoneNum}>
 								<BsTelephone />
-								<a href="tel:+2348062898015">08062898015,</a>{" "}
-								<a href="tel:+2347015950245">07015950245</a>
+								<a className={rDashboard.contact_details_link} href="tel:+2348062898015">08062898015,</a>{" "}
+								<a className={rDashboard.contact_details_link} href="tel:+2347015950245">07015950245</a>
 							</p>
 							<p className={rDashboard.homeAddress}>
 								<VscLocation />
-								25, Uhkorunmi street, Ohuhen, Edo
+								<a  href="#" className={rDashboard.contact_details_link}>25, Uhkorunmi street, Ohuhen, Edo</a>
 							</p>
 						</div>
 					</div>
