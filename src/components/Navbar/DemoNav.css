@@ -179,7 +179,7 @@
       position: absolute;
       right: 0;
       top: 60px;
-      background-color: #fef7e5;
+      background-color: #ffffffbf;
       width: 0px;
       height: calc(100vh - 60px);
       transition: all 0.3s ease-in;
@@ -243,11 +243,16 @@
         margin-left: 0px !important;
        }
     }
-    @media (max-width: 400px) {
+    @media (max-width: 480px) {
         .demo_menu-icon {
             display: block;
             cursor: pointer;
             margin-left: 65%;
+            
+          }
+          .demo_logo{
+            margin-right: 50px;
+            margin-left: -50px;
           }
           .nav-elements ul{
             z-index: 2;
