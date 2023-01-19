@@ -108,15 +108,10 @@ const BidingOrder = () => {
 											to={`/riders-accept-order-view/${order.id}~${order.userId}`}
 										>
 											<button className={riderOrderStyle.biding_order_button}>
-												Accept request
+												View Request Details
 											</button>
 										</Link>
-										<button
-											className={riderOrderStyle.biding_order_button}
-											type="submit"
-										>
-											<span>Decline</span>
-										</button>
+										
 									</div>
 								</div>
 								// eslint-disable-next-line react/jsx-no-comment-textnodes

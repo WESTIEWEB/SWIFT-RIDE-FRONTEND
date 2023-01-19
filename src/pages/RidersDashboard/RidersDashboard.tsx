@@ -82,11 +82,7 @@ const RidersDashboard = () => {
 					<div className={rDashboard.totalOrders}>
 						<div className={rDashboard.orderRequest}>
 							<h1 className={rDashboard.totalOrdersH1}>Total Orders</h1>
-							<Link to="/all-biddings">
-								<button className={rDashboard.makeRequest}>
-									Accept Request
-								</button>
-							</Link>
+							
 						</div>
 						<div className={rDashboard.ordersCompleted}>
 							<h1 className={rDashboard.orders1}>{completedRides}</h1>
