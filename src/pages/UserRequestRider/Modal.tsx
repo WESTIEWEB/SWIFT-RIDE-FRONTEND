@@ -56,7 +56,7 @@ function Modal() {
                 <button className={modalStyle.modalBtn3}>Call</button>
                 <button className={modalStyle.modalBtn2}>Send Message</button>
             </div>
-            <Link to="/user-dashboard" ><button className={modalStyle.close_modal}><AiOutlineClose  size={20}/></button> </Link>
+            <Link to="/user-dashboard"><button className={modalStyle.close_modal}><AiOutlineClose  size={20}/></button> </Link>
         </div>
         </div>
         }
