@@ -7,13 +7,12 @@ import ReactSwitch from "react-switch";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { RxDropdownMenu as Hamburger } from "react-icons/rx";
-import { UserNotification } from "../../pages/userNotification/userNotification";
+import { NotificationAlert } from "../../pages/userNotification/NotificationAlert";
 // import { ReactComponent as Brand } from "../../assets/icons/logo.svg";
 
 const DemoNav = () => {
 	const [showNavbar, setShowNavbar] = useState(false);
 	const [checked, setChecked] = useState(true);
-	
 
 	const handleShowNavbar = () => {
 		setShowNavbar(!showNavbar);
@@ -64,11 +63,9 @@ const DemoNav = () => {
 							</li>
 
 							<li className="li_moblile_s li_mobile_l_u">
-								
-								<UserNotification />
-								
-									{/* <img src={bell} alt="notification" /> */}
-								
+								<NotificationAlert />
+
+								{/* <img src={bell} alt="notification" /> */}
 							</li>
 							<li>
 								<img src={avatar} alt="avatar" />

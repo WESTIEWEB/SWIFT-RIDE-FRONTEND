@@ -241,5 +241,9 @@ body.active-modal {
 }
 .orderText{
     margin-bottom: 6px;
+}
 
+/*  */
+.item_btn{
+    /* border: hidden; */
 }
