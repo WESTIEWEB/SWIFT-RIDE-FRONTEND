@@ -14,18 +14,22 @@ import ProfileSetting from "./pages/ProfileSetting/ProfileSetting";
 // import VendorDashboard from "./pages/VendorDashboard/VendorDashboard";
 import { ToastContainer } from "react-toastify";
 import ForgetPasswordCard from "./components/fPassCard/fPassCard";
-import RequestRider from "./pages/UserRequestRider/RequestRider";
+import RequestRider from "./pages/UserRequestRider/RideRequest";
 import Modal from "./pages/UserRequestRider/Modal";
 import BidingOrder from "./pages/RiderBiddingOrder/RiderBiddingOrder";
 import UserDashboard from "./pages/userDashboard/userDashboard";
 import RidersDashboard from "./pages/RidersDashboard/RidersDashboard";
 import RiderHistory from "./pages/RiderHistory/RiderHistory";
-// import { ProtectAdminRoute, ProtectRiderRoute } from "./context/ProtectRoute";
+// import { ProtectAdminRoute, ProtectRiderRoute, ProtectUserRoute } from './context/ProtectRoute';
 import { ProtectUserRoute, ProtectRiderRoute } from "./context/ProtectRoute";
 import RiderProfileSetting from "./pages/RiderProfileSettingPage/RiderProfile";
 import PickUpUserHistory from "./pages/UserHistory/PickUpUserHistory";
 import Ridermap from "./pages/Ridermaps/Ridermap";
 import Riderrequestaccepted from "./pages/Ridermaps/Riderrequestaccepted";
+import Earningpage from "./pages/EarningPage/Earningpage";
+import PaymentOption from "./pages/PaymentOption/PaymentOption";
+import AddCard from "./pages/AddCard/AddCard";
+import CardDetails from "./pages/CardDetails/CardDetails";
 
 // setup  for fontend
 
@@ -41,7 +45,6 @@ const App = () => {
 					<Route path="/riders-signup" element={<RidersSignup />} />
 					<Route path="/sentmail" element={<MailSent />} />
 					<Route path="/forgotpasswordd" element={<ForgetPasswordCard />} />
-
 					<Route
 						path="/request-rider"
 						element={
@@ -64,7 +67,6 @@ const App = () => {
 						element={<Ridermap />}
 					/>
 					<Route path="/accept-request" element={<Riderrequestaccepted />} />
-
 					<Route
 						path="/rider-biddings"
 						element={
@@ -122,7 +124,48 @@ const App = () => {
 							</ProtectRiderRoute>
 						}
 					/>
-					<Route path="/order-history" element={<PickUpUserHistory />} />
+					<Route
+						path="/rider-earnings"
+						element={
+							<ProtectRiderRoute>
+								<Earningpage />
+							</ProtectRiderRoute>
+						}
+					/>
+					<Route
+						path="/order-history"
+						element={
+							<ProtectUserRoute>
+								<PickUpUserHistory />
+							</ProtectUserRoute>
+						}
+					/>
+					<Route
+						path="/payment-option"
+						element={
+							<ProtectUserRoute>
+								<PaymentOption />
+							</ProtectUserRoute>
+						}
+					/>
+					<Route
+						path="/add-card"
+						element={
+							<ProtectUserRoute>
+								<AddCard />
+							</ProtectUserRoute>
+						}
+					/>
+					{/* <Route path="/add-card" element={<AddCard />} /> */}
+					{/* <Route path="/add-card" element={<CardDetails />} /> */}
+					<Route
+						path="card-details"
+						element={
+							<ProtectUserRoute>
+								<CardDetails />
+							</ProtectUserRoute>
+						}
+					/>
 				</Routes>
 			</Router>
 		</React.Fragment>

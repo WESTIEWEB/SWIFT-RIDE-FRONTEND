@@ -108,8 +108,8 @@ const DemoNav = () => {
 							<li>
 								<NavLink to="/rider-earnings">Earnings</NavLink>
 							</li>
+							<li className="nav_availability_bt">Availability</li>
 							<li>
-								Availability
 								<ReactSwitch checked={checked} onChange={handleChange} />
 							</li>
 							<li>

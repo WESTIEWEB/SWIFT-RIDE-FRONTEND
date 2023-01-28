@@ -4,14 +4,14 @@
     margin:auto;
     display: flex
 }
-h3 {
+.text h3 {
     color:black;
     font-size:xx-large;
     padding-bottom: 1px;
     margin-bottom: 10px
 }
 
-p{
+.text p{
     text-align: center;
 }
 

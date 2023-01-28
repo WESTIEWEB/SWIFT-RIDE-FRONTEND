@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-unused-vars */
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 // import NavbarProfile from "../../components/Navbar/NavbarProfile";
 import DemoNav from "../../components/Navbar/DemoNavbar";
 import React, { useState } from "react";
@@ -116,7 +119,7 @@ const UserDashboard = () => {
 	const getCompletedOrders = async () => {
 		// e.preventDefault();
 		try {
-			const res = await apiGetAndAuth("/users/completed-orders", {
+			const res = await apiGetAndAuth("users/completed-orders", {
 				headers: {
 					// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
 					Authorization: `Bearer ${access_token}`,
@@ -147,7 +150,7 @@ const UserDashboard = () => {
 		getBiddings();
 		// eslint-disable-next-line @typescript-eslint/no-floating-promises
 		getCompletedOrders();
-	}, []);
+	}, [order]);
 	return (
 		<>
 			{/* <NavbarProfile /> */}
@@ -155,169 +158,184 @@ const UserDashboard = () => {
 			<div className={dashboard_style.user_dashboard_parent_div}>
 				<div className={dashboard_style.middle_container}>
 					<h1 className={dashboard_style.viewoverH1}>
-						<img src={overview} width="30px" height="30px" />
+						<img
+							style={{ marginRight: "8px" }}
+							src={overview}
+							width="30px"
+							height="30px"
+						/>
 						Overview
 					</h1>
 					{/* <div className={dashboard_style.second_container}> */}
-					<div className={dashboard_style.orders_container}>
-						<div className={dashboard_style.top_orders}>
-							<span id={dashboard_style.orders}>Total Orders</span>
-							<Link
-								to="/request-rider"
-								className={dashboard_style.userDashboardLink}
-							>
-								{" "}
-								<span id={dashboard_style.request}>Make a Request</span>
-							</Link>
-						</div>
-						<hr />
-						<div className={dashboard_style.bottom_orders}>
-							<span>
-								<strong id={dashboard_style.order_number}>
-									{completedOrders}
-								</strong>
-								<br />
-								<br />
-								<strong id={dashboard_style.orders_completed}>
-									Orders Completed
-								</strong>
-							</span>
-							<span id={dashboard_style.image}>
-								<img
-									src={orderimg}
-									id={dashboard_style.orders_image}
-									height="39.38px"
-									width="36.32px"
-								/>
-							</span>
-						</div>
-					</div>
-					<div className={dashboard_style.messages_container}>
-						<p id={dashboard_style.messages}>Messages</p>
-						<hr />
-						<div id={dashboard_style.image_div}>
-							<img
-								id={dashboard_style.msg1}
-								src={msg1}
-								width="54px"
-								height="49.5px"
-							/>
-							<img
-								id={dashboard_style.msg2}
-								src={msg2}
-								width="54px"
-								height="38.4px"
-							/>
-						</div>
-						<div id={dashboard_style.no_messages}>
-							<p id={dashboard_style.msgP}>No Messages</p>
-							<br />
-							<p id={dashboard_style.msgP2}>
-								You curently do not have any message
-							</p>
-						</div>
-					</div>
-					<div
-						className={dashboard_style.myorders_container}
-						style={{ height: "350px", overflow: "scroll" }}
-						onScroll={handleScroll}
-					>
-						<div className={dashboard_style.order_details}>
-							<span id={dashboard_style.orderzz}>My Orders</span>
-							<span className={dashboard_style.seeAll}>See all</span>
-						</div>
-						{/* <hr /> */}
-						{/* biddings.length > 0 ? <Your code> : <>No data Available<></> */}
-						{orders?.length > 0 ? (
-							orders.map((bidding: any) => {
-								const myStyle = {
-									backgroundColor:
-										bidding.status === "pending"
-											? "rgba(252, 193, 52, 0.1)"
-											: " rgba(52, 168, 83, 0.1)",
-									color: bidding.status === "pending" ? "#F8B02B" : "#34A853",
-									cursor: "pointer",
-								};
-								return (
-									<div className={dashboard_style.order_stats} key={bidding.id}>
-										<span className={dashboard_style.date}>
-											{removeTimeAndFormatDate(bidding.createdAt)}
+					<main className={dashboard_style.userD_main_container}>
+						<div className={dashboard_style.orders_container}>
+							<div className={dashboard_style.top_orders}>
+								<h4 id={dashboard_style.orders}>Total Orders</h4>
+								<h4 id={dashboard_style.request}>
+									<Link
+										className={dashboard_style.userDashboardLink}
+										to="/request-rider"
+									>
+										<span style={{ padding: "5px", color: "#e02b45" }}>
+											Make a Request
 										</span>
-										<span
-											className={dashboard_style.status}
-											onClick={() => handleClick(bidding.id, bidding.status)}
-											style={myStyle}
-										>
-											{bidding.status}
-										</span>
-										<br />
-										<br />
-										<strong className={dashboard_style.space}>
-											<span className={dashboard_style.orderNo}>
-												Order No - {bidding.orderNumber}
-											</span>
-											<span className={dashboard_style.amount}>
-												N{bidding.offerAmount}
-											</span>
+									</Link>
+								</h4>
+							</div>
+							<hr />
+							<div className={dashboard_style.bottom_orders}>
+								<div className={dashboard_style.bt_orders_span}>
+									<span>
+										<strong id={dashboard_style.order_number}>
+											{completedOrders}
 										</strong>
+										<br />
+										<br />
+										<strong id={dashboard_style.orders_completed}>
+											Orders Completed
+										</strong>
+									</span>
+								</div>
+
+								<div className={dashboard_style.bt_orders_span}>
+									<span id={dashboard_style.image}>
+										<img
+											src={orderimg}
+											id={dashboard_style.orders_image}
+											height="39.38px"
+											width="36.32px"
+										/>
+									</span>
+								</div>
+							</div>
+						</div>
+						<div className={dashboard_style.messages_container}>
+							<p id={dashboard_style.messages}>Messages</p>
+							<hr />
+							<div id={dashboard_style.image_div}>
+								<img
+									id={dashboard_style.msg1}
+									src={msg1}
+									width="54px"
+									height="49.5px"
+									alt="message icon"
+								/>
+								<img
+									id={dashboard_style.msg2}
+									src={msg2}
+									width="54px"
+									height="38.4px"
+								/>
+							</div>
+							<div id={dashboard_style.no_messages}>
+								<p id={dashboard_style.msgP}>No Messages</p>
+								<p id={dashboard_style.msgP2}>
+									You curently do not have any message
+								</p>
+							</div>
+						</div>
+						<div
+							className={dashboard_style.myorders_container}
+							style={{ height: "350px", overflow: "scroll" }}
+							onScroll={handleScroll}
+						>
+							<div className={dashboard_style.order_details}>
+								<span id={dashboard_style.orderzz}>My Orders</span>
+								<span className={dashboard_style.seeAll}>See all</span>
+							</div>
+							<hr />
+							{/* biddings.length > 0 ? <Your code> : <>No data Available<></> */}
+							{orders?.length > 0 ? (
+								orders.map((bidding: any) => {
+									const myStyle = {
+										backgroundColor:
+											bidding.status === "pending"
+												? "rgba(252, 193, 52, 0.1)"
+												: " rgba(52, 168, 83, 0.1)",
+										color: bidding.status === "pending" ? "#F8B02B" : "#34A853",
+										cursor: "pointer",
+									};
+									return (
+										<div
+											className={dashboard_style.order_stats}
+											key={bidding.id}
+										>
+											<div className={dashboard_style.order_status_title}>
+												<span className={dashboard_style.date}>
+													{removeTimeAndFormatDate(bidding.createdAt)}
+												</span>
+												<span
+													className={dashboard_style.status}
+													onClick={() =>
+														handleClick(bidding.id, bidding.status)
+													}
+													style={myStyle}
+												>
+													{bidding.status}
+												</span>{" "}
+											</div>
+											<div className={dashboard_style.space}>
+												<span className={dashboard_style.orderNo}>
+													Order No - {bidding.orderNumber}
+												</span>
+												<span className={dashboard_style.amount}>
+													N
+													{bidding.offerAmount
+														.toString()
+														.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+													.00
+												</span>
+											</div>
+										</div>
+									);
+								})
+							) : (
+								<p className={dashboard_style.para}>No data available</p>
+							)}
+						</div>
+						<div className={dashboard_style.contacts_container}>
+							<p className={dashboard_style.contacts_parag}>Contact Us</p>
+							<hr />
+							<div className={dashboard_style.bio}>
+								<p id={dashboard_style.getInTouch}>Get in touch</p>
+								<br />
+								<p id={dashboard_style.questions}>
+									Any questions or remarks? Send us a message
+								</p>
+								<br />
+								<div className={dashboard_style.contact_mail_phone}>
+									<div
+										onClick={(e) => {
+											window.location.href = "mailto:hello@swiftrider.com";
+										}}
+										className={dashboard_style.company_contacts}
+									>
+										{" "}
+										<img
+											src={emailcontact}
+											className={dashboard_style.contactUs_images1}
+										/>
+										<a href="#">hello@swiftrider.com</a>
 									</div>
-								);
-							})
-						) : (
-							<p className={dashboard_style.para}>No data available</p>
-						)}
-					</div>
-					<div className={dashboard_style.contacts_container}>
-						<div className={dashboard_style.contact}>
-							<p>Contact Us</p>
-						</div>
-						<hr />
-						<div className={dashboard_style.bio}>
-							<p id={dashboard_style.getInTouch}>Get in touch</p>
-							<p id={dashboard_style.questions}>
-								Any questions or remarks? Send us a message
-							</p>
-							<br />
-							<div className={dashboard_style.company_contacts}>
-								<img
-									src={emailcontact}
-									className={dashboard_style.contactUs_images1}
-								/>
-							</div>
-							<div
-								onClick={(e) => {
-									window.location.href = "mailto:hello@swiftrider.com";
-								}}
-							>
-								<p id={dashboard_style.contact_details1} className={dashboard_style.contact_details_link} >
-									<a href="#">hello@swiftrider.com</a>
-								</p>
-							</div>
-							<div className={dashboard_style.company_contacts}>
-								<img
-									src={phonecontact}
-									className={dashboard_style.contactUs_images2}
-								/>
-							</div>
-							<div>
-								<p id={dashboard_style.contact_details2} className={dashboard_style.contact_details_link} >
-									<a href="tel:+2348062898015">08062898015,</a>{" "}
-									<a href="tel:+2347015950245">07015950245</a>
-								</p>
-							</div>
-							<div className={dashboard_style.company_contacts}>
-								<img
-									src={addresscontact}
-									className={dashboard_style.contactUs_images3}
-								/>
-							</div>
-							<div>
-								<p id={dashboard_style.contact_details3}>
-									20, Abn Street, Banana Island, Lagos
-								</p>
+									<div className={dashboard_style.company_contacts}>
+										<img
+											src={phonecontact}
+											className={dashboard_style.contactUs_images2}
+										/>
+										<a href="tel:+2348062898015">08062898015,</a>{" "}
+										<a href="tel:+2347015950245">07015950245</a>
+									</div>
+									<div className={dashboard_style.company_contacts}>
+										<img
+											src={addresscontact}
+											className={dashboard_style.contactUs_images3}
+										/>
+										20, Abn Street, Banana Island, Lagos
+									</div>
+								</div>
 							</div>
 						</div>
-					</div>
+					</main>
 				</div>
 				<div>
 					{modal2 && (

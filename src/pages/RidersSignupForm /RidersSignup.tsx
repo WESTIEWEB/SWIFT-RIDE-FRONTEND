@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import { useState } from "react";
 import styled from "./RidersSignupForm.module.css";
 import RiderImage from "../../assets/Riders_signup_assets/rider_image.svg";
@@ -24,7 +25,7 @@ const RidersSignup = () => {
 			toast.error("file is too large");
 			return;
 		}
-		// eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+
 		if (!file.type.includes("image")) {
 			toast.error("File must be an image");
 		}

@@ -1,25 +1,35 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
-import React, { useState } from "react";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-misused-promises */ /* eslint-disable @typescript-eslint/restrict-template-expressions */
+import React, { useState, useEffect } from "react";
 import requestRider from "../UserRequestRider/RequestRider.module.css";
+import {
+	Autocomplete,
+	useJsApiLoader,
+	useLoadScript,
+} from "@react-google-maps/api";
 import { Link, useNavigate } from "react-router-dom";
+import Loading from "../Ridermaps/Loading";
 import axios from "axios";
 import { toast } from "react-toastify";
-
 import back from "../../assets/back.png";
 import DemoNav from "../../components/Navbar/DemoNavbar";
-
 const baseUrl = "http://localhost:4000";
 
 function RequestRider() {
 	const navigate = useNavigate();
 	const [formData, setFormData] = useState({});
-
+	// const [inputValue, setInputValue] = useState<string | number>();    const inputRef = useRef<any | null>();
+	const [searchResult, setSearchResult] = useState<any | null>();
+	const [searchResult1, setSearchResult1] = useState<any | null>();
+	const options = {
+		componentRestrictions: { country: "ng", administrativeArea: "Edo" },
+		fields: ["address_components", "geometry", "icon", "name"],
+		types: ["establishment"],
+	};
 	const handleChange = (e: any) => {
 		const { name, value } = e.target;
 		setFormData({ ...formData, [name]: value });
 	};
-	// console.log(formData);
 	const handleSubmit = async (e: any) => {
 		e.preventDefault();
 		try {
@@ -43,6 +53,37 @@ function RequestRider() {
 			console.log(error);
 		}
 	};
+	const { isLoaded } = useLoadScript({
+		googleMapsApiKey: import.meta.env.VITE_APP_GOOGLE_MAP_API_KEY as string,
+		libraries: ["places"],
+	});
+	function onPickupPlaceChanged() {
+		if (searchResult1 != null) {
+			const place = searchResult1.getPlace();
+			setFormData({ ...formData, pickupLocation: place.formatted_address });
+		} else {
+			alert("Please enter text");
+		}
+	}
+	function onDropoffPlaceChanged() {
+		if (searchResult != null) {
+			const place = searchResult.getPlace();
+			setFormData({ ...formData, dropOffLocation: place.formatted_address });
+		} else {
+			alert("Please enter text");
+		}
+	}
+	function onLoadp(autocomplete: any) {
+		setSearchResult1(autocomplete);
+	}
+	function onLoad(autocomplete: any) {
+		setSearchResult(autocomplete);
+	}
+	useEffect(() => {}, [formData]);
+	console.log(formData);
+	if (!isLoaded) {
+		return <Loading />;
+	}
 
 	return (
 		<div className={requestRider.requestOverAll}>
@@ -66,25 +107,35 @@ function RequestRider() {
 								<label className={requestRider.requestLabel}>
 									Pick up Location
 								</label>
-								<input
-									className={requestRider.requestInput}
-									onChange={handleChange}
-									type="text"
-									placeholder="Enter pick up Location"
-									name="pickupLocation"
-								/>
+								<Autocomplete
+									onLoad={onLoadp}
+									onPlaceChanged={() => onPickupPlaceChanged()}
+								>
+									<input
+										className={requestRider.requestInputAutoCplt}
+										name="pickupLocation"
+										type="text"
+										onChange={handleChange}
+										placeholder="Enter Pickup Location"
+									/>
+								</Autocomplete>
 							</div>
 							<div className={requestRider.req_order_form_dv}>
 								<label className={requestRider.requestLabel}>
 									Drop off Location
 								</label>
-								<input
-									className={requestRider.requestInput}
-									onChange={handleChange}
-									type="text"
-									placeholder="Enter drop off location"
-									name="dropOffLocation"
-								/>
+								<Autocomplete
+									onLoad={onLoad}
+									onPlaceChanged={() => onDropoffPlaceChanged()}
+								>
+									<input
+										className={requestRider.requestInputAutoCplt}
+										name="dropOffLocation"
+										type="text"
+										onChange={handleChange}
+										placeholder="Enter Dropoff Location"
+									/>
+								</Autocomplete>
 							</div>
 							<div className={requestRider.req_order_form_dv}>
 								<label className={requestRider.requestLabel}>
@@ -93,7 +144,10 @@ function RequestRider() {
 								<input
 									className={requestRider.requestInput}
 									onChange={handleChange}
-									type="text"
+									id="phoneIp"
+									type="tel"
+									pattern="[0-9]{11}"
+									required
 									placeholder="Enter drop off phone number"
 									name="dropOffPhoneNumber"
 								/>
@@ -107,7 +161,7 @@ function RequestRider() {
 									className={requestRider.requestInput}
 									onChange={handleChange}
 									type="text"
-									placeholder="Enter Pickup Location"
+									placeholder="Enter Package Description"
 									name="packageDescription"
 								/>
 							</div>

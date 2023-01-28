@@ -111,7 +111,6 @@ const BidingOrder = () => {
 												View Request Details
 											</button>
 										</Link>
-										
 									</div>
 								</div>
 								// eslint-disable-next-line react/jsx-no-comment-textnodes
