@@ -21,128 +21,6 @@ interface PaystackPop {
 		onCancel: () => void;
 	}) => void;
 }
-
-// const CardDetails = () => {
-// 	const [cardName, setCardName] = useState("");
-// 	const [email, setEmail] = useState("");
-// 	const [amount, setAmount] = useState("");
-// 	const [expiryDate, setExpiryDate] = useState("");
-// 	const [cvv, setCvv] = useState("");
-// 	const [cardNumber, setCardNumber] = useState("");
-// 	const payWithPaystack = (e: any) => {
-// 		e.preventDefault();
-// 		const paystack = new PaystackPop();
-// 		paystack.newTransaction({
-// 			key: "pk_test_10f0bf166cf0c44bfa35b7f7f0ea72f24c01a60c",
-// 			amount: amount * 100,
-// 			cardName,
-// 			expiryDate,
-// 			cvv,
-// 			email,
-// 			cardNumber,
-
-// 			onSuccess(transaction: Transaction) {
-// 				const message = `Payment complete successfully ${transaction.reference}`;
-// 				alert(message);
-// 				setCardName("");
-// 				setAmount("");
-// 				setExpiryDate("");
-// 				setCvv("");
-// 				setCardNumber("");
-// 				setEmail("");
-// 			},
-// 			onCancel() {},
-// 		});
-// 	};
-// 	return (
-// 		<>
-// 			<DemoNav />
-// 			<div className="cardDetails">
-// 				<div className="options">
-// 					<Link className="newlink" to={"/add-card"}>
-// 						<AiOutlineArrowLeft className="icon" />
-// 						<h4 className="back">Back</h4>
-// 					</Link>
-// 					<h3 className="add-card"> Make Payment</h3>
-// 					<div className="bottom-border"></div>
-// 				</div>
-// 				<form>
-// 					<div>
-// 						<label className="cardnumber">Card Number</label>
-// 						<input
-// 							className="input1"
-// 							type="text"
-// 							value={cardNumber}
-// 							onChange={(e) => setCardNumber(e.target.value)}
-// 						/>
-// 					</div>
-// 					<div>
-// 						<label className="cardnumber">Card Name</label>
-// 						<input
-// 							className="input1"
-// 							type="text"
-// 							value={cardName}
-// 							onChange={(e) => setCardName(e.target.value)}
-// 							required
-// 						/>
-// 					</div>
-// 					<div>
-// 						<label className="cardnumber">Email</label>
-// 						<input
-// 							className="input1"
-// 							type="text"
-// 							value={email}
-// 							onChange={(e) => setEmail(e.target.value)}
-// 						/>
-// 					</div>
-
-// 					<div>
-// 						<label className="cardnumber">Amount</label>
-// 						<input
-// 							className="input1"
-// 							type="text"
-// 							value={amount}
-// 							onChange={(e) => setAmount(e.target.value)}
-// 							required
-// 						/>
-// 					</div>
-
-// 					<div className="expire-div">
-// 						<div className="expiry-div">
-// 							<label className="expire-date">Expiry Date</label>
-// 							<input
-// 								className="input2"
-// 								type="text"
-// 								value={expiryDate}
-// 								onChange={(e) => setExpiryDate(e.target.value)}
-// 							/>
-// 						</div>
-// 						<div className="cvv-div">
-// 							<label className="card-cvv">CVV</label>
-// 							<input
-// 								className="input3"
-// 								type="text"
-// 								value={cvv}
-// 								onChange={(e) => setCvv(e.target.value)}
-// 							/>
-// 						</div>
-// 					</div>
-
-// 					<div>
-// 						<button className="pay" type="submit" onClick={payWithPaystack}>
-// 							{" "}
-// 							Pay{" "}
-// 						</button>
-// 					</div>
-// 				</form>
-// 				<script src="https://js.paystack.co/v1/inline.js"></script>
-// 			</div>
-// 		</>
-// 	);
-// };
-
-// export default CardDetails;
-
 const CardDetails = () => {
 	const [cardName, setCardName] = useState("");
 	const [email, setEmail] = useState("");
@@ -238,7 +116,7 @@ const CardDetails = () => {
 									<label htmlFor="Expiry Date">Expiry Date</label>
 									<input
 										placeholder="MM/YY"
-										type="text"
+										type="month"
 										className="card_details_field"
 										value={expiryDate}
 										onChange={(e) => setExpiryDate(e.target.value)}

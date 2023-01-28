@@ -224,8 +224,9 @@
 .card_details_field {
     display: flex;
     flex-direction: row;
+    gap: 10px;
     align-items: center;
-    padding: 0.16rem;
+    padding-left: 0.9rem;
     height: 2.75em;
     background: #FFFFFF;
     opacity: 0.8;
@@ -254,6 +255,7 @@
     font-weight: 400;
     font-size: 0.8rem;
     line-height: 1.12rem;
+    padding: 0;
     color: #C4C4C4;
 }
 @media only screen and (max-width: 600px) {
