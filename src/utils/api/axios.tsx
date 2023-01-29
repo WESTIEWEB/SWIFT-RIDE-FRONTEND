@@ -77,3 +77,7 @@ export const apiDelete = async (path: string) => {
 
 	return await axios.delete(`${baseURL}${path}`, config);
 };
+
+export const apiPatchAuth = async (path: string, data: any, config: any) => {
+	return await axios.patch(`${baseURI}${path}`, data, config);
+};

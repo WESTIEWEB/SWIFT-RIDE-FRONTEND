@@ -55,6 +55,7 @@ const UserDashboard = () => {
 					if (responses) {
 						setLoading(false);
 						await setOrder(responses.data.Order);
+						console.log("The orders are ", order);
 						//  setTimeout (() => {
 						const ride = order.riderId;
 						getRiderProfile(ride);
@@ -110,9 +111,8 @@ const UserDashboard = () => {
 			});
 			// console.log("myData: ", response?.data);
 			setBiddings(response?.data?.rows);
-			console.log("myData: ", response?.data);
 		} catch (err) {
-			console.error("get_all_order", err);
+			console.error(err);
 		}
 	};
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -126,6 +126,7 @@ const UserDashboard = () => {
 				},
 			});
 			setCompletedOrders(res?.data?.count);
+			console.log("completed", completedOrders);
 		} catch (error) {
 			// console.error("get_completed_order", error);
 		}
@@ -146,10 +147,8 @@ const UserDashboard = () => {
 	};
 
 	React.useEffect(() => {
-		// eslint-disable-next-line @typescript-eslint/no-floating-promises
-		getBiddings();
-		// eslint-disable-next-line @typescript-eslint/no-floating-promises
-		getCompletedOrders();
+		void getBiddings();
+		void getCompletedOrders();
 	}, [order]);
 	return (
 		<>

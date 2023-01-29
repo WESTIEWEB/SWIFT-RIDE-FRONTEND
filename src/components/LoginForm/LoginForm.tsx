@@ -15,7 +15,6 @@ const LoginForm = () => {
 		console.log("changing data");
 		const { name, value } = e.target;
 		setFormData({ ...formData, [name]: value });
-		console.log(formData);
 	};
 	const handleSubmit = async (e: any) => {
 		e.preventDefault();

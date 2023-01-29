@@ -1,6 +1,6 @@
 body {
   background-color: #E5E5E5;
-  width: 100vw !important;
+  height: auto;
   padding: 0;
   margin: 0;
 }
@@ -266,9 +266,17 @@ body {
     justify-content: space-between;
     /* gap: 300px; */
   }
+  .order_details_fxd {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    position: fixed;
+  }
   .order_stats {
     margin-top: 30px;
-    margin-left: 20px;
+    margin-left: 1.25rem;
+    margin-bottom: 0.9rem;
+
   }
   .order_status_title{
     display: flex;
@@ -505,9 +513,13 @@ color: #21334F;
       margin-left:50px;
   } */
 
-  @media only screen and (max-width:468px){
+  @media only screen and (max-width:600px){
     .userD_main_container{
       grid-template-columns: auto;
+    }
+    .order_stats{
+      margin-left: 0.5rem;
+      margin-bottom: 0.8rem;
     }
     .middle_container{
       width: 10%;
@@ -525,12 +537,12 @@ color: #21334F;
     .userD_main_container{
       display: flex;
       flex-direction: column;
-      width: 80%;
+      width: 100%;
       margin: auto;
     }
     .middle_container{
       width: 100%;
-      margin: 15% auto auto auto;
+      margin: 20% auto auto auto;
     }
     .viewoverH1 {
       width: 80%;

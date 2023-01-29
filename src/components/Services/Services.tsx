@@ -86,7 +86,9 @@ const Services = () => {
 				</div>
 
 				<div className="riderText">
-					<h1 className="services_h1">Quality Riders & Partners Ready To Deliver</h1>
+					<h1 className="services_h1">
+						Quality Riders & Partners Ready To Deliver
+					</h1>
 					<p className="servicer_p">
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Convallis
 						volutpat tortor ultricies tincidunt magna. Faucibus tempus pretium

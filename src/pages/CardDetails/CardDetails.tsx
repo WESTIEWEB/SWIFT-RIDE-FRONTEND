@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import PaystackPop from "@paystack/inline-js";
 import DemoNav from "../../components/Navbar/DemoNavbar";
 import { AiOutlineArrowLeft } from "react-icons/ai";
@@ -117,10 +117,11 @@ const CardDetails = () => {
 									<input
 										placeholder="MM/YY"
 										type="month"
+										pattern="(0[1-9]|1[0-2])\/(2[0-9]|[3-9][0-9])"
+										required={true}
 										className="card_details_field"
 										value={expiryDate}
 										onChange={(e) => setExpiryDate(e.target.value)}
-										required={true}
 									/>
 								</div>
 								<div className="card_form_input_s2">

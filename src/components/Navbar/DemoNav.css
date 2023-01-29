@@ -1,11 +1,11 @@
 .demo_navbar  {
   height: 80px;
   background: #FFFFFF;
-  /* margin-bottom: 120px; */
   z-index: 5;
   top: 0;
   position: fixed!important;
   width: 100vw;
+  border-bottom: #ef971b 1px solid;
 }
 
 .demo_container {
@@ -13,8 +13,6 @@
   margin: 0 50px;
   padding: 0 15px;
   display: flex;
-  /* margin-bottom: 450px; */
-  /* justify-content: space-between; */
   align-items: center;
   height: 100%;
 }
@@ -65,8 +63,8 @@
 .demo_menu-icon {
   display: none;
 }
-.nav-elements {
-}
+/* .nav-elements {
+} */
 
 .nav-elements ul {
   display: flex;
