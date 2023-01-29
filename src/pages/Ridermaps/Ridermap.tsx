@@ -154,7 +154,7 @@ const Ridermap = () => {
 				<DemoNav />
 				<div className={mapview.MPCTN}>
 					<div className={mapview.mapContainer}>
-						<div className={mapview.details} /*style={myStyle}*/>
+						<div className={mapview.details} >
 							<h3>Request details</h3>
 							<form key="" action="" className={mapview.formCtn}>
 								<div className={mapview.divInputCtn}>

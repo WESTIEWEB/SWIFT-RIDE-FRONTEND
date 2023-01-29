@@ -289,7 +289,10 @@ const UserDashboard = () => {
 									window.location.href = "mailto:hello@swiftrider.com";
 								}}
 							>
-								<p id={dashboard_style.contact_details1} className={dashboard_style.contact_details_link} >
+								<p
+									id={dashboard_style.contact_details1}
+									className={dashboard_style.contact_details_link}
+								>
 									<a href="#">hello@swiftrider.com</a>
 								</p>
 							</div>
@@ -300,7 +303,10 @@ const UserDashboard = () => {
 								/>
 							</div>
 							<div>
-								<p id={dashboard_style.contact_details2} className={dashboard_style.contact_details_link} >
+								<p
+									id={dashboard_style.contact_details2}
+									className={dashboard_style.contact_details_link}
+								>
 									<a href="tel:+2348062898015">08062898015,</a>{" "}
 									<a href="tel:+2347015950245">07015950245</a>
 								</p>
