@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-// import NavbarProfile from "../../components/Navbar/NavbarBiddingOrder";
 import rDashboard from "./RidersDashboard.module.css";
 import overviewRider from "../../assets/overviewRider.svg";
 import shoppingBag from "../../assets/shoppingBag.svg";
