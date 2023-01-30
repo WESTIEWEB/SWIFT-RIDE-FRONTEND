@@ -288,10 +288,10 @@
     display: flex;
     align-items: center;
     /* text-align: left; */
-    margin: 10px 0px;
+    margin: 11px 0px;
 }
 .contactDetails p a{
-    margin-left: 5px;
+    margin-left: 6px;
     font-size: 14px;
 }
 
