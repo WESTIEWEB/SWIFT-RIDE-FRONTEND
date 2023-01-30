@@ -277,59 +277,69 @@
     color: #c4c4c4;
 }
 .contactDetails{
-    /* margin-top: 5px;
-    margin-right: 90px;
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 29px; */
+   
     display: flex;
     flex-direction: column;
     padding: 0px 10px;
-    /* justify-content: left; */
+    
 }
 
 .contactDetails p{
     display: flex;
     align-items: center;
     /* text-align: left; */
-    margin: 10px 0px;
+    margin: 11px 0px;
 }
 .contactDetails p a{
-    margin-left: 5px;
+    margin-left: 6px;
     font-size: 14px;
 }
-/* .emailAddress{
-    margin-top: 5px;
-    margin-left:100px; 
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 29px;
-}
-.phoneNum{
-    margin-top: 5px;
-    margin-left: 100px;
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 29px;
-} */
+
 
 .contact_details_link {
     text-decoration:    none;
     color:   rgb(35, 35, 101);
 }
-/* .homeAddress{
-    margin-top: 5px;
-    margin-right: 10px;
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 29px;
-    font-size: 14px;
+
+
+@media only screen and (max-width: 767px) {
+    .overviewHeader {
+    margin-left: 10px;
+    text-align: center;
+    }
+    .gridArea {
+    grid-template-areas:
+    "totalOrders"
+    "myOrders"
+    "messages"
+    "Contact";
+    gap: 0;
+    padding: 0;
+    }
+    .totalOrders,
+    .myOrders,
+    .messages,
+    .Contact {
+    height: auto;
+    width: 100%;
+    }
+    .makeRequest {
+    width: 100%;
+    margin-right: 0;
     margin-bottom: 10px;
-} */
+    }
+    .ordersCompleted {
+    height: auto;
+    }
+    .ordersH2 {
+    top: auto;
+    left: 0;
+    margin-right: 0;
+    margin-bottom: 10px;
+    text-align: center;
+    }
+    }
+    
+    
+    
+    

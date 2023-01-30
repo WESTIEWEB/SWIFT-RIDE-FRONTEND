@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-// import NavbarProfile from "../../components/Navbar/NavbarBiddingOrder";
 import rDashboard from "./RidersDashboard.module.css";
 import overviewRider from "../../assets/overviewRider.svg";
 import shoppingBag from "../../assets/shoppingBag.svg";
@@ -118,7 +117,7 @@ const RidersDashboard = () => {
 								</div>
 							))
 						) : (
-							<p>No data available</p>
+							<p style={{paddingTop:30}}>No data available</p>
 						)}
 					</div>
 					<div className={rDashboard.messages}>
