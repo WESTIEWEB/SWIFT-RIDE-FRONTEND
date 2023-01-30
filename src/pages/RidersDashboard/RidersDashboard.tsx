@@ -122,7 +122,7 @@ const RidersDashboard = () => {
 								</div>
 							))
 						) : (
-							<p>No data available</p>
+							<p style={{paddingTop:30}}>No data available</p>
 						)}
 					</div>
 					<div className={rDashboard.messages}>
