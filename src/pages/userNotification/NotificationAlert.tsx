@@ -3,33 +3,29 @@ import { apiGetAndAuth, apiPatch } from "../../utils/api/axios";
 import bell from "../../assets/bell.svg";
 import modalStyle from "./Modal2.module.css";
 import { AiOutlineClose } from "react-icons/ai";
-import { useParams } from "react-router-dom";
 
 interface itemType {
-	id: string;
-	notificationType: string;
-	riderId: string;
-	orderId: string;
-	userId: string;
-	description: string;
-	read: boolean;
+  id: string;
+  notificationType: string;
+  riderId: string;
+  orderId: string;
+  userId: string;
+  description: string;
+  read: boolean;
 }
 
 export const NotificationAlert = () => {
-	  // hooks
-	const params = useParams();
-	console.log("params: ", params);
   // state
   const [notify, setNotify] = useState<itemType[]>([]);
-	const [modal2, setModal2] = useState(false);
-	//
-	const [read, setRead] = useState([]);
-	const [notificationCount, setNotificationCount] = useState(0);
+  const [modal2, setModal2] = useState(false);
+  //
+  const [read, setRead] = useState([]);
+  const [notificationCount, setNotificationCount] = useState(0);
 
   // Get user signature
   const accessToken = localStorage.getItem("signature");
 
-	const handleClick = async () => {
+  const handleClick = async () => {
     try {
       const { data } = await apiGetAndAuth("/users/my-notification", {
         headers: {
@@ -38,29 +34,29 @@ export const NotificationAlert = () => {
       });
       console.log("data for notification==>", data.notify);
       setNotify(data?.notify);
-      setNotificationCount(data?.notify.filter((item: any)=> item.read === "false").length)
+      setNotificationCount(
+        data?.notify.filter((item: any) => item.read === "false").length
+      );
       setModal2((prev) => !prev);
     } catch (error) {
       console.log(error);
     }
   };
-console.log("notificationCount==>", notificationCount);
+  // console.log("notificationCount==>", notificationCount);
 
-	const itemClick = async(id: string) => {
-		try {
+  const itemClick = async (id: string) => {
+    try {
       const data = await apiPatch(`/users/update-notification/${id}`, {
-        read: true
-      }
-			)
-			// console.log("My Arinze=>",data);
-		} catch (err:any) {
-			console.log(err);
-		}
-		
-	 };
+        read: true,
+      });
+      // console.log("My Arinze=>",data);
+    } catch (err: any) {
+      console.log(err);
+    }
+  };
 
   useEffect(() => {
-   handleClick();
+    handleClick();
   }, [setNotify]);
 
   return (
@@ -78,11 +74,15 @@ console.log("notificationCount==>", notificationCount);
         <div className={modalStyle.modal1}>
           {/* <div className={modalStyle.overlay}> </div> */}
           <div className={modalStyle.modal_content}>
-					  {notify.map((item: itemType) => (
+            {notify.map((item: itemType) => (
               <div key={item.id}>
-							  <div className={modalStyle.orderText}>
-								  <button className={modalStyle.item_btn} onClick={()=>itemClick(item.id)}>Your {item.description} has been {item.notificationType}</button>
-						
+                <div className={modalStyle.orderText}>
+                  <button
+                    className={modalStyle.item_btn}
+                    onClick={() => itemClick(item.id)}
+                  >
+                    Your {item.description} has been {item.notificationType}
+                  </button>
                 </div>
               </div>
             ))}
@@ -104,7 +104,3 @@ console.log("notificationCount==>", notificationCount);
     </div>
   );
 };
-function async(arg0: (id: itemType) => any) {
-	throw new Error("Function not implemented.");
-}
-
