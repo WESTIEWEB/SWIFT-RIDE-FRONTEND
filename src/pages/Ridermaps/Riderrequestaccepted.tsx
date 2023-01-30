@@ -37,7 +37,7 @@ const Riderrequestaccepted = () => {
 }
 
 function redret(){
-	navigate("/riders/dashboard")
+	navigate("/tracker")
 }
 
  

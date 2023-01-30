@@ -13,8 +13,8 @@ const MailSent = () => {
 					<img src={Email} alt=""></img>
 				</div>
 				<div className="text">
-					<h3>Check your mail</h3>
-					<p>
+					<h3 className="mailsent_h3">Check your mail</h3>
+					<p className="mailsent_ptag">
 						We have sent a password recover <br /> instruction to your account.
 					</p>
 					<h6>Don’t receive the email? Click to Resend link</h6>

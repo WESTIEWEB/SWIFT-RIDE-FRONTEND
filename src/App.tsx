@@ -26,6 +26,7 @@ import RiderProfileSetting from "./pages/RiderProfileSettingPage/RiderProfile";
 import PickUpUserHistory from "./pages/UserHistory/PickUpUserHistory";
 import Ridermap from "./pages/Ridermaps/Ridermap";
 import Riderrequestaccepted from "./pages/Ridermaps/Riderrequestaccepted";
+import MapTracking from "./pages/map/Map"
 
 // setup  for fontend
 
@@ -35,13 +36,13 @@ const App = () => {
 			<ToastContainer />
 			<Router>
 				<Routes>
+					<Route path="/tracker" element={<MapTracking/>}/>
 					<Route path="/" element={<Home />} />
 					<Route path="/login" element={<Login />} />
 					<Route path="/user-signup" element={<Register />} />
 					<Route path="/riders-signup" element={<RidersSignup />} />
 					<Route path="/sentmail" element={<MailSent />} />
 					<Route path="/forgotpasswordd" element={<ForgetPasswordCard />} />
-
 					<Route
 						path="/request-rider"
 						element={
@@ -106,6 +107,9 @@ const App = () => {
 							</ProtectRiderRoute>
 						}
 					/>
+						{/* <ProtectRiderRoute>
+						</ProtectRiderRoute> */}
+
 					<Route
 						path="/accept-request/:ID"
 						element={

@@ -69,6 +69,9 @@ const Ridermap = () => {
 				toast.error(err.response.data.Error);
 			}
 		}
+
+		localStorage.setItem("orderID", requestId2);
+
 		void go();
 	}
 	async function calculatorRoute() {
