@@ -43,8 +43,6 @@ const MapTracking: React.FC = () => {
   
   const restructure = order.dropOffLocation?.split(' ').join("+");
 
-  console.log(restructure)
-
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.watchPosition(
@@ -66,7 +64,6 @@ const MapTracking: React.FC = () => {
       );
       const data = await response.json();
 
-      console.log(data)
       if (data.status === "OK") {
         setCoordinates({
           lat: data.results[0].geometry.location.lat,
@@ -132,14 +129,16 @@ const MapTracking: React.FC = () => {
 		getOrder();
   }, [])
 
-  // console.log(order.dropOffLocation)
-  // console.log(currentPosition)
+  console.log(coordinates)
+  // console.log(currentPosition?.coords.latitude)
+  // console.log(currentPosition?.coords.longitude)
 
   if (loadError) return <div>Error loading maps</div>;
   if (!isLoaded) return <div>Loading maps...</div>;
 
   return (
     <div className={mapview.mapContainer}>
+      <div></div>
      {/* <div className={mapview.details}>
       <h3>Request details</h3>
       <form key="" action="" className={mapview.formCtn}>
@@ -180,14 +179,19 @@ const MapTracking: React.FC = () => {
           zoom={15}
           center={currentPosition ? { lat: currentPosition.coords.latitude, lng: currentPosition.coords.longitude } : undefined}
         >
-          {currentPosition && (
+          {currentPosition && coordinates && (
             <>
-              <Marker position={{ 
+               <Marker position={{ 
                 lat: currentPosition.coords.latitude, 
                 lng: currentPosition.coords.longitude 
+                }}
+              /> 
+              <Marker position={{ 
+                lat: coordinates.lat, 
+                lng: coordinates.lng 
                 }} 
               />
-              <Marker position={coordinates}/>
+              {/* <Marker position={coordinates}/> */}
             </>
           )}
         </GoogleMap>
