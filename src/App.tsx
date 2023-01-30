@@ -26,6 +26,7 @@ import RiderProfileSetting from "./pages/RiderProfileSettingPage/RiderProfile";
 import PickUpUserHistory from "./pages/UserHistory/PickUpUserHistory";
 import Ridermap from "./pages/Ridermaps/Ridermap";
 import Riderrequestaccepted from "./pages/Ridermaps/Riderrequestaccepted";
+import OTPrider from "./pages/OTP-Rider/OTPrider";
 
 // setup  for fontend
 
@@ -85,11 +86,46 @@ const App = () => {
 						path="/users/resetpasswordd/:token"
 						element={<ResetPasswordd />}
 					/>
-					<Route path="/profilesetting" element={<ProfileSetting />} />
-					<Route path="/users/dashboard" element={<UserDashboard />} />
-					<Route path="/riders/dashboard" element={<RidersDashboard />} />
-					<Route path="/riderhistory" element={<RiderHistory />} />
-					<Route path="/riders/all-biddings" element={<RidersDashboard />} />
+					<Route
+						path="/profilesetting"
+						element={
+							<ProtectRiderRoute>
+								<ProfileSetting />
+							</ProtectRiderRoute>
+						}
+					/>
+					<Route
+						path="/users/dashboard"
+						element={
+							<ProtectRiderRoute>
+								<UserDashboard />
+							</ProtectRiderRoute>
+						}
+					/>
+					<Route
+						path="/riders/dashboard"
+						element={
+							<ProtectRiderRoute>
+								<RidersDashboard />
+							</ProtectRiderRoute>
+						}
+					/>
+					<Route
+						path="/riderhistory"
+						element={
+							<ProtectRiderRoute>
+								<RiderHistory />
+							</ProtectRiderRoute>
+						}
+					/>
+					<Route
+						path="/riders/all-biddings"
+						element={
+							<ProtectRiderRoute>
+								<RidersDashboard />
+							</ProtectRiderRoute>
+						}
+					/>
 					<Route
 						path="/user-profilesetting"
 						element={
@@ -122,7 +158,23 @@ const App = () => {
 							</ProtectRiderRoute>
 						}
 					/>
-					<Route path="/order-history" element={<PickUpUserHistory />} />
+					<Route
+						path="/order-history"
+						element={
+							<ProtectRiderRoute>
+								<PickUpUserHistory />
+							</ProtectRiderRoute>
+						}
+					/>
+
+					<Route
+						path="/riders-otp-verify"
+						element={
+							<ProtectRiderRoute>
+								<OTPrider />
+							</ProtectRiderRoute>
+						}
+					/>
 				</Routes>
 			</Router>
 		</React.Fragment>
