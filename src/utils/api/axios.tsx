@@ -75,5 +75,5 @@ export const apiDelete = async (path: string) => {
 		},
 	};
 
-	return await axios.delete(`${baseURL}${path}`, config);
+	return await axios.delete(`${baseURI}${path}`, config);
 };

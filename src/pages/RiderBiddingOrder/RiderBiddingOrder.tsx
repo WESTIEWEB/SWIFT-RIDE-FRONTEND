@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 import React from "react";
 import riderOrderStyle from "./RiderBiddingOrder.module.css";
-import { apiGet } from "../../utils/api/axios";
+import { apiGetAndAuth } from "../../utils/api/axios";
 import { Link } from "react-router-dom";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import DemoNav from "../../components/Navbar/DemoNavbar";
@@ -12,7 +13,11 @@ const BidingOrder = () => {
 	// const [ordersPage, setOrdersPage] = React.useState();
 	const getOrders = async () => {
 		setLoading(true);
-		const response = await apiGet("/riders/all-biddings");
+		const response = await apiGetAndAuth("/riders/all-biddings", {
+			headers: {
+				Authorization: `Bearer ${localStorage.getItem("signature")}`,
+			},
+		});
 		setOrders(response.data.rows);
 		setLoading(false);
 	};
