@@ -1,21 +1,22 @@
-.sentMail-Container{
+.sentMail-Container {
     background: #E5E5E5;
     height: 100vh;
-    margin:auto;
+    margin: auto;
     display: flex
 }
+
 h3 {
-    color:black;
-    font-size:xx-large;
+    color: black;
+    font-size: xx-large;
     padding-bottom: 1px;
     margin-bottom: 10px
 }
 
-p{
+p {
     text-align: center;
 }
 
-.sentBtn{
+.sentBtn {
     /* background-color: #E02B45; */
     padding: 16px, 24px, 16px, 24px;
     width: 204px;
@@ -31,14 +32,15 @@ p{
     flex-direction: column;
     padding: 15px
 }
+
 .Cover {
-    margin:auto;
+    margin: auto;
     align-items: center;
     justify-content: center;
     background-color: #ffff;
     display: flex;
     flex-direction: column;
-    height: 50vh;
-    width: 50vh;
+    height: 525px;
+    width: 712px;
     padding: 30px
 }
