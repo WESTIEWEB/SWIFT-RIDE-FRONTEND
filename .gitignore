@@ -1,3 +1,7 @@
 node_modules
 dist
+<<<<<<< HEAD
 .DS_Store
+=======
+.DS_Store
+>>>>>>> 43b93e6cb227533b6013799c639b4d912e37a263
