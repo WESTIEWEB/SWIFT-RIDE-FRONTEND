@@ -163,6 +163,9 @@ const UserDashboard = () => {
 		getCompletedOrders();
 	}, []);
 	return (
+
+	
+
     <>
       {/* <NavbarProfile /> */}
       <DemoNav />
@@ -366,6 +369,7 @@ const UserDashboard = () => {
                   </button>
 
                   {/* <button
+
 										className={modalStyle.modalBtn1}
 										onClick={() => {
 											handleDelete();
