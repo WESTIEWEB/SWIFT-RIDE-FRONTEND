@@ -35,8 +35,8 @@ const MapTracking: React.FC = () => {
   const deliveryLocationRef = useRef<any | null>();
   const pickupLocationRef = useRef<any | null>();
   const [tripCompleted, setTripCompleted] = useState(false);
-  const [lat, setLat] = useState('')
-  const [lng, setLng] = useState('')
+  const [lat, setLat] = useState(0)
+  const [lng, setLng] = useState(0)
   // if (navigator.geolocation) {
   //   navigator.geolocation.getCurrentPosition(
   //     (position) => {
