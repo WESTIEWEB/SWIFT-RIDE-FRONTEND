@@ -333,3 +333,42 @@
     font-size: 14px;
     margin-bottom: 10px;
 } */
+.rchat_container_pa{
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    top: 90px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    background-color: rgba(133, 124, 124, 0.44);
+    margin: auto;
+  }
+
+  /* #you {
+    justify-content: flex-start;
+  }
+  
+  #you .message-content {
+    justify-content: flex-start;
+  }
+  
+  #you .message-meta {
+    justify-content: flex-start;
+    margin-left: 5px;
+  }
+  
+  #other {
+    justify-content: flex-end;
+  }
+  
+  #other .message-content {
+    justify-content: flex-end;
+    background-color: cornflowerblue;
+  }
+  
+  #other .message-meta {
+    justify-content: flex-end;
+    margin-right: 5px;
+  } */
