@@ -5,7 +5,13 @@ height: 100vh;
 display: flex;
 
 }
-
+.navigator_link{
+   width: 100%;
+   display: flex;
+   /* padding: 2em !important; */
+   /* justify-content: center; */
+   /* align-items: center; */
+}
 .LTmapContainer{
 display:flex;
 width:100%;
@@ -214,6 +220,7 @@ font-size: 14px;
    color: white;
    padding: 10px 0px;
    cursor: pointer;
+   width: 100%;
 }
 
 .LTdivInputCtnHolder{
