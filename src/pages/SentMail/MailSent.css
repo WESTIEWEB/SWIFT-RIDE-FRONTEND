@@ -4,15 +4,14 @@
     margin: auto;
     display: flex
 }
-
-h3 {
-    color: black;
-    font-size: xx-large;
+.mailsent_h3{
+    color:black;
+    font-size:xx-large;
     padding-bottom: 1px;
     margin-bottom: 10px
 }
 
-p {
+.mailsent_ptag{
     text-align: center;
 }
 

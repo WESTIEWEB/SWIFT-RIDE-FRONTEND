@@ -76,7 +76,7 @@
   font-size: 16px;
     font-weight: 600;
     color: #21334F;
-    margin-top: 20px;
+    /* margin-top: 20px; */
     margin-left: 5px;
 }
 .makeRequest{
@@ -94,6 +94,16 @@
     border: none;
     border-radius: 5px;
 }
+
+.orderRequest a button{
+    padding: 10px 5px;
+    color: white;
+    background-color: #e02b46e7;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 .ordersCompleted{
     display: flex;
     flex-direction: column;

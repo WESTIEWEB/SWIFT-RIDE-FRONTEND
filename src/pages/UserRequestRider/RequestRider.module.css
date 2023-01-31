@@ -86,6 +86,19 @@
     display: block;
     height: 47px;
 }
+.requestInputAutoCplt{
+    width: 435px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 2px solid #F8F8F8;
+    display: block;
+    height: 47px;
+}
+
+.requestInputAutoCplt::placeholder{
+    color: #C4C4C4;
+}
+
 .requestOutput{
    width: 50%;
     height: 80%;
@@ -126,6 +139,10 @@
     align-items: center;
 }
 
+.pac-container{
+    background-color: red;
+}
+
 @media only screen and (max-width:768px){
     .requestFirstLeft{
         width: 100%;
@@ -146,5 +163,13 @@
     .requestContainer{
         margin-top: 40%;
         height: 95vh;
+    }
+    .requestInputAutoCplt{
+        width: 243px;
+        margin-bottom: 10px;
+        padding: 10px;
+        border: 2px solid #F8F8F8;
+        display: block;
+        height: 47px;
     }
 }

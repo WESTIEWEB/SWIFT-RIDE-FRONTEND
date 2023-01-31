@@ -8,7 +8,6 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import React, { useEffect, useRef, useState } from "react";
 import Mastercard from "../../assets/Mastercard.svg";
-// import Done from "../../assets/Done.svg"; // image for order completed
 import {
   DirectionsRenderer,
   GoogleMap,
@@ -18,7 +17,6 @@ import {
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Loading from "./Loading";
 import mapview from "./Ridermap.module.css";
-// import NavbarProfile from "../../components/Navbar/NavbarProfile";
 import DemoNav from "../../components/Navbar/DemoNavbar";
 import { apiGetAndAuth, apiPatch } from "../../utils/api/axios";
 import { toast } from "react-toastify";
@@ -57,32 +55,34 @@ const Ridermap = () => {
     libraries: ["places"],
   });
 
-  const handleClick = (e: any) => {
-    e.preventDefault();
-    const go = async () => {
-      try {
-        await apiPatch(`/riders/accept-bid/${requestId2}`, "")
-          .then((res: any) => toast.success(res.data.message))
-          .then(() =>
-            setTimeout(() => {
-              navigate(`/accept-request/${splitRequestId.join("~")}`);
-            }, 3000)
-          );
-      } catch (err: any) {
-        console.log(err);
-        toast.error(err.response.data.Error);
-      }
-    };
-    void go();
-  };
-  async function calculatorRoute() {
-    // event.preventDefault();
-    if (
-      pickupLocationRef.current.value === "" ||
-      deliveryLocationRef.current.value === ""
-    ) {
-      return;
-    }
+	const handleClick = (e:any) => {
+		e.preventDefault();
+		const go = async () => {
+			try {
+				await apiPatch(`/riders/accept-bid/${requestId2}`, "")
+					.then((res: any) => toast.success(res.data.message))
+					.then(() => setTimeout(() => {
+						navigate(`/accept-request/${splitRequestId.join("~")}`)
+						}, 3000))
+					
+			} catch (err: any) {
+				console.log(err);
+				toast.error(err.response.data.Error);
+			}
+		}
+
+		localStorage.setItem("orderID", requestId2);
+
+		void go();
+	}
+	async function calculatorRoute() {
+
+		if (
+			pickupLocationRef.current.value === "" ||
+			deliveryLocationRef.current.value === ""
+		) {
+			return;
+		}
 
     const directionsService = new google.maps.DirectionsService();
     const result = await directionsService.route({

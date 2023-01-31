@@ -59,10 +59,10 @@ input.userProfile{
     height:48px;
     background: rgba(0, 0, 0, 0.03);
     border: none;
-    margin: 10px 0
+    margin: 10px 0;
+    padding: 14px;
 }
 input::placeholder{
-    padding: 14px;
     color: #21334F;
     font-family: Inter;
     font-weight: 400;

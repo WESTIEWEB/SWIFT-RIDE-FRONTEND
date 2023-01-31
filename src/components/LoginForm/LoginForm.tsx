@@ -4,6 +4,7 @@ import { useState } from "react";
 import image from "../../assets/Users_dashboard/image.png";
 import logodesign from "../../assets/logodesign.svg";
 import loginFormStyle from "./LoginForm.module.css";
+import "./LoginForm.module.css";
 import { apiPost } from "../../utils/api/axios";
 import { toast } from "react-toastify";
 
@@ -62,9 +63,12 @@ const LoginForm = () => {
 						Delivery service just got easier, elegant & superb with Dispatch
 						Buddy
 					</h1>
-					<img src={image} />
+					{/* <img src={image} /> */}
 				</div>
-				<form className={loginFormStyle.login_form} onSubmit={handleSubmit}>
+			</div>
+
+			<div className={loginFormStyle.login_form_ctainer}>
+				<div className={loginFormStyle.login_form_ctainer_innerDiv}>
 					<div className={loginFormStyle.login_logo_div}>
 						<Link to="/" style={{ textDecoration: "none" }}>
 							<div className={loginFormStyle.login_form_logo}>
@@ -77,52 +81,60 @@ const LoginForm = () => {
 							</div>
 						</Link>
 					</div>
-					<div className={loginFormStyle.login_form_data_content}>
-						<h1 className={loginFormStyle.login_form_title}>Login</h1>
-						<label className={loginFormStyle.login_form_label}>Username:</label>
-						<input
-							placeholder="✉️  Enter your email"
-							className={loginFormStyle.login_form_input}
-							type="email"
-							id="email"
-							name="email"
-							onChange={handleChange}
-						/>
-						<br />
-						<label className={loginFormStyle.login_form_label}>Password:</label>
-						{/* <img src={Vector} alt="password_icon" className={loginFormStyle.login_password_icon}></img> */}
-						<input
-							placeholder="🔒  Enter your password"
-							className={loginFormStyle.login_form_input}
-							type="password"
-							id="password"
-							name="password"
-							onChange={handleChange}
-						/>
-						<br />
-						<p className={loginFormStyle.login_form_a}>
-							<Link
-								to="/forgotpasswordd"
-								className={loginFormStyle.login_form_a}
-							>
-								Forgot Password?
-							</Link>
-						</p>
-						<input
-							className={loginFormStyle.login_form_s_input}
-							type="submit"
-							value="Login"
-						/>
-						<div>
-							<p className={loginFormStyle.login_form_p}>
-								Don't have an account?{" "}
-								<Link style={{ textDecoration: "none" }} to="/user-signup">
-									Create account
-								</Link>
-							</p>
+					<form className={loginFormStyle.login_form} onSubmit={handleSubmit}>
+						<div className={loginFormStyle.login_form_data_content}>
+							<h1 className={loginFormStyle.login_form_title}>Login</h1>
+
+							<div className={loginFormStyle.login_form_label_ctn}>
+								<div className={loginFormStyle.login_form_fieldctn}>
+									<label className={loginFormStyle.login_form_label}>Email</label>
+									<b className={`fa fa-envelope login_form_s_input`}><input
+										placeholder="Enter your email"
+										className={loginFormStyle.login_form_input}
+										type="email"
+										id="email"
+										name="email"
+										onChange={handleChange}
+									/></b>
+									<br />
+									<label className={loginFormStyle.login_form_label}>Password</label>
+
+									<b className="fa fa-lock" ><input
+										placeholder="Enter your password"
+										className={loginFormStyle.login_form_input}
+										type="password"
+										id="password"
+										name="password"
+										onChange={handleChange}
+									/></b>
+									<br />
+									<p className={loginFormStyle.login_form_a}>
+										<Link
+											to="/forgotpasswordd"
+											className={loginFormStyle.login_form_a}
+										>
+											Forgot Password?
+										</Link>
+									</p>
+									<input
+										className={`${loginFormStyle.login_form_input} ${loginFormStyle.login_form_s_input}`}
+										type="submit"
+										value="Login"
+									/>
+									<div>
+										<p className={loginFormStyle.login_form_p}>
+											Don't have an account?{" "}
+											<Link to="/user-signup">
+												Create account
+											</Link>
+										</p>
+									</div>
+								</div>
+							</div>
 						</div>
-					</div>
-				</form>
+
+					</form>
+				</div>
 			</div>
 		</div>
 	);
