@@ -97,7 +97,7 @@ export const NotificationAlert = () => {
       ) : (
         <>
           <div className={modalStyle.length}>
-            <p> {notificationCount}</p>
+            <span> {notificationCount}</span>
           </div>
         </>
       )}
