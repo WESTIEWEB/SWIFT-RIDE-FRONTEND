@@ -140,7 +140,7 @@
 .biding_order_content_faint_p {
     width: 90%;
     height: 19px;
-
+    margin-bottom: 0em !important;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
@@ -154,6 +154,7 @@
     line-height: 20px;
     font-weight: 500;
     font-size: 14px;
+    margin-bottom: 0em !important;
 }
 
 .biding_order_button_div{
@@ -293,7 +294,7 @@
 @media only screen and (max-width:768px) {
     .biding_order_content_data{
         width: 80%;
-        height: 400px;
+        height: 419px;
         padding: 20px;
         margin: 10px auto 10px auto;
     }
@@ -329,7 +330,7 @@
     }
     .biding_order_content_data{
         width: 45%;
-        height: 400px;
+        height: 420px;
         padding: 20px;
         margin: 10px auto 10px auto;
     }

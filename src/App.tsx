@@ -14,7 +14,7 @@ import ProfileSetting from "./pages/ProfileSetting/ProfileSetting";
 // import VendorDashboard from "./pages/VendorDashboard/VendorDashboard";
 import { ToastContainer } from "react-toastify";
 import ForgetPasswordCard from "./components/fPassCard/fPassCard";
-import RequestRider from "./pages/UserRequestRider/RequestRider";
+import RequestRider from "./pages/UserRequestRider/RideRequest";
 import Modal from "./pages/UserRequestRider/Modal";
 import BidingOrder from "./pages/RiderBiddingOrder/RiderBiddingOrder";
 import UserDashboard from "./pages/userDashboard/userDashboard";
@@ -23,11 +23,15 @@ import RiderHistory from "./pages/RiderHistory/RiderHistory";
 // import { ProtectAdminRoute, ProtectRiderRoute } from "./context/ProtectRoute";
 import { ProtectUserRoute, ProtectRiderRoute } from "./context/ProtectRoute";
 import RiderProfileSetting from "./pages/RiderProfileSettingPage/RiderProfile";
-import PickUpUserHistory from "./pages/UserHistory/PickUpUserHistory";
+import History from "./pages/UserHistory/History";
 import Ridermap from "./pages/Ridermaps/Ridermap";
 import Riderrequestaccepted from "./pages/Ridermaps/Riderrequestaccepted";
 import OTPrider from "./pages/OTP-Rider/OTPrider";
-import MapTracking from "./pages/map/Map"
+import MapTracking from "./pages/map/Map";
+import Earningpage from "./pages/EarningPage/Earningpage";
+import PaymentOption from "./pages/PaymentOption/PaymentOption";
+import AddCard from "./pages/AddCard/AddCard";
+import CardDetails from "./pages/CardDetails/CardDetails";
 
 // setup  for fontend
 
@@ -96,19 +100,19 @@ const App = () => {
 						}
 					/>
 					<Route
-						path="/users/dashboard"
-						element={
-							<ProtectRiderRoute>
-								<UserDashboard />
-							</ProtectRiderRoute>
-						}
-					/>
-					<Route
 						path="/riders/dashboard"
 						element={
 							<ProtectRiderRoute>
 								<RidersDashboard />
 							</ProtectRiderRoute>
+						}
+					/>
+					<Route
+						path="/order-history"
+						element={
+							<ProtectUserRoute>
+								<History />
+							</ProtectUserRoute>
 						}
 					/>
 					<Route
@@ -163,14 +167,37 @@ const App = () => {
 						}
 					/>
 					<Route
-						path="/order-history"
+						path="/rider-earnings"
 						element={
 							<ProtectRiderRoute>
-								<PickUpUserHistory />
+								<Earningpage />
 							</ProtectRiderRoute>
 						}
 					/>
-
+					<Route
+						path="/payment-option"
+						element={
+							<ProtectUserRoute>
+								<PaymentOption />
+							</ProtectUserRoute>
+						}
+					/>
+					<Route
+						path="/add-card"
+						element={
+							<ProtectUserRoute>
+								<AddCard />
+							</ProtectUserRoute>
+						}
+					/>
+					<Route
+						path="card-details"
+						element={
+							<ProtectUserRoute>
+								<CardDetails />
+							</ProtectUserRoute>
+						}
+					/>
 					<Route
 						path="/riders-otp-verify"
 						element={

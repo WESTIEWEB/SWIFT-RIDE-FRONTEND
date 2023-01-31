@@ -28,11 +28,13 @@ const LoginForm = () => {
 					const signature = res.data.signature;
 					const role = res.data.role;
 					const userName = res.data.name;
+					const photo = res.data.image;
 
 					if (signature !== null) {
 						localStorage.setItem("signature", signature);
 						localStorage.setItem("role", role);
 						localStorage.setItem("userName", userName);
+						localStorage.setItem("photo", photo);
 						toast.success(res.data.message);
 						setTimeout(() => {
 							if (res.data.role === "rider") {

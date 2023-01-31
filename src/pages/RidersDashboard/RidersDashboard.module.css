@@ -41,14 +41,12 @@
     grid-area: totalOrders;
     background-color: #fff;
     height: 20vh;
-    /* width: 60vh; */
     border-radius: 10px;
 }
 .myOrders{
     grid-area: myOrders;
     background-color: #fff;
     height: 50vh;
-    /* width: 60vh; */
     border-radius: 10px;
 }
 .messages{
@@ -76,7 +74,6 @@
   font-size: 16px;
     font-weight: 600;
     color: #21334F;
-    /* margin-top: 20px; */
     margin-left: 5px;
 }
 .makeRequest{
@@ -115,7 +112,6 @@
     margin-top: 10px;
 }
 .ordersH2{
-    /* position: absolute; */
     top: 250px;
     left: 180px;
     font-size: 15px;
@@ -297,7 +293,6 @@
 .contactDetails p{
     display: flex;
     align-items: center;
-    /* text-align: left; */
     margin: 11px 0px;
 }
 .contactDetails p a{

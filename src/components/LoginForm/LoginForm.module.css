@@ -95,8 +95,8 @@
 b .login_form_input{
   height: 2.8em;
   width: 93%;
-  border: none;
-  border-radius: 0px 5px 5px 0px;
+  border: none !important;
+  border-radius: 0px 5px 5px 0px !important;
 }
 
 b .login_form_input::placeholder{
@@ -115,7 +115,9 @@ b .login_form_input::placeholder{
 .login_form_label{
   margin-bottom: 5px;
 }
-
+input {
+  font-family: "Inter", sans-serif;
+}
 .login_form_a{
   margin-bottom: 20px;
 }

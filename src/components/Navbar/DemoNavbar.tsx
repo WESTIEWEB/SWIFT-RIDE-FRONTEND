@@ -13,6 +13,7 @@ import { NotificationAlert } from "../../pages/userNotification/NotificationAler
 const DemoNav = () => {
 	const [showNavbar, setShowNavbar] = useState(false);
 	const [checked, setChecked] = useState(true);
+	const image = localStorage.getItem("photo");
 
 	const handleShowNavbar = () => {
 		setShowNavbar(!showNavbar);
@@ -35,13 +36,13 @@ const DemoNav = () => {
 				<div className="demo_container">
 					<div className="demo_logo">
 						{/* <Brand /> */}
-						<NavLink style={{ textDecoration: "none" }} to="/users/dashboard">
+						<NavLink style={{ textDecoration: "none" }} to="/user-dashboard">
 							<img src={logo} />
 						</NavLink>
 						<span>
 							<NavLink
 								style={{ textDecoration: "none", color: "#e02b45" }}
-								to="/users/dashboard"
+								to="/user-dashboard"
 							>
 								Swift <br /> Rider
 							</NavLink>
@@ -56,7 +57,7 @@ const DemoNav = () => {
 								<NavLink to="/order-history">My Orders</NavLink>
 							</li>
 							<li>
-								<NavLink to="/payment">Payment</NavLink>
+								<NavLink to="/add-card">Payment</NavLink>
 							</li>
 							<li onClick={Logout}>
 								<NavLink to="/login">Logout</NavLink>
@@ -68,7 +69,7 @@ const DemoNav = () => {
 								{/* <img src={bell} alt="notification" /> */}
 							</li>
 							<li>
-								<img src={avatar} alt="avatar" />
+								<img className="demo_logo_last" src={`${image}`} alt="avatar" />
 								<NavLink
 									to="/user-profilesetting"
 									className="nav-elements-span_sp"
@@ -111,12 +112,9 @@ const DemoNav = () => {
 							<li>
 								<NavLink to="/rider-earnings">Earnings</NavLink>
 							</li>
-							<li>
-								Availability
-								<ReactSwitch checked={checked} onChange={handleChange} />
-							</li>
-							<li>
-								{/* <ReactSwitch checked={checked} onChange={handleChange} /> */}
+							<li className="availability_m-r">Availability</li>
+							<li className="availability_m-l">
+							<ReactSwitch checked={checked} onChange={handleChange} />
 							</li>
 							<li onClick={Logout}>
 								<NavLink to="/projects">Logout</NavLink>
@@ -126,7 +124,7 @@ const DemoNav = () => {
 								<img src={bell} alt="notification" />
 							</li>
 							<li>
-								<img src={avatar} alt="avatar" />
+								<img className="demo_logo_last" src={`${image}`}  alt="avatar" />
 								<NavLink
 									to="/rider-profilesetting"
 									className="nav-elements-span_sp"
