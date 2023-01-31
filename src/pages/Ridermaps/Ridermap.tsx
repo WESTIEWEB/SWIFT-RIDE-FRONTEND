@@ -8,14 +8,12 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import React, { useEffect, useRef, useState } from "react";
 import Mastercard from "../../assets/Mastercard.svg";
-// import Done from "../../assets/Done.svg"; // image for order completed
 import {
 	DirectionsRenderer, GoogleMap, Marker, useJsApiLoader
 } from "@react-google-maps/api";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Loading from "./Loading";
 import mapview from "./Ridermap.module.css";
-// import NavbarProfile from "../../components/Navbar/NavbarProfile";
 import DemoNav from "../../components/Navbar/DemoNavbar";
 import { apiGetAndAuth, apiPatch } from "../../utils/api/axios";
 import { toast } from "react-toastify";
@@ -75,7 +73,7 @@ const Ridermap = () => {
 		void go();
 	}
 	async function calculatorRoute() {
-		// event.preventDefault();
+
 		if (
 			pickupLocationRef.current.value === "" ||
 			deliveryLocationRef.current.value === ""
@@ -141,16 +139,11 @@ const Ridermap = () => {
 
 	}, [requestId2, ownerId])
 
-	// console.log(typeof order.pickupLocation)
 	// eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
 	if (!isLoaded) {
 		return <Loading />;
 	}
 
-	// console.log(order)
-// const myStyle = {
-// 		display: order===null ? "none" : "block",
-// }
 	return (
 		<>
 			<div>
