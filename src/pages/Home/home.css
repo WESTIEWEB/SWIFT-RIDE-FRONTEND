@@ -1,0 +1,7 @@
+body{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow:auto;
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+}

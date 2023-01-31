@@ -83,7 +83,7 @@ const Services = () => {
 			</div>
 			<div className="qualityriders">
 				<div className="riderImage">
-					<img src={quality_riders} alt="quality_riders" />
+					<img src={quality_riders} className="riderimg" alt="quality_riders" />
 				</div>
 
 				<div className="riderText">
@@ -105,7 +105,7 @@ const Services = () => {
 							<div className="imageCircle">
 								<img src={ellipse} alt="ellipse" />
 							</div>
-							<p>
+							<p className="cardText">
 								Swift Riders has made my life so much easier! I no longer have
 								to worry about making time to go to the post office. They always
 								deliver my packages on time and in perfect condition.
@@ -119,7 +119,7 @@ const Services = () => {
 							<div className="imageCircle">
 								<img src={ellipse} alt="ellipse" />
 							</div>
-							<p>
+							<p className="cardText">
 								I love using Swift Riders for all my deliveries. Their riders
 								are always professional and friendly, and I never have to worry
 								about my packages getting lost or damaged in transit.
@@ -133,7 +133,7 @@ const Services = () => {
 							<div className="imageCircle">
 								<img src={ellipse} alt="ellipse" />
 							</div>
-							<p>
+							<p className="cardText">
 								As a small business owner, I rely on Swift Riders to get my
 								products to my customers quickly and efficiently. They have
 								never let me down and I couldn't be happier with their service.
@@ -149,7 +149,7 @@ const Services = () => {
 							<div className="imageCircle">
 								<img src={ellipse} alt="ellipse" />
 							</div>
-							<p>
+							<p className="cardText">
 								I have used many delivery services in the past, but none compare
 								to the reliability and convenience of Swift Riders. They have
 								become my go-to for all my delivery needs.
@@ -163,7 +163,7 @@ const Services = () => {
 							<div className="imageCircle">
 								<img src={ellipse} alt="ellipse" />
 							</div>
-							<p>
+							<p className="cardText">
 								Swift Riders makes it so easy to send packages to my friends and
 								family. I love the real-time tracking and the peace of mind that
 								comes with knowing my items are in good hands.
@@ -177,7 +177,7 @@ const Services = () => {
 							<div className="imageCircle">
 								<img src={ellipse} alt="ellipse" />
 							</div>
-							<p>
+							<p className="cardText">
 								I have used Swift Riders for both personal and business
 								deliveries, and I am consistently impressed with their level of
 								customer service. They always go above and beyond to make sure

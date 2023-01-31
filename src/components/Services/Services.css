@@ -1,13 +1,13 @@
-.servicesContainer{
+.servicesContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; 
+    justify-content: center;
     padding: 50px 0;
-    width: 100%;
+    width: 90%;
 }
 
-.container{
+.container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -16,7 +16,7 @@
     margin: 0 auto;
 }
 
-h1{
+h1 {
     font-size: 2.5rem;
     font-weight: 700;
     color: #e02b45;
@@ -24,7 +24,7 @@ h1{
     margin-bottom: 2rem;
 }
 
-p{
+p {
     font-size: 1.125rem;
     font-weight: 400;
     color: #21334F;
@@ -34,32 +34,32 @@ p{
     line-height: 1.2;
 }
 
-.grid{
-display: flex;
-flex-direction: column;
-margin-bottom: 5rem;
-gap: 3rem;
+.grid {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5rem;
+    gap: 3rem;
+    max-width: 100%;
 }
 
-.column{
+.column {
     display: flex;
     align-items: center;
-    width: 100%;
-    max-width: 80%;
+    max-width: 90%;
     margin: 0 auto;
     text-align: center;
 }
-.column1{
+
+.column1 {
     display: flex;
     align-items: center;
     gap: 1rem;
-    width: 100%;
-    max-width: 80%;
+    max-width: 90%;
     margin: 0 auto;
     text-align: center;
 }
 
-.card{
+.card {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -69,41 +69,54 @@ gap: 3rem;
     margin: 0 auto;
     padding: 2rem;
     text-align: center;
-    border:  2px solid #D9D9D9;
+    border: 2px solid #D9D9D9;
 }
 
-.cardTitle{
+.cardTitle {
     font-size: 1.5rem;
     font-weight: 700;
     color: #21334F;
     margin-bottom: 1rem;
 }
 
-.cardText{
+.cardText {
     font-size: 1.2rem;
 }
 
-.qualityriders{
+.qualityriders {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    padding: 30px ;
-    gap: 3rem;
+    /* padding:  ; */
+    gap: 4rem;
     background-color: rgba(0, 0, 0, 0.04);
-    max-width: 100%;
+    width: 100%;
     height: 30rem;
-    margin: 0 auto;
-}
-
-.riderText{
-    display: flex;
-    flex-direction: column;
-     width: 40%;
     /* margin: 0 auto; */
 }
 
-.clientCard{
+.riderImage {
+    /* max-width: 100%; */
+    margin: 0%;
+
+}
+
+.riderimg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.riderText {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    /* margin: 0 auto; */
+}
+
+.clientCard {
+    gap: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -113,23 +126,81 @@ gap: 3rem;
     margin: 0 auto;
     padding: 2rem;
     text-align: center;
-    border:   1px solid #D9D9D9;
+    border: 1px solid #D9D9D9;
 }
 
-.imageCircle{
+.imageCircle {
     height: 40px;
     width: 40px;
     border-radius: 50%;
 
 }
 
-.clientText{
-margin: 5rem 3rem;
+.clientText {
+    margin: 5rem 3rem;
 }
 
-.textStars{
+.textStars {
     display: flex;
     flex-direction: row;
     align-items: space-between;
     gap: 1rem;
+}
+
+@media (max-width: 768px) {
+    .column {
+        display: flex;
+        flex-direction: column;
+        max-width: 100%;
+    }
+    .column1 {
+        display: flex;
+        flex-direction: column;
+        max-width: 100%;
+    }
+
+    .card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 400px;
+        height: 400px;
+        margin: 0 auto;
+        padding: 2rem;
+        text-align: center;
+        border: 2px solid #D9D9D9;
+    }
+
+    .qualityriders {
+        display: flex;
+        /* justify-content: center; */
+        /* align-items: center; */
+        flex-direction: column;
+        /* padding: 2rem ; */
+        gap: 3rem;
+        background-color: rgba(0, 0, 0, 0.04);
+        max-width: 100%;
+        height: 60rem;
+        margin: 0 auto;
+    }
+
+    .servicesContainer{
+        font-weight: 700;
+        max-width: 80%;
+    }
+    .riderImage {
+        /* max-width: 100%; */
+        margin: 0%;
+
+    }
+
+    .riderText {
+        width: 80%;
+        /* margin: 0 auto; */
+    }
+
+    .clientText {
+       
+    }
 }
