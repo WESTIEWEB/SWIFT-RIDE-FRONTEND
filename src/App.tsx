@@ -175,6 +175,14 @@ const App = () => {
 						}
 					/>
 					<Route
+						path="/payment-option"
+						element={
+							<ProtectUserRoute>
+								<PaymentOption />
+							</ProtectUserRoute>
+						}
+					/>
+					<Route
 						path="/add-card"
 						element={
 							<ProtectUserRoute>

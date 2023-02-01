@@ -11,7 +11,7 @@ import addresscontact from "../../assets/Users_dashboard/addresscontact.svg";
 import emailcontact from "../../assets/Users_dashboard/emailcontact.svg";
 import phonecontact from "../../assets/Users_dashboard/phonecontact.svg";
 import { Link } from "react-router-dom";
-import { apiGetAndAuth } from "../../utils/api/axios";
+import { apiGetAndAuth, baseURI } from "../../utils/api/axios";
 import DemoNav from "../../components/Navbar/DemoNavbar";
 // import { baseURI } from '../../utils/config';
 import ScrollToBottom from "react-scroll-to-bottom";

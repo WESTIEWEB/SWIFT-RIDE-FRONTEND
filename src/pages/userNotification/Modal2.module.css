@@ -229,15 +229,11 @@ body.active-modal {
 }
 .length {
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 20px;
-  height: 20px;
+  width: 1.2em;
+  height: 1.5em;
   border-radius: 50%;
-  top: -30px;
   background-color: red;
-  /* bottom: 15px; */
+  bottom: 15px;
   font-size: 11px;
   left: 14px;
   color: white;
