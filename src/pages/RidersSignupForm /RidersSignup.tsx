@@ -35,7 +35,7 @@ const RidersSignup = () => {
 		e.preventDefault();
 		// console.log("this is formDatat", formData);
 		const formData = new FormData();
-		formData.append("email", dataValues.email);
+		formData.append("email", dataValues.email.trim().toLowerCase());
 		formData.append("name", dataValues.name);
 		formData.append("phone", dataValues.phone);
 		formData.append("city", dataValues.city);

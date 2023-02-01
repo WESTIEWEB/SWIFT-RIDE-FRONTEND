@@ -17,6 +17,11 @@ export const apiGetAndAuth = async (path: string, config: any) => {
 	return await axios.get(`${baseURI}${path}`, config);
 };
 
+export const apiPostAndAuth1 = async (path: any, data: any, config: any) => {
+	// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+	return await axios.post(`${baseURI}${path}`, data, config);
+};
+
 export const apiPostAndAuth = async (path: string, data: any) => {
 	const signature = localStorage.getItem("signature");
 	if (signature === null) {

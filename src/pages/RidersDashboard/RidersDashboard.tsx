@@ -7,7 +7,7 @@ import { VscLocation } from "react-icons/vsc";
 import { BsTelephone } from "react-icons/bs";
 import { MdOutlineEmail } from "react-icons/md";
 import { Link } from "react-router-dom";
-import axios from "../../utils/api/axios";
+import { apiGetAndAuth } from "../../utils/api/axios";
 import DemoNav from "../../components/Navbar/DemoNavbar";
 
 function removeTimeAndFormatDate(datetimeString: string): string {
@@ -28,45 +28,44 @@ function removeTimeAndFormatDate(datetimeString: string): string {
 const RidersDashboard = () => {
 	const [ridersBill, setRidersBill] = useState([]);
 	const [completedRides, setCompletedRides] = useState("");
+	const signature = localStorage.getItem("signature");
+	const config = {
+		headers: {
+			// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+			Authorization: `Bearer ${signature}`,
+		},
+	};
 	useEffect(() => {
 		async function fetchData() {
-			const signature = localStorage.getItem("signature");
 			if (signature === null) return;
-			const config = {
-				headers: {
-					Authorization: `Bearer ${signature}`,
-				},
-			};
-			await axios
-				.get(
-					"http://localhost:4000/riders/rider-dashdoard-completed-orders",
-					config
-				)
-				.then((res) => {
-					setCompletedRides(String(res.data.totalOrders));
-				});
+			const response = await apiGetAndAuth(
+				"/riders/rider-dashdoard-completed-orders",
+				config
+			);
+			setCompletedRides(String(response?.data?.count));
+			console.log(completedRides);
 		}
 		async function getRidersBill() {
-			// e.preventDefault();
-			const signature = localStorage.getItem("signature");
-			if (signature === null) return;
-			const config = {
-				headers: {
-					Authorization: `Bearer ${signature}`,
-				},
-			};
-			await axios
-				.get(
+			try {
+				// e.preventDefault();
+				if (signature === null) return;
+				const response = await apiGetAndAuth(
 					"http://localhost:4000/riders/rider-dashboard-pending-orders",
 					config
-				)
-				.then((res) => {
-					setRidersBill(res.data?.orders?.rows);
-				});
-			// console.log("myData: ", response?.data);
+				);
+
+				if (response.status === 200) {
+					setRidersBill(response.data?.orders?.rows);
+				}
+			} catch (err: any) {
+				// eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+				if (err.response.message) {
+					console.log(err.message);
+				}
+			}
 		}
-		fetchData().catch(console.error);
-		getRidersBill().catch(console.error);
+		void fetchData();
+		void getRidersBill();
 	}, []);
 	return (
 		<div className={rDashboard.container}>
@@ -81,7 +80,7 @@ const RidersDashboard = () => {
 					<div className={rDashboard.totalOrders}>
 						<div className={rDashboard.orderRequest}>
 							<h1 className={rDashboard.totalOrdersH1}>Total Orders</h1>
-							<Link to="/journey-tracker" >
+							<Link to="/journey-tracker">
 								<button>View active Delivery</button>
 							</Link>
 						</div>
@@ -119,7 +118,7 @@ const RidersDashboard = () => {
 								</div>
 							))
 						) : (
-							<p style={{paddingTop:30}}>No data available</p>
+							<p style={{ paddingTop: "30" }}>No data available</p>
 						)}
 					</div>
 					<div className={rDashboard.messages}>

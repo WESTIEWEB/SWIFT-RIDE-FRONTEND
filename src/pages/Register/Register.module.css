@@ -175,3 +175,159 @@
     width: 100%;
     }
 }
+
+
+
+.singup_f_section{
+  display: flex;
+  height: 100vh;
+}
+
+.singup_form_data_container{
+  background-image:url("../../assets/Users_dashboard/Parcel-Delivery-Service.jpeg");
+  background-size: cover;
+  display: flex;
+}
+
+.singup_form_image{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: flex-end;
+  background: linear-gradient(to right, #211c1c4d, #57524a32) 
+}
+
+.singup_section_h1{
+  color: #fff;
+  margin:0px 0px 50px 20px;
+}
+
+.singup_form_ctainer{
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.singup_form_ctainer_innerDiv{
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 80%;
+  height: 80vh;
+
+}
+
+.singup_form_ctainer,.singup_form_data_container{
+  width: 50%;
+}
+
+.singup_form{
+
+  width: 80%;
+  height: 65vh;
+}
+
+.singup_logo_div{
+  width: fit-content;
+}
+
+.singup_form_logo{
+  display: flex;
+  align-items: center;
+  width: fit-content;
+
+
+}
+
+.singup_form_logo span{
+  color: #E02B45;
+}
+
+.singup_form_title{
+  margin-bottom: 20px;
+}
+
+.singup_form_label_ctn{
+  height: 50vh;
+}
+
+.singup_form_fieldctn{
+  display: flex;
+  flex-direction: column;
+}
+
+.singup_form_fieldctn b{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+  box-sizing: border-box;
+  padding-left: 10px;
+  background: rgb(255, 255, 255);
+  color: #c4c4c4;
+}
+
+b .singup_form_input{
+  height: 2.8em;
+  width: 93%;
+  border: none !important;
+  border-radius: 0px 5px 5px 0px !important;
+}
+
+b .singup_form_input::placeholder{
+  padding: none;
+}
+
+.singup_form_input[type="submit"]{
+  height: 2.8em;
+  border: none;
+  cursor: pointer;
+  background: #E02B45;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.singup_form_label{
+  margin-bottom: 5px;
+}
+input {
+  font-family: "Inter", sans-serif;
+}
+.singup_form_a{
+  margin-bottom: 20px;
+}
+.singup_form_p{
+  margin-top: 10px;
+}
+
+.singup_form_p a{
+  color: #E02B45;
+  text-decoration: none;
+}
+
+.singup_form_a a{
+  color: #4285F4;
+  text-decoration: none;
+}
+
+.singup_form_a, .singup_form_p{
+  font-size: 12px;
+}
+
+
+@media screen and (max-width: 800px){
+
+  .singup_form_data_container{
+    display: none;
+  }
+
+  .singup_form_ctainer, .singup_form{
+    width: 100%;
+  }
+
+}

@@ -1,10 +1,9 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import image from "../../assets/Users_dashboard/image.png";
+// import image from "../../assets/Users_dashboard/image.png";
 import logodesign from "../../assets/logodesign.svg";
 import loginFormStyle from "./LoginForm.module.css";
-import "./LoginForm.module.css";
 import { apiPost } from "../../utils/api/axios";
 import { toast } from "react-toastify";
 
@@ -89,26 +88,34 @@ const LoginForm = () => {
 
 							<div className={loginFormStyle.login_form_label_ctn}>
 								<div className={loginFormStyle.login_form_fieldctn}>
-									<label className={loginFormStyle.login_form_label}>Email</label>
-									<b className={`fa fa-envelope login_form_s_input`}><input
-										placeholder="Enter your email"
-										className={loginFormStyle.login_form_input}
-										type="email"
-										id="email"
-										name="email"
-										onChange={handleChange}
-									/></b>
+									<label className={loginFormStyle.login_form_label}>
+										Email
+									</label>
+									<b className={`fa fa-envelope login_form_s_input`}>
+										<input
+											placeholder="Enter your email"
+											className={loginFormStyle.login_form_input}
+											type="email"
+											id="email"
+											name="email"
+											onChange={handleChange}
+										/>
+									</b>
 									<br />
-									<label className={loginFormStyle.login_form_label}>Password</label>
+									<label className={loginFormStyle.login_form_label}>
+										Password
+									</label>
 
-									<b className="fa fa-lock" ><input
-										placeholder="Enter your password"
-										className={loginFormStyle.login_form_input}
-										type="password"
-										id="password"
-										name="password"
-										onChange={handleChange}
-									/></b>
+									<b className="fa fa-lock">
+										<input
+											placeholder="Enter your password"
+											className={loginFormStyle.login_form_input}
+											type="password"
+											id="password"
+											name="password"
+											onChange={handleChange}
+										/>
+									</b>
 									<br />
 									<p className={loginFormStyle.login_form_a}>
 										<Link
@@ -126,15 +133,12 @@ const LoginForm = () => {
 									<div>
 										<p className={loginFormStyle.login_form_p}>
 											Don't have an account?{" "}
-											<Link to="/user-signup">
-												Create account
-											</Link>
+											<Link to="/user-signup">Create account</Link>
 										</p>
 									</div>
 								</div>
 							</div>
 						</div>
-
 					</form>
 				</div>
 			</div>
