@@ -63,27 +63,33 @@ export const NotificationAlert = () => {
       </div>
       {modal2 && notify.length !== 0 ? (
         <div className={modalStyle.modal1}>
+          {" "}
           {/* <div className={modalStyle.overlay}> </div> */}
           <div className={modalStyle.modal_content}>
+            {" "}
             {notify.map((item: itemType) => (
               <div key={item.id}>
+                {" "}
                 <div className={modalStyle.orderText}>
+                  {" "}
                   <button
                     className={modalStyle.item_btn}
                     onClick={() => itemClick(item.id)}
                   >
+                    {" "}
                     Your {item.description} has been {item.notificationType}
-                  </button>
-                </div>
+                  </button>{" "}
+                </div>{" "}
               </div>
             ))}
             <div className={modalStyle.close_modal}>
+              {" "}
               <button onClick={() => setModal2(false)}>
                 {" "}
-                <AiOutlineClose size={20} />
-              </button>
-            </div>
-          </div>
+                <AiOutlineClose size={20} />{" "}
+              </button>{" "}
+            </div>{" "}
+          </div>{" "}
         </div>
       ) : (
         <>

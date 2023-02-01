@@ -5,7 +5,6 @@ import "./App.css";
 import Login from "./pages/logins/Login";
 // import "./App.css";
 import Register from "./pages/Register/Register";
-import RidersSignup from "./pages/RidersSignupForm /RidersSignup";
 // import ForgotPasswordd from "./pages/ForgotPasswordd/ForgotPasswordd";
 import MailSent from "./pages/SentMail/MailSent";
 import ResetPasswordd from "./pages/ResetPasswordd/ResetPasswordd";
@@ -14,7 +13,7 @@ import ProfileSetting from "./pages/ProfileSetting/ProfileSetting";
 // import VendorDashboard from "./pages/VendorDashboard/VendorDashboard";
 import { ToastContainer } from "react-toastify";
 import ForgetPasswordCard from "./components/fPassCard/fPassCard";
-import RequestRider from "./pages/UserRequestRider/RideRequest";
+import RequestRider from "./pages/UserRequestRider/RequestRider";
 import Modal from "./pages/UserRequestRider/Modal";
 import BidingOrder from "./pages/RiderBiddingOrder/RiderBiddingOrder";
 import UserDashboard from "./pages/userDashboard/userDashboard";
@@ -32,6 +31,7 @@ import Earningpage from "./pages/EarningPage/Earningpage";
 import PaymentOption from "./pages/PaymentOption/PaymentOption";
 import AddCard from "./pages/AddCard/AddCard";
 import CardDetails from "./pages/CardDetails/CardDetails";
+import RidersSignup from "./pages/RidersSignupForm /RidersSignup";
 
 // setup  for fontend
 
@@ -191,7 +191,7 @@ const App = () => {
 						}
 					/>
 					<Route
-						path="card-details"
+						path="/card-details"
 						element={
 							<ProtectUserRoute>
 								<CardDetails />
