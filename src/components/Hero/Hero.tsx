@@ -17,7 +17,7 @@ const Hero = () => {
 						</div>
 						<div className="buttondiv">
 							<Link
-								to={"user-signup"}
+								to={"/user-signup"}
 								style={{
 									textDecoration: "none",
 								}}
@@ -26,7 +26,7 @@ const Hero = () => {
 								Pickup Register
 							</Link>
 							<Link
-								to={"user-signup"}
+								to={"/riders-signup"}
 								style={{
 									textDecoration: "none",
 								}}

@@ -20,7 +20,7 @@ const Register = () => {
 		e.preventDefault();
 		try {
 			const result = await apiPost("/users/signup", formData);
-			if (result.status === 200) {
+			if (result.status === 201) {
 				toast.success(result.data.message);
 				setTimeout(() => {
 					window.location.href = "/login";

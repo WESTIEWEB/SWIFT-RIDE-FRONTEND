@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 import { useEffect, useState } from "react";
+import "./Chat.css";
 import dashboard_style from "./userDashboard.module.css";
 import rDashboard from "./RidersDashboard.module.css";
 import orderimg from "../../assets/Users_dashboard/orders.svg";
@@ -10,8 +11,12 @@ import addresscontact from "../../assets/Users_dashboard/addresscontact.svg";
 import emailcontact from "../../assets/Users_dashboard/emailcontact.svg";
 import phonecontact from "../../assets/Users_dashboard/phonecontact.svg";
 import { Link } from "react-router-dom";
-import { apiGetAndAuth } from "../../utils/api/axios";
+import { apiGetAndAuth, baseURI } from "../../utils/api/axios";
 import DemoNav from "../../components/Navbar/DemoNavbar";
+// import { baseURI } from '../../utils/config';
+import ScrollToBottom from "react-scroll-to-bottom";
+import { FiMessageSquare } from "react-icons/fi";
+import Pusher from "pusher-js";
 
 function removeTimeAndFormatDate(datetimeString: string): string {
 	// Parse the input string using the Date object
@@ -32,12 +37,75 @@ const RidersDashboard = () => {
 	const [ridersBill, setRidersBill] = useState([]);
 	const [completedRides, setCompletedRides] = useState("");
 	const signature = localStorage.getItem("signature");
+	const [hide, setHide] = useState(false);
+	const [messages, setMessages] = useState<any>([]);
+	const [message, setMessage] = useState<string>("");
+	const nameUser = localStorage.getItem("userName");
+	const allMessages: any = [];
+	const handleChange = (e: any) => {
+		setMessage(e.target.value);
+	};
 	const config = {
 		headers: {
 			// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
 			Authorization: `Bearer ${signature}`,
 		},
 	};
+	const baseURL = `${baseURI}/chat/messages`;
+	const handleSubmit = async (e: any) => {
+		e.preventDefault();
+		await fetch(baseURL, {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({
+				username: nameUser,
+				message,
+				time:
+					// eslint-disable-next-line @typescript-eslint/restrict-plus-operands
+					new Date(Date.now()).getHours() +
+					":" +
+					new Date(Date.now()).getMinutes(),
+			}),
+		});
+		setMessage("");
+	};
+	async function getRidersBill() {
+		try {
+			// e.preventDefault();
+			if (signature === null) return;
+			const response = await apiGetAndAuth(
+				"/riders/rider-dashboard-pending-orders",
+				config
+			);
+
+			if (response.status === 200) {
+				setRidersBill(response.data?.orders?.rows);
+			}
+		} catch (err: any) {
+			// eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+			if (err.response.message) {
+				console.log(err.message);
+			}
+		}
+	}
+
+	const handleScroll = (event: React.UIEvent<HTMLDivElement>) => {
+		const container = event.currentTarget;
+		if (
+			container.scrollHeight - container.scrollTop ===
+			container.clientHeight
+		) {
+			// eslint-disable-next-line @typescript-eslint/no-floating-promises
+			void getRidersBill();
+		}
+	};
+
+	const toggleChat = () => {
+		// responsible for toggling the chat modal
+		setHide(!hide);
+		console.log(hide);
+	};
+
 	useEffect(() => {
 		async function fetchData() {
 			if (signature === null) return;
@@ -48,29 +116,28 @@ const RidersDashboard = () => {
 			setCompletedRides(String(response?.data?.count));
 			console.log(completedRides);
 		}
-		// async function getRidersBill() {
-		// 	try {
-		// 		// e.preventDefault();
-		// 		if (signature === null) return;
-		// 		const response = await apiGetAndAuth(
-		// 			"/rider-dashboard-pending-orders",
-		// 			config
-		// 		);
-
-		// 		if (response.status === 200) {
-		// 			setRidersBill(response.data?.orders?.rows);
-		// 		}
-		// 	} catch (err: any) {
-		// 		// eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-		// 		if (err.response.message) {
-		// 			console.log(err.message);
-		// 		}
-		// 	}
-		// }
+		
 		void fetchData();
 		// eslint-disable-next-line no-use-before-define
-		void getRidersBill();
 	}, []);
+	
+	useEffect(() => {
+		Pusher.logToConsole = true;
+		const pusher = new Pusher("e6e0a271cc1dd441c02a", {
+			cluster: "sa1",
+		});
+		const channel = pusher.subscribe("swiftRider");
+		channel.bind("message", function (data: any) {
+			allMessages.push(data);
+			setMessages(allMessages);
+		});
+	}, []);
+
+	useEffect(()=> {
+		getRidersBill();
+	}, [])
+	//
+
 	async function getRidersBill() {
 		try {
 			// e.preventDefault();
@@ -91,16 +158,6 @@ const RidersDashboard = () => {
 			}
 		}
 	}
-	const handleScroll = (event: React.UIEvent<HTMLDivElement>) => {
-		const container = event.currentTarget;
-		if (
-			container.scrollHeight - container.scrollTop ===
-			container.clientHeight
-		) {
-			// eslint-disable-next-line @typescript-eslint/no-floating-promises
-			void getRidersBill();
-		}
-	};
 
 	// const call = (phone: string) => {
 	// 	window.location.href = `tel:${phone}`;
@@ -125,22 +182,6 @@ const RidersDashboard = () => {
 							<div className={dashboard_style.top_orders}>
 								<div className={rDashboard.orderRequest}>
 									<h1 className={rDashboard.totalOrdersH1}>Total Orders</h1>
-									{ridersBill.length === 0 ? (
-										<Link to="/journey-tracker">
-											<button>View active Delivery</button>
-										</Link>
-									) : (
-										ridersBill.map((order: any) => (
-											// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-											<Link
-												key={order.id}
-												// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-												to={`/journey-tracker/${order.id}`}
-											>
-												<button>View active Delivery</button>
-											</Link>
-										))
-									)}
 								</div>
 							</div>
 							{/* <hr /> */}
@@ -303,6 +344,80 @@ const RidersDashboard = () => {
 						</div>
 					</main>
 				</div>
+			</div>
+			{hide && (
+				<div className={rDashboard.rchat_container_pa}>
+					{" "}
+					{/* <span className={dashboard_style.chat_cancel_button}>                                <ImCancelCircle />                            </span> */}
+					<div className="chat-window">
+						{" "}
+						<div className="chat-header">
+							{" "}
+							<p>Hello {nameUser} chat with your Dispatch Client</p>{" "}
+						</div>{" "}
+						<div className="chat-body">
+							{" "}
+							<ScrollToBottom className="message-container">
+								{" "}
+								{/* {messageList.map((messageContent: any) => { */}
+								{/* return ( */}
+								{messages.map((user: any) => (
+									<div
+										key={user.id}
+										className="message"
+										id={user.username === nameUser ? "you" : "other"}
+									>
+										{" "}
+										<div>
+											{" "}
+											<>
+												{" "}
+												<div className="message-content">
+													{" "}
+													<p>{user.message}</p>{" "}
+												</div>{" "}
+												<div className="message-meta">
+													{" "}
+													<p id="author">{user.username}</p>{" "}
+													<p id="author">{user.time}</p>{" "}
+												</div>{" "}
+											</>{" "}
+										</div>{" "}
+									</div>
+								))}
+							</ScrollToBottom>{" "}
+						</div>{" "}
+						<form onSubmit={handleSubmit}>
+							{" "}
+							<div className="chat-footer">
+								{" "}
+								<input
+									type="text"
+									value={message}
+									placeholder="type message here..."
+									onChange={handleChange}
+								/>{" "}
+								<button onClick={handleSubmit}>&#9658;</button>{" "}
+							</div>{" "}
+						</form>{" "}
+					</div>{" "}
+				</div>
+			)}
+			<div>
+				{" "}
+				<FiMessageSquare
+					style={{
+						position: "fixed",
+						bottom: "10px",
+						right: "0",
+						width: "100px",
+						fontSize: "50px",
+						opacity: "0.55",
+						cursor: "pointer",
+					}}
+					onClick={toggleChat}
+				/>{" "}
+				{/* {hide === true? <p></p>: (<Chat />)} */}
 			</div>
 		</>
 	);

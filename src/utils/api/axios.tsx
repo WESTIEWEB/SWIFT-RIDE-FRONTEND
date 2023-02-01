@@ -2,7 +2,7 @@ import axios from "axios";
 // import { baseURI } from "../config";
 import { baseURL } from "../config";
 
-const baseURI = "http://localhost:4000";
+export const baseURI = "http://localhost:4000";
 // export default axios.create({
 // 	headers: {
 // 		"Content-type": "application/json",

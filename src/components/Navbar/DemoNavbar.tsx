@@ -69,7 +69,7 @@ const DemoNav = () => {
 								{/* <img src={bell} alt="notification" /> */}
 							</li>
 							<li>
-								<img className="demo_logo_last" src={`${image}`} alt="avatar" />
+								{image ? <img className="demo_logo_last" src={`${image}`} alt="photo" />:<img className="demo_logo_last" src={avatar} alt="avatar" />}
 								<NavLink
 									to="/user-profilesetting"
 									className="nav-elements-span_sp"

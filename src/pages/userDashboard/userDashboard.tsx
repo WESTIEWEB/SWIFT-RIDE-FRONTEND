@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 // import NavbarProfile from "../../components/Navbar/NavbarProfile";
 import DemoNav from "../../components/Navbar/DemoNavbar";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import dashboard_style from "./userDashboard.module.css";
 import orderimg from "../../assets/Users_dashboard/orders.svg";
 import msg1 from "../../assets/Users_dashboard/msg1.svg";
@@ -12,12 +12,16 @@ import overview from "../../assets/Users_dashboard/overview.svg";
 import addresscontact from "../../assets/Users_dashboard/addresscontact.svg";
 import emailcontact from "../../assets/Users_dashboard/emailcontact.svg";
 import phonecontact from "../../assets/Users_dashboard/phonecontact.svg";
-import { apiGet, apiGetAndAuth } from "../../utils/api/axios";
+import { apiGet, apiGetAndAuth, baseURI } from "../../utils/api/axios";
 import { Link } from "react-router-dom";
 import profilePic from "../../assets/profilepic.png";
+import { FiMessageSquare } from "react-icons/fi";
 import { AiFillStar, AiOutlineClose } from "react-icons/ai";
 import Success from "../../assets/Success.svg";
 import modalStyle from "../UserRequestRider/Modal2.module.css";
+import Pusher from "pusher-js";
+// import { baseURI } from '../../utils/api/axios';
+import ScrollToBottom from "react-scroll-to-bottom";
 
 function removeTimeAndFormatDate(datetimeString: string): string {
 	// Parse the input string using the Date object
@@ -34,6 +38,9 @@ function removeTimeAndFormatDate(datetimeString: string): string {
 	const formattedDate = new Intl.DateTimeFormat("en-US", options).format(date);
 	return formattedDate;
 }
+
+const baseURL = `${baseURI}/chat/messages`;
+
 // console.log("My date now:  " ,removeTimeAndConvertTo12HourFormat("2022-12-21T11:58:01.571Z"))
 const UserDashboard = () => {
 	const [modal, setModal] = useState(false);
@@ -43,6 +50,37 @@ const UserDashboard = () => {
 	const [order, setOrder]: any = React.useState([]);
 	const [loading, setLoading] = React.useState(false);
 	const [rider, setRider]: any = React.useState([]);
+
+	const [hide, setHide] = React.useState(false);
+	// const [username, setUsername] = useState<string>('username')
+	const [messages, setMessages] = useState<any>([]);
+	const [message, setMessage] = useState<string>("");
+
+	const nameUser = localStorage.getItem("userName");
+	const allMessages: any = [];
+	const handleChange = (e: any) => {
+		setMessage(e.target.value);
+	};
+
+	const handleSubmit = async (e: any) => {
+		e.preventDefault();
+		if (message !== "") {
+			await fetch(baseURL, {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({
+					username: nameUser,
+					message,
+					time:
+						// eslint-disable-next-line @typescript-eslint/restrict-plus-operands
+						new Date(Date.now()).getHours() +
+						":" +
+						new Date(Date.now()).getMinutes(),
+				}),
+			});
+			setMessage("");
+		}
+	};
 
 	const handleClick = (orderId: number, status: string) => {
 		console.log(status);
@@ -150,6 +188,28 @@ const UserDashboard = () => {
 		void getBiddings();
 		void getCompletedOrders();
 	}, [order]);
+
+	
+	// console.log(messages)
+
+	useEffect(() => {
+		Pusher.logToConsole = true;
+
+		const pusher = new Pusher("e6e0a271cc1dd441c02a", {
+			cluster: "sa1",
+		});
+
+		const channel = pusher.subscribe("swiftRider");
+		channel.bind("message", function (data: any) {
+			allMessages.push(data);
+			setMessages(allMessages);
+		});
+	}, []);
+
+	const toggleChat = () => {
+		// responsible for toggling the chat modal
+		setHide(!hide);
+	};
 	return (
 		<>
 			{/* <NavbarProfile /> */}
@@ -418,7 +478,127 @@ const UserDashboard = () => {
 							</div>
 						</div>
 					)}
+					{/* {hide && (
+						<div className={dashboard_style.chat_container_pa}>
+							<span className={dashboard_style.chat_cancel_button}>
+								<ImCancelCircle />
+							</span>
+							<div className="chat-window">
+								<div className="chat-header">
+									<p>Hello {nameUser} chat with a rider</p>
+								</div>
+								<div className="chat-body">
+									<ScrollToBottom className="message-container">
+										{messages.map((user: any) => (
+											<div
+												key={user.id}
+												className="message"
+												id={user.username === nameUser ? "you" : "other"}
+											>
+												<div>
+													<>
+														<div className="message-content">
+															<p>{user.message}</p>
+														</div>
+														<div className="message-meta">
+															<p id="author">{user.username}</p>
+															<p id="author">{user.time}</p>
+														</div>
+													</>
+												</div>
+											</div>
+										))}
+									</ScrollToBottom>
+								</div>
+								<form onSubmit={handleSubmit}>
+									<div className="chat-footer">
+										<input
+											type="text"
+											value={message}
+											placeholder="type message here..."
+											onChange={handleChange}
+										/>
+										<button onClick={handleSubmit}>&#9658;</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					)} */}
 				</div>
+			</div>
+			{hide && (
+				<div className={dashboard_style.rchat_container_pa}>
+					{" "}
+					{/* <span className={dashboard_style.chat_cancel_button}>                                <ImCancelCircle />                            </span> */}
+					<div className="chat-window">
+						{" "}
+						<div className="chat-header">
+							{" "}
+							<p>Hello {nameUser} chat with your Dispatch Client</p>{" "}
+						</div>{" "}
+						<div className="chat-body">
+							{" "}
+							<ScrollToBottom className="message-container">
+								{" "}
+								{/* {messageList.map((messageContent: any) => { */}
+								{/* return ( */}
+								{messages.map((user: any) => (
+									<div
+										key={user.id}
+										className="message"
+										id={user.username === nameUser ? "you" : "other"}
+									>
+										{" "}
+										<div>
+											{" "}
+											<>
+												{" "}
+												<div className="message-content">
+													{" "}
+													<p>{user.message}</p>{" "}
+												</div>{" "}
+												<div className="message-meta">
+													{" "}
+													<p id="author">{user.username}</p>{" "}
+													<p id="author">{user.time}</p>{" "}
+												</div>{" "}
+											</>{" "}
+										</div>{" "}
+									</div>
+								))}
+							</ScrollToBottom>{" "}
+						</div>{" "}
+						<form onSubmit={handleSubmit}>
+							{" "}
+							<div className="chat-footer">
+								{" "}
+								<input
+									type="text"
+									value={message}
+									placeholder="type message here..."
+									onChange={handleChange}
+								/>{" "}
+								<button onClick={handleSubmit}>&#9658;</button>{" "}
+							</div>{" "}
+						</form>{" "}
+					</div>{" "}
+				</div>
+			)}
+			<div>
+				{" "}
+				<FiMessageSquare
+					style={{
+						position: "fixed",
+						bottom: "10px",
+						right: "0",
+						width: "100px",
+						fontSize: "50px",
+						opacity: "0.55",
+						cursor: "pointer",
+					}}
+					onClick={toggleChat}
+				/>{" "}
+				{/* {hide === true? <p></p>: (<Chat />)} */}
 			</div>
 		</>
 	);

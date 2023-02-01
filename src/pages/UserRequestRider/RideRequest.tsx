@@ -13,8 +13,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import back from "../../assets/back.png";
 import DemoNav from "../../components/Navbar/DemoNavbar";
-const baseUrl = "http://localhost:4000";
-
+import { baseURI } from "../../utils/api/axios";
 function RequestRider() {
 	const navigate = useNavigate();
 	const [formData, setFormData] = useState({});
@@ -34,7 +33,7 @@ function RequestRider() {
 		e.preventDefault();
 		try {
 			await axios
-				.post(`${baseUrl}/users/order-ride`, formData, {
+				.post(`${baseURI}/users/order-ride`, formData, {
 					headers: {
 						Authorization: `Bearer ${localStorage.getItem("signature")}`,
 					},

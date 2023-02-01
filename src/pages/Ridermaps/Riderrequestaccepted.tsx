@@ -13,6 +13,7 @@ const Riderrequestaccepted = () => {
 	
 	const splitRequestId = ID?.split("~") as string[];
 	const ownerId = splitRequestId[1];
+	const orderId = splitRequestId[0];
 
 	if(!ID) return null;
 
@@ -37,7 +38,7 @@ const Riderrequestaccepted = () => {
 }
 
 function redret(){
-	navigate("/journey-tracker")
+	navigate(`/journey-tracker/${orderId}`)
 }
 
  

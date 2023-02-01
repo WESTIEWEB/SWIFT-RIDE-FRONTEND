@@ -236,7 +236,7 @@ const MapTracking: React.FC = () => {
 								/>
 								<Link
 									className={locationTrkr.navigator_link}
-									to={"/riders-otp-verify"}
+									to={`/riders-otp-verify/${orderId}`}
 								>
 									<button
 										className={

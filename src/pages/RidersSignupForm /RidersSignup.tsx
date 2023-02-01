@@ -6,8 +6,9 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
+import { baseURI } from "../../utils/api/axios";
 
-const baseUrl = "http://localhost:4000";
+const baseUrl = baseURI;
 
 const RidersSignup = () => {
 	const [dataValues, setDataValues] = useState<Record<string, any>>({});
