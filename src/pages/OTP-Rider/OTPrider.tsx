@@ -10,7 +10,7 @@ import { apiPostAndAuth1, apiGet } from "../../utils/api/axios";
 import { toast } from "react-toastify";
 
 const OTPrider = () => {
-	const orderId = localStorage.getItem("orderID");
+	const orderId = useParams();
 	const [otp, setOtp] = useState("");
 	const [formData] = useState({});
 	const handleChange = (otp: any) => {

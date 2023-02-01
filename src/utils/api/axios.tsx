@@ -1,13 +1,13 @@
 import axios from "axios";
+// import { baseURI } from "../config";
+import { baseURL } from "../config";
 
 const baseURI = "http://localhost:4000";
-export default axios.create({
-	baseURL: "http://localhost:4000/api",
-	headers: {
-		"Content-type": "application/json",
-	},
-});
-const baseURL = "http://localhost:4000/api";
+// export default axios.create({
+// 	headers: {
+// 		"Content-type": "application/json",
+// 	},
+// });
 
 export const apiGet = async (path: string) => {
 	return await axios.get(`${baseURI}${path}`);

@@ -12,7 +12,7 @@ import {
 import { Position, Coordinates } from "./geolocation";
 import { apiGetAndAuth } from "../../utils/api/axios";
 import locationTrkr from "./Map.module.css";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import DemoNav from "../../components/Navbar/DemoNavbar";
 
 const containerStyle = {
@@ -36,6 +36,8 @@ const MapTracking: React.FC = () => {
 	const [coordinates, setCoordinates] = useState({ lat: 0, lng: 0 });
 	const [address, setAddress] = useState("");
 
+	const { orderId } = useParams();
+
 	const [geocodingError, setGeocodingError] = useState(false);
 	const [directionResponse, setDirectionResponse] = useState<any | null>(null);
 	const [count, setCount] = useState(0);
@@ -44,18 +46,7 @@ const MapTracking: React.FC = () => {
 	const [tripCompleted, setTripCompleted] = useState(true);
 	const [lat, setLat] = useState(0);
 	const [lng, setLng] = useState(0);
-	// if (navigator.geolocation) {
-	//   navigator.geolocation.getCurrentPosition(
-	//     (position) => {
-	//       console.log(position.coords.latitude, position.coords.longitude);
-	//     },
-	//     (error) => {
-	//       console.error(error);
-	//     }
-	//   );
-	// } else {
-	//   console.error("Geolocation is not supported by this browser.");
-	// }
+	
 
 	const restructure = order.dropOffLocation?.split(" ").join("+");
 
@@ -169,7 +160,8 @@ const MapTracking: React.FC = () => {
 		const getOrder = async () => {
 			try {
 				const { data } = await apiGetAndAuth(
-					`/riders/get-order-byId/${localStorage.getItem("orderID")}`,
+					// eslint-disable-next-line @typescript-eslint/no-base-to-string
+					`/riders/get-order-byId/${orderId}`,
 					{
 						headers: {
 							Authorization: `Bearer ${localStorage.getItem("signature")}`,
