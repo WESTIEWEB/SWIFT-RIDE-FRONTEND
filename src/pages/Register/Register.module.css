@@ -216,7 +216,7 @@
 
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+
   width: 80%;
   height: 80vh;
 
@@ -249,7 +249,7 @@
 }
 
 .singup_form_title{
-  margin-bottom: 20px;
+  margin: 10px 0px 20px;
 }
 
 .singup_form_label_ctn{

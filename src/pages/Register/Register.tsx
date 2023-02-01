@@ -82,7 +82,7 @@ const Register = () => {
 					</div>
 					<form className={modern.singup_form} onSubmit={handleSubmit}>
 						<div className={modern.singup_form_data_content}>
-							<h1 className={modern.singup_form_title}>Customer Signup</h1>
+							<h2 className={modern.singup_form_title}>Customer Signup</h2>
 
 							<div className={modern.singup_form_label_ctn}>
 								<div className={modern.singup_form_fieldctn}>
