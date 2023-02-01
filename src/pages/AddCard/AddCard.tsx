@@ -12,7 +12,7 @@ const AddCard = () => {
 				<div className="payment_options_title">
 					<div className="payment_options_data1">
 						<li className="absolute_post">
-							<Link to={"/payment-option"}>
+							<Link to={"/card-details"}>
 								<AiOutlineArrowLeft
 									style={{ color: "black" }}
 									className="add_card_navigate"

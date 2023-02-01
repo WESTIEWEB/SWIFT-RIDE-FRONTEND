@@ -33,6 +33,7 @@ export const NotificationAlert = () => {
         },
       });
       console.log("data for notification==>", data.notify);
+      console.log("I Was clicked!")
       setNotify(data?.notify);
       setNotificationCount(
         data?.notify.filter((item: any) => item.read === "false").length
@@ -96,7 +97,7 @@ export const NotificationAlert = () => {
         </div>
       ) : (
         <>
-          <div className={modalStyle.length}>
+          <div className={modalStyle.length} onClick={handleClick}>
             <span> {notificationCount}</span>
           </div>
         </>

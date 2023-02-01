@@ -463,6 +463,8 @@ const UserDashboard = () => {
           </div> */}
 
         </div>
+
+
         <div>
           {modal2 && (
             <div className={modalStyle.modal}>
@@ -608,6 +610,7 @@ const UserDashboard = () => {
             </div>
           )}
         </div>
+        
       </div>
       <div>
         <FiMessageSquare

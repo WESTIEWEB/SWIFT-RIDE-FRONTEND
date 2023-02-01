@@ -43,6 +43,7 @@ const RidersDashboard = () => {
     setMessage(e.target.value);
   };
   const baseUrl = "http://localhost:4000/chat/messages";
+  
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     await fetch(baseUrl, {
@@ -255,6 +256,7 @@ const RidersDashboard = () => {
           </div>
         </div>
       </div>
+
       {hide && (
         <div className={rDashboard.rchat_container_pa}>
           {/* <span className={dashboard_style.chat_cancel_button}>
