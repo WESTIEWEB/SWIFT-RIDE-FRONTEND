@@ -6,8 +6,9 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
+import { baseURI } from "../../utils/api/axios";
 
-const baseUrl = "http://localhost:4000";
+const baseUrl = baseURI;
 
 const RidersSignup = () => {
 	const [dataValues, setDataValues] = useState<Record<string, any>>({});
@@ -35,7 +36,7 @@ const RidersSignup = () => {
 		e.preventDefault();
 		// console.log("this is formDatat", formData);
 		const formData = new FormData();
-		formData.append("email", dataValues.email);
+		formData.append("email", dataValues.email.trim().toLowerCase());
 		formData.append("name", dataValues.name);
 		formData.append("phone", dataValues.phone);
 		formData.append("city", dataValues.city);

@@ -6,39 +6,51 @@ import OTPInputField from "react-otp-input";
 import DemoNav from "../../components/Navbar/DemoNavbar";
 import { Link, useParams } from "react-router-dom";
 import { useState } from "react";
-import axios from "../../utils/api/axios";
+import { apiPostAndAuth1, apiGet } from "../../utils/api/axios";
 import { toast } from "react-toastify";
 
-const baseUrl = "http://localhost:4000";
 const OTPrider = () => {
-	const orderId = useParams();
+	const {orderId} = useParams();
 	const [otp, setOtp] = useState("");
 	const [formData] = useState({});
 	const handleChange = (otp: any) => {
 		setOtp(otp);
 	};
+	console.log(orderId);
 	const handleSubmit = async (e: any, formData: any) => {
 		e.preventDefault();
 		try {
 			if (orderId === null) {
 				return console.log("no signature");
 			}
-
-			// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-			await axios
-				.post(`${baseUrl}/riders/delivery-verify/${orderId}`, formData)
-				.then((res) => {
-					toast.success(res.data.message);
-					setTimeout(() => {
-						window.location.href = "/rider-dashboard";
-					}, 2000);
-				})
-				.catch((err) => {
-					console.log(err);
-					toast.error(err.response.data.Error);
-				});
-		} catch (error) {
+			// eslint-disable-next-line @typescript-eslint/restrict-plus-operands
+			const result = await apiPostAndAuth1(
+				`/riders/delivery-verify/${orderId}`,
+				{ otp },
+				{
+					headers: {
+						Authorization: `Bearer ${localStorage.getItem("signature")}`,
+					},
+				}
+			);
+			if (result.status === 200) {
+				toast.success(result.data.message);
+				setTimeout(() => {
+					window.location.href = "/riders-dashboard";
+				}, 2000);
+			}
+		} catch (error: any) {
 			console.log(error);
+			// eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+			if (error.response.data.error) {
+				toast.error(error.response.data.error);
+				// eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+			} else if (error.request) {
+				toast.error(error.message);
+				// eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+			} else if (error.message) {
+				toast.error(error.message);
+			}
 		}
 	};
 	const ResendOTP = () => {
@@ -46,18 +58,45 @@ const OTPrider = () => {
 
 		const go = async (signature: string) => {
 			try {
-				await axios
-					.get(`${baseUrl}/riders/delivery-resend-otp/${orderId}`)
-					.then((res) => {
-						console.log(res.data);
-						toast.success(res.data.message);
-						// setTimeout(() => {
-						// 	// window.location.href = "/riders-otp-verify";
-						// }, 2000);
-					});
+				const result = await apiGet(`/riders/delivery-resend-otp/${orderId}`);
+				if (result.status === 200) {
+					toast.success(result.data.message);
+					setTimeout(() => {
+						window.location.href = "/riders-otp-verify";
+					}, 2000);
+				}
+
+				// .then((res) => {
+				// 	toast.success(res.data.message);
+				// 	setTimeout(() => {
+				// 		window.location.href = "/riders-otp-verify";
+				// 	}, 2000);
+				// })
+				// .catch((err) => {
+				// 	console.log(err);
+				// 	toast.error(err.response.data.Error);
+				// });
+				// await axios
+				// 	.get(`${baseUrl}/riders/delivery-resend-otp/${orderId}`)
+				// 	.then((res) => {
+				// 		console.log(res.data);
+				// 		toast.success(res.data.message);
+				// 		// setTimeout(() => {
+				// 		// 	// window.location.href = "/riders-otp-verify";
+				// 		// }, 2000);
+				// 	});
 			} catch (err: any) {
 				console.log(err);
-				toast.error(err.response.data.Error);
+				// eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+				if (err.response.data.error) {
+					toast.error(err.result.data.Error);
+					// eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+				} else if (err.request) {
+					toast.error(err.message);
+					// eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+				} else if (err.message) {
+					toast.error(err.message);
+				}
 			}
 		};
 

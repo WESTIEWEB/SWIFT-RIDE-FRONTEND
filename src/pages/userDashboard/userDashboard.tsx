@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 // import NavbarProfile from "../../components/Navbar/NavbarProfile";
 import DemoNav from "../../components/Navbar/DemoNavbar";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import dashboard_style from "./userDashboard.module.css";
 import orderimg from "../../assets/Users_dashboard/orders.svg";
 import msg1 from "../../assets/Users_dashboard/msg1.svg";
@@ -12,10 +12,11 @@ import overview from "../../assets/Users_dashboard/overview.svg";
 import addresscontact from "../../assets/Users_dashboard/addresscontact.svg";
 import emailcontact from "../../assets/Users_dashboard/emailcontact.svg";
 import phonecontact from "../../assets/Users_dashboard/phonecontact.svg";
-import { apiGet, apiGetAndAuth } from "../../utils/api/axios";
+import { apiGet, apiGetAndAuth, baseURI } from "../../utils/api/axios";
 import { Link } from "react-router-dom";
 import ScrollToBottom from "react-scroll-to-bottom";
 import profilePic from "../../assets/profilepic.png";
+import { FiMessageSquare } from "react-icons/fi";
 import { AiFillStar, AiOutlineClose } from "react-icons/ai";
 import Success from "../../assets/Success.svg";
 import modalStyle from "../UserRequestRider/Modal2.module.css";
@@ -44,6 +45,9 @@ function removeTimeAndFormatDate(datetimeString: string): string {
   const formattedDate = new Intl.DateTimeFormat("en-US", options).format(date);
   return formattedDate;
 }
+
+const baseURL = `${baseURI}/chat/messages`;
+
 // console.log("My date now:  " ,removeTimeAndConvertTo12HourFormat("2022-12-21T11:58:01.571Z"))
 const UserDashboard = () => {
   const [modal, setModal] = useState(false);

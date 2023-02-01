@@ -5,7 +5,8 @@ import "./fPassCard.css";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-const baseUrl = "http://localhost:4000";
+import { baseURI } from "../../utils/api/axios";
+const baseUrl = baseURI;
 
 const ForgetPasswordCard = () => {
   const [createForm, setCreateForm] = useState({});

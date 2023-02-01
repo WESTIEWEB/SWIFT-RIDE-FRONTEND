@@ -13,8 +13,9 @@
 .bidding_items_empty {
     font-size: 18px;
     font-weight: 700;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .rider_biding_section {
     margin-top: 10%;

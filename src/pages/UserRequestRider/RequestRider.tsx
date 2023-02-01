@@ -14,8 +14,9 @@ import { toast } from "react-toastify";
 
 import back from "../../assets/back.png";
 import DemoNav from "../../components/Navbar/DemoNavbar";
+import { baseURI } from "../../utils/api/axios";
 
-const baseUrl = "http://localhost:4000";
+const baseUrl = baseURI;
 
 function RequestRider() {
 	const navigate = useNavigate();

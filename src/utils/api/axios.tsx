@@ -1,13 +1,13 @@
 import axios from "axios";
+// import { baseURI } from "../config";
+import { baseURL } from "../config";
 
-const baseURI = "http://localhost:4000";
-export default axios.create({
-	baseURL: "http://localhost:4000/api",
-	headers: {
-		"Content-type": "application/json",
-	},
-});
-const baseURL = "http://localhost:4000/api";
+export const baseURI = "http://localhost:4000";
+// export default axios.create({
+// 	headers: {
+// 		"Content-type": "application/json",
+// 	},
+// });
 
 export const apiGet = async (path: string) => {
 	return await axios.get(`${baseURI}${path}`);
@@ -15,6 +15,11 @@ export const apiGet = async (path: string) => {
 
 export const apiGetAndAuth = async (path: string, config: any) => {
 	return await axios.get(`${baseURI}${path}`, config);
+};
+
+export const apiPostAndAuth1 = async (path: any, data: any, config: any) => {
+	// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+	return await axios.post(`${baseURI}${path}`, data, config);
 };
 
 export const apiPostAndAuth = async (path: string, data: any) => {

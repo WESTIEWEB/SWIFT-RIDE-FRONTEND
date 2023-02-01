@@ -6,8 +6,9 @@ import { Link } from "react-router-dom";
 import rest from "./ResetPasswordd.module.css";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { baseURI } from "../../utils/api/axios";
 
-const baseUrl = "http://localhost:4000";
+const baseUrl = baseURI;
 const ForgotPasswordd = () => {
 	const [formData, setFormData] = useState({});
 

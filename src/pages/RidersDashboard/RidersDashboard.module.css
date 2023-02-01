@@ -67,6 +67,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 0 20px;
+    width: 100%;
     border-bottom: 1px solid #E5E5E5;
     height: 65px;
 }
@@ -305,7 +306,18 @@
     text-decoration:    none;
     color:   rgb(35, 35, 101);
 }
-
+.rchat_container_pa{
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    top: 90px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    background-color: rgba(133, 124, 124, 0.44);
+    margin: auto;
+  }
 
 @media only screen and (max-width: 767px) {
     .overviewHeader {

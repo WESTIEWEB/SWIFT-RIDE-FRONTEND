@@ -17,7 +17,10 @@ const Chat = () => {
   const [room, setRoom] = useState("");
   const [showChat, setShowChat]= useState(false)
  
+<<<<<<< HEAD
    // const socket = io('http://localhost:3000');
+=======
+>>>>>>> mergeOn31stJan
 
   //function to be called whenever the button is clicked
 

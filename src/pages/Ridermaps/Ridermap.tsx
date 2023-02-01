@@ -210,12 +210,12 @@ const Ridermap = () => {
                 </div>
 
                 <div className={mapview.PymtCard}>
-                  <div>
+                <div>
                     <input checked type="radio" />
                     <span> {order.paymentMethod} payment</span>
                   </div>
 
-                 { order.paymentMethod == "Card" ? <div>
+                 { order.paymentMethod === "Card" ? <div>
                     <img src={Mastercard} alt="Mastercard logo" />
                   </div> : <div>
                     <img src={CashImg} alt="cash png"  style={{width: "35px", height: "25px"}}/>

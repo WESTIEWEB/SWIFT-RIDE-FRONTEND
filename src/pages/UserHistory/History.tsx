@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useEffect } from "react";
-// import "./App.css";
+import "./History.css";
 import { apiGetAndAuth } from "../../utils/api/axios";
 import moment from "moment";
 import DemoNav from "../../components/Navbar/DemoNavbar";
@@ -107,7 +107,7 @@ const History = () => {
 		<>
 			<DemoNav />
 			<div
-				className="container pickup_history_table"
+				className="container user_history_table"
 				style={{ marginTop: "10%" }}
 			>
 				<div className="rHis_title_container">

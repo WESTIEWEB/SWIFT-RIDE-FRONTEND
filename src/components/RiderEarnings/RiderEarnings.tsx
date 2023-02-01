@@ -57,7 +57,10 @@ const RiderEarnings = () => {
 						<ul className={EarningStlye.ride_count}>
 							<li>
 								<img src={cars} alt="cars" />
-								{totalRides} Rides
+								{/* {totalRides} Rides */}
+								{totalRides === 1
+									? `${totalRides} Ride`
+									: `${totalRides} Rides`}
 							</li>
 							<li>
 								<AiOutlineClockCircle />

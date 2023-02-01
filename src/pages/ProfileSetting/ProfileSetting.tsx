@@ -83,7 +83,7 @@ function ProfileSetting() {
 							<input
 								className={style.settings_input_info}
 								name="passport"
-								id="name"
+								id="passport"
 								type="file"
 								placeholder="image"
 								onChange={handleImageChange}
