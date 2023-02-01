@@ -8,6 +8,7 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import React, { useEffect, useRef, useState } from "react";
 import Mastercard from "../../assets/Mastercard.svg";
+import CashImg from "../../assets/cash_img.png";
 import {
   DirectionsRenderer,
   GoogleMap,
@@ -211,12 +212,15 @@ const Ridermap = () => {
                 <div className={mapview.PymtCard}>
                   <div>
                     <input checked type="radio" />
-                    <label htmlFor=""> Card payment</label>
+                    <span> {order.paymentMethod} payment</span>
                   </div>
 
-                  <div>
+                 { order.paymentMethod == "Card" ? <div>
                     <img src={Mastercard} alt="Mastercard logo" />
-                  </div>
+                  </div> : <div>
+                    <img src={CashImg} alt="cash png"  style={{width: "35px", height: "25px"}}/>
+                  </div> 
+                  }
                 </div>
 
                 <div className={mapview.btnGroup}>
