@@ -54,15 +54,15 @@ const OTPrider = () => {
 		}
 	};
 	const ResendOTP = () => {
-		const orderId = localStorage.getItem("signature") as string;
+		// const orderId = localStorage.getItem("signature") as string;
 
-		const go = async (signature: string) => {
+		const go = async () => {
 			try {
 				const result = await apiGet(`/riders/delivery-resend-otp/${orderId}`);
 				if (result.status === 200) {
 					toast.success(result.data.message);
 					setTimeout(() => {
-						window.location.href = "/riders-otp-verify";
+						window.location.href = `/riders-otp-verify/${orderId}`;
 					}, 2000);
 				}
 
@@ -100,7 +100,7 @@ const OTPrider = () => {
 			}
 		};
 
-		void go(orderId);
+		void go();
 	};
 
 	return (

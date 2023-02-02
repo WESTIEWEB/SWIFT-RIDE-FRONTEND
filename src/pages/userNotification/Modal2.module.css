@@ -240,9 +240,15 @@ body.active-modal {
 }
 .orderText {
   margin-bottom: 6px;
+  display: flex;
+  align-items: flex-start;
 }
 
 /*  */
 .item_btn {
   border: hidden;
+}
+.item_btn:hover {
+  background: #dfd6d6dd;
+  cursor: pointer;
 }

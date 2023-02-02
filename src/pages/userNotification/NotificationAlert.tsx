@@ -72,13 +72,13 @@ export const NotificationAlert = () => {
                 {" "}
                 <div className={modalStyle.orderText}>
                   {" "}
-                  <button
+                  <p
                     className={modalStyle.item_btn}
                     onClick={() => itemClick(item.id)}
                   >
                     {" "}
-                    Your {item.description} has been {item.notificationType}
-                  </button>{" "}
+                    Your dispatch request for {item.description} has been {item.notificationType}.
+                  </p>{" "}
                 </div>{" "}
               </div>
             ))}
